@@ -826,6 +826,8 @@ class VGraph {
         case Constant.DELETE:
           promises.push(this._vagabond.removeEdge(commitEdge.id));
           break;
+        default:
+          continue;
       }
     }
     await Promise.all(promises);
@@ -846,6 +848,8 @@ class VGraph {
         case Constant.DELETE:
           promises.push(this._vagabond.removeNode(commitNode.id));
           break;
+        default:
+          continue;
       }
     }
     await Promise.all(promises);
