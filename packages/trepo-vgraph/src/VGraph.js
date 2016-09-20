@@ -32,7 +32,7 @@ class VGraph {
    */
   constructor(repo, options = {}) {
     if (!Util.isValidRepo(repo)) {
-      return reject(new Error('Invalid Repo'));
+      throw new Error('Invalid Repo');
     }
     this._vagabond = new Vagabond(options);
 
@@ -52,7 +52,7 @@ class VGraph {
   /**
    * The repository identifier.
    *
-   * @typedef Repo
+   * @param {Repo} value The repo.
    */
   set repo(value) {
     throw new Error('Cannot set repo after initialization');
@@ -382,10 +382,10 @@ class VGraph {
    */
   info() {
     return Promise.resolve({
-      'version': this._version,
-      'repo': this._repo,
-      'commit': this._lastCommit,
-      'clean': !this._dirty,
+      version: this._version,
+      repo: this._repo,
+      commit: this._lastCommit,
+      clean: !this._dirty,
     });
   }
 
@@ -491,6 +491,9 @@ class VGraph {
   /**
    * Get a Commit Representing the uncommitted changes in vGraph.
    *
+   * @param {String} author The author.
+   * @param {Email} email The email.
+   * @param {String} message The message.
    * @return {Promise<Commit>} A Promise resolving to the Commit.
    */
   async status(author = 'status()', email = '<>', message = '(none)') {
