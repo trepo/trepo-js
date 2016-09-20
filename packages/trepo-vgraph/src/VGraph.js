@@ -778,10 +778,10 @@ class VGraph {
 
     // Get a reference to the last commit node.
     let latestCommitNode;
-    if (this._lastCommitNode !== null) {
-      latestCommitNode = this._lastCommitNode;
-    } else {
+    if (this._lastCommitNode === null) {
       latestCommitNode = this._rootNode;
+    } else {
+      latestCommitNode = this._lastCommitNode;
     }
 
     // Get all uncommitted changes.
@@ -1036,10 +1036,10 @@ class VGraph {
 
     // Get a reference to the last commit node.
     let latestCommitNode;
-    if (this._lastCommitNode !== null) {
-      latestCommitNode = this._lastCommitNode;
-    } else {
+    if (this._lastCommitNode === null) {
       latestCommitNode = this._rootNode;
+    } else {
+      latestCommitNode = this._lastCommitNode;
     }
 
     // Create new Commit Node
@@ -1351,30 +1351,30 @@ class VGraph {
       if (commitEdge === Constant.CREATE || commitEdge === Constant.UPDATE) {
         refSet.add(commitEdge.from);
         refSet.add(commitEdge.to);
-        if (edge !== null) {
+        if (edge === null) {
+          let newCommitEdge = new CommitEdge(commitEdge.id, commitEdge.label,
+            commitEdge.from, commitEdge.to);
+          newCommitEdge.action = Constant.CREATE;
+          newCommitEdge.props = commitEdge.props;
+          newCommit.addEdge(newCommitEdge);
+        } else {
           let newCommitEdge = new CommitEdge(commitEdge.id, commitEdge.label,
             commitEdge.from, commitEdge.to);
           newCommitEdge.action = Constant.UPDATE;
           newCommitEdge.props = commitEdge.props;
           newCommitEdge.origProps = Util.getProperties(properties);
           newCommit.addEdge(newCommitEdge);
-        } else {
-          let newCommitEdge = new CommitEdge(commitEdge.id, commitEdge.label,
-            commitEdge.from, commitEdge.to);
-          newCommitEdge.action = Constant.CREATE;
-          newCommitEdge.props = commitEdge.props;
-          newCommit.addEdge(newCommitEdge);
         }
       }
       if (commitEdge === Constant.DELETE) {
-        if (edge !== null) {
+        if (edge === null) {
+          continue;
+        } else {
           let newCommitEdge = new CommitEdge(commitEdge.id, commitEdge.label,
             commitEdge.from, commitEdge.to);
           newCommitEdge.action = Constant.DELETE;
           newCommitEdge.origProps = Util.getProperties(properties);
           newCommit.addEdge(newCommitEdge);
-        } else {
-          continue;
         }
       }
     }
@@ -1464,14 +1464,14 @@ class VGraph {
       }
       if (commitNode.action === Constant.REFERENCE &&
           refSet.has(commitNode.id)) {
-        if (node !== null) {
-          continue;
-        } else {
+        if (node === null) {
           let newCommitNode = new CommitNode(commitNode.id, commitNode.label);
           newCommitNode.action = Constant.CREATE;
           newCommitNode.boundary = true;
           newCommitNode.repo = commitNode.repo;
           newCommit.addNode(newCommitNode);
+        } else {
+          continue;
         }
       }
     }
