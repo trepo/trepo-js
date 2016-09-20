@@ -464,9 +464,8 @@ class VGraph {
       if (offset === 0) {
         commitNodes.push(nextNode);
         return this._getLogNodes(nextNode, commitNodes, number - 1, offset);
-      } else {
-        return this._getLogNodes(nextNode, commitNodes, number, offset - 1);
       }
+      return this._getLogNodes(nextNode, commitNodes, number, offset - 1);
     }
     return Promise.resolve(commitNodes);
   }
@@ -535,9 +534,8 @@ class VGraph {
             commitNode.origProps = Util.getProperties(properties);
             commit.addNode(commitNode);
           }
-        }
         // Update Delete
-        else if (properties[Constant.STATUS] === 6) {
+        } else if (properties[Constant.STATUS] === 6) {
           if (properties.hasOwnProperty(Constant.ORIG_PROPS)) {
             let commitNode = new CommitNode(node.id, node.label);
             commitNode.action = Constant.DELETE;
@@ -551,14 +549,12 @@ class VGraph {
             commitNode.origRepo = properties[Constant.ORIG_REPO];
             commit.addNode(commitNode);
           }
-        }
         // Create Delete
-        else {
+        } else {
           actuallyDelete.push(node.id);
         }
-      }
       // Updated Nodes
-      else if (properties[Constant.STATUS] === 2) {
+      } else if (properties[Constant.STATUS] === 2) {
         if (properties.hasOwnProperty(Constant.REPO)) {
           if (properties.hasOwnProperty(Constant.ORIG_PROPS)) {
             let commitNode = new CommitNode(node.id, node.label);
@@ -592,9 +588,8 @@ class VGraph {
             commit.addNode(commitNode);
           }
         }
-      }
       // Created Nodes
-      else {
+      } else {
         if (properties.hasOwnProperty(Constant.REPO)) {
           let commitNode = new CommitNode(node.id, node.label);
           commitNode.action = Constant.CREATE;
@@ -661,31 +656,27 @@ class VGraph {
           commitEdge.action = Constant.DELETE;
           commitEdge.origProps = Util.getProperties(properties);
           commit.addEdge(commitEdge);
-        }
         // Update Delete
-        else if (properties[Constant.STATUS] === 6) {
+        } else if (properties[Constant.STATUS] === 6) {
           let commitEdge =
             new CommitEdge(edge.id, edge.label, edge.from, edge.to);
           commitEdge.action = Constant.DELETE;
           commitEdge.origProps = JSON.parse(properties[Constant.ORIG_PROPS]);
           commit.addEdge(commitEdge);
-        }
         // Create Delete
-        else {
+        } else {
           actuallyDelete.push(edge.id);
         }
-      }
       // Updated Edges
-      else if (properties[Constant.STATUS] === 2) {
+      } else if (properties[Constant.STATUS] === 2) {
         let commitEdge =
           new CommitEdge(edge.id, edge.label, edge.from, edge.to);
         commitEdge.action = Constant.UPDATE;
         commitEdge.props = Util.getProperties(properties);
         commitEdge.origProps = JSON.parse(properties[Constant.ORIG_PROPS]);
         commit.addEdge(commitEdge);
-      }
       // Created Edges
-      else {
+      } else {
         let commitEdge =
           new CommitEdge(edge.id, edge.label, edge.from, edge.to);
         commitEdge.action = Constant.CREATE;
