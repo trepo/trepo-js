@@ -12,10 +12,10 @@ class CommitNode {
    * @param {Label} label The Label.
    */
   constructor(id = null, label = null) {
-    if (id != null) {
+    if (id !== null) {
       this.id = id;
     }
-    if (label != null) {
+    if (label !== null) {
       this.label = label;
     }
   }
@@ -27,7 +27,7 @@ class CommitNode {
   /**
    * The Node's ID.
    *
-   * @type Id
+   * @param {Id} value The node id.
    */
   set id(value) {
     if (!Util.isValidUUIDv4(value)) {
@@ -43,7 +43,7 @@ class CommitNode {
   /**
    * The Node's Label.
    *
-   * @type Label
+   * @param {Label} value The node label.
    */
   set label(value) {
     if (!Util.isValidLabel(value)) {
@@ -60,7 +60,7 @@ class CommitNode {
    * The action to take when applying this change.
    * May be `create`, `update`, or `delete`.
    *
-   * @type Action
+   * @param {Action} value The node action.
    */
   set action(value) {
     if (value !== 'create' && value !== 'update' &&
@@ -77,7 +77,7 @@ class CommitNode {
   /**
    * If this Node is a Boundary Node.
    *
-   * @type Boolean
+   * @param {Boolean} value If the node is a boundary.
    */
   set boundary(value) {
     if (typeof value !== 'boolean') {
@@ -93,7 +93,7 @@ class CommitNode {
   /**
    * The Repository this Node belongs to.
    *
-   * @type Repo
+   * @param {Repo} value The node's repo.
    */
   set repo(value) {
     if (typeof value !== 'string') {
@@ -107,9 +107,9 @@ class CommitNode {
   }
 
   /**
-   * The Repository this Node belongs to.
+   * The Repository this Node originally belongs to.
    *
-   * @type Repo
+   * @param {Repo} value The node's original repo.
    */
   set origRepo(value) {
     if (typeof value !== 'string') {
@@ -125,7 +125,7 @@ class CommitNode {
   /**
    * The original Properties (Set on Action: `delete`).
    *
-   * @type Object
+   * @param {Object} value The original properties.
    */
   set origProps(value) {
     if (typeof value !== 'object') {
@@ -141,7 +141,7 @@ class CommitNode {
   /**
    * The new props (Set on Action: `create` or `update`).
    *
-   * @type Object
+   * @param {Object} value The new properties.
    */
   set props(value) {
     if (typeof value !== 'object') {
@@ -208,6 +208,8 @@ class CommitNode {
               'must be set on create reference');
           }
           break;
+        default:
+          throw new Error('Invalid Action');
       }
     } else {
       switch (this._action) {
@@ -240,6 +242,8 @@ class CommitNode {
           break;
         case 'reference':
           throw new Error('reference is only allowed for boundaries');
+        default:
+          throw new Error('Invalid Action');
       }
     }
   }
@@ -248,6 +252,7 @@ class CommitNode {
    * Initialize this Node from JSON.
    *
    * @param  {Object} obj The JSON Object.
+   * @return {CommitNode} this node.
    */
   fromJSON(obj) {
     this.id = obj.id;

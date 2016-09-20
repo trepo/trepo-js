@@ -2,7 +2,6 @@ import CommitNode from './CommitNode.js';
 
 let expect = require('chai').expect;
 let uuidv4 = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
-let sha1 = 'bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f'; // SHA-1 of {}
 let commitNode;
 
 beforeEach(() => {
@@ -21,84 +20,99 @@ describe('CommitNode', () => {
   });
 
   it('id should work', () => {
-    expect(commitNode.id).to.be.undefined;
+    expect(commitNode.id).to.equal(undefined);
     commitNode.id = uuidv4;
     expect(commitNode.id).to.equal(uuidv4);
   });
 
   it('id should error in invalid id', () => {
-    expect(() => commitNode.id = '1234').to.throw('Invalid id');
+    expect(() => {
+      commitNode.id = '1234';
+    }).to.throw('Invalid id');
   });
 
   it('label should work', () => {
-    expect(commitNode.label).to.be.undefined;
+    expect(commitNode.label).to.equal(undefined);
     commitNode.label = 'label';
     expect(commitNode.label).to.equal('label');
   });
 
   it('label should error in invalid label', () => {
-    expect(() => commitNode.label = '_invalid').to.throw('Invalid label');
+    expect(() => {
+      commitNode.label = '_invalid';
+    }).to.throw('Invalid label');
   });
 
   it('action should work', () => {
-    expect(commitNode.action).to.be.undefined;
+    expect(commitNode.action).to.equal(undefined);
     commitNode.action = 'create';
     expect(commitNode.action).to.equal('create');
   });
 
   it('action should error in invalid action', () => {
-    expect(() => commitNode.action = 'read').to.throw('Invalid action');
+    expect(() => {
+      commitNode.action = 'read';
+    }).to.throw('Invalid action');
   });
 
   it('boundary should work', () => {
-    expect(commitNode.boundary).to.be.undefined;
+    expect(commitNode.boundary).to.equal(undefined);
     commitNode.boundary = false;
     expect(commitNode.boundary).to.equal(false);
   });
 
   it('boundary should error in invalid boundary', () => {
-    expect(() => commitNode.boundary = null).to.throw('Invalid boundary');
+    expect(() => {
+      commitNode.boundary = null;
+    }).to.throw('Invalid boundary');
   });
 
   it('repo should work', () => {
-    expect(commitNode.repo).to.be.undefined;
+    expect(commitNode.repo).to.equal(undefined);
     commitNode.repo = 'repo';
     expect(commitNode.repo).to.equal('repo');
   });
 
   it('repo should error in invalid repo', () => {
-    expect(() => commitNode.repo = true).to.throw('Invalid repo');
+    expect(() => {
+      commitNode.repo = true;
+    }).to.throw('Invalid repo');
   });
 
   it('origRepo should work', () => {
-    expect(commitNode.origRepo).to.be.undefined;
+    expect(commitNode.origRepo).to.equal(undefined);
     commitNode.origRepo = 'repo';
     expect(commitNode.origRepo).to.equal('repo');
   });
 
   it('origRepo should error in invalid repo', () => {
-    expect(() => commitNode.origRepo = true).to.throw('Invalid origRepo');
+    expect(() => {
+      commitNode.origRepo = true;
+    }).to.throw('Invalid origRepo');
   });
 
   it('origProps should work', () => {
-    expect(commitNode.origProps).to.be.undefined;
+    expect(commitNode.origProps).to.equal(undefined);
     commitNode.origProps = {};
     expect(commitNode.origProps).to.deep.equal({});
   });
 
   it('origProps should error in invalid origProps', () => {
-    expect(() => commitNode.origProps = undefined)
-      .to.throw('Invalid origProps');
+    expect(() => {
+      commitNode.origProps = undefined;
+    }).to.throw('Invalid origProps');
   });
 
   it('props should work', () => {
-    expect(commitNode.props).to.be.undefined;
+    expect(commitNode.props).to.equal(undefined);
     commitNode.props = {foo: 'bar'};
     expect(commitNode.props).to.deep.equal({foo: 'bar'});
   });
 
   it('props should error in invalid props', () => {
-    expect(() => commitNode.props = 'str').to.throw('Invalid props');
+    expect(() => {
+      commitNode.props = 'str';
+    }).to.throw('Invalid props');
   });
 
   it('validate should work on create regular node', () => {

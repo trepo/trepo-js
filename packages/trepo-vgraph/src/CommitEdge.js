@@ -15,16 +15,16 @@ class CommitEdge {
    * @param {Id} to The To Id.
    */
   constructor(id = null, label = null, from = null, to = null) {
-    if (id != null) {
+    if (id !== null) {
       this.id = id;
     }
-    if (label != null) {
+    if (label !== null) {
       this.label = label;
     }
-    if (from != null) {
+    if (from !== null) {
       this.from = from;
     }
-    if (to != null) {
+    if (to !== null) {
       this.to = to;
     }
   }
@@ -36,7 +36,7 @@ class CommitEdge {
   /**
    * The Edge's ID.
    *
-   * @type Id
+   * @param {Id} value The edge id.
    */
   set id(value) {
     if (!Util.isValidUUIDv4(value)) {
@@ -52,7 +52,7 @@ class CommitEdge {
   /**
    * The Edge's Label.
    *
-   * @type Label
+   * @param {Label} value The edge label.
    */
   set label(value) {
     if (!Util.isValidLabel(value)) {
@@ -68,7 +68,7 @@ class CommitEdge {
   /**
    * The ID of the From Node.
    *
-   * @type Id
+   * @param {Id} value The from node id.
    */
   set from(value) {
     if (!Util.isValidUUIDv4(value)) {
@@ -84,7 +84,7 @@ class CommitEdge {
   /**
    * The ID of the To Node.
    *
-   * @type Id
+   * @param {Id} value The to node id.
    */
   set to(value) {
     if (!Util.isValidUUIDv4(value)) {
@@ -101,7 +101,7 @@ class CommitEdge {
    * The action to take when applying this change.
    * May be `create`, `update`, or `delete`.
    *
-   * @type Action
+   * @param {Action} value The action to take.
    */
   set action(value) {
     if (value !== Constant.CREATE && value !== Constant.UPDATE &&
@@ -118,7 +118,7 @@ class CommitEdge {
   /**
    * The original props (Set on Action: `delete`).
    *
-   * @type Object
+   * @param {Object} value The original properties.
    */
   set origProps(value) {
     if (typeof value !== 'object') {
@@ -130,7 +130,7 @@ class CommitEdge {
   /**
    * The new props (Set on Action: `create` or `update`).
    *
-   * @type Object
+   * @param {Object} value The new properties.
    */
   get props() {
     return this._props;
@@ -159,7 +159,7 @@ class CommitEdge {
       throw new Error('Missing from');
     }
 
-    if (this._from == this._id) {
+    if (this._from === this._id) {
       throw new Error('Invalid from');
     }
 
@@ -167,11 +167,11 @@ class CommitEdge {
       throw new Error('Missing to');
     }
 
-    if (this._to == this._id) {
+    if (this._to === this._id) {
       throw new Error('Invalid to');
     }
 
-    if (this._to == this._from) {
+    if (this._to === this._from) {
       throw new Error('Circular Edges not allowed');
     }
 
@@ -201,6 +201,8 @@ class CommitEdge {
           'must be set on delete');
         }
         break;
+      default:
+        throw new Error('Invalid Action');
     }
   }
 
@@ -208,6 +210,7 @@ class CommitEdge {
    * Initialize this Node from JSON.
    *
    * @param  {Object} obj The JSON Object.
+   * @return {CommitEdge} this edge.
    */
   fromJSON(obj) {
     this.id = obj.id;

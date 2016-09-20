@@ -8,7 +8,6 @@ let uuidv4 = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
 let uuid1 = '6911bdc1-3b72-4827-91ce-92daf6a9a29c';
 let uuid2 = 'a3167aff-a1aa-43d0-b12e-3fbea6ed7b9d';
 let uuid3 = '4059dbde-1400-4dde-9ee6-5abc7756ae4a';
-let sha1 = 'bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f'; // SHA-1 of {}
 let now = Date.now();
 
 let commit;
@@ -23,77 +22,93 @@ describe('Commit', () => {
   });
 
   it('version should error when set', () => {
-    expect(() => commit.version = '1234').to.throw('Cannot set version');
+    expect(() => {
+      commit.version = '1234';
+    }).to.throw('Cannot set version');
   });
 
   it('id should work', () => {
-    expect(commit.id).to.be.undefined;
+    expect(commit.id).to.equal(undefined);
     commit.id = uuidv4;
     expect(commit.id).to.equal(uuidv4);
   });
 
   it('id should error when invalid', () => {
-    expect(() => commit.id = '1234').to.throw('Invalid id');
+    expect(() => {
+      commit.id = '1234';
+    }).to.throw('Invalid id');
   });
 
   it('prev should work', () => {
-    expect(commit.prev).to.be.null;
+    expect(commit.prev).to.equal(null);
     commit.prev = uuidv4;
     expect(commit.prev).to.equal(uuidv4);
   });
 
   it('prev should error when invalid', () => {
-    expect(() => commit.prev = '1234').to.throw('Invalid prev');
+    expect(() => {
+      commit.prev = '1234';
+    }).to.throw('Invalid prev');
   });
 
   it('repo should work', () => {
-    expect(commit.repo).to.be.undefined;
+    expect(commit.repo).to.equal(undefined);
     commit.repo = 'repo';
     expect(commit.repo).to.equal('repo');
   });
 
   it('repo should error when invalid', () => {
-    expect(() => commit.repo = false).to.throw('Invalid repo');
+    expect(() => {
+      commit.repo = false;
+    }).to.throw('Invalid repo');
   });
 
   it('timestamp should work', () => {
-    expect(commit.timestamp).to.be.undefined;
+    expect(commit.timestamp).to.equal(undefined);
     commit.timestamp = 1234;
     expect(commit.timestamp).to.equal(1234);
   });
 
   it('timestamp should error when invalid', () => {
-    expect(() => commit.timestamp = null).to.throw('Invalid timestamp');
+    expect(() => {
+      commit.timestamp = null;
+    }).to.throw('Invalid timestamp');
   });
 
   it('author should work', () => {
-    expect(commit.author).to.be.undefined;
+    expect(commit.author).to.equal(undefined);
     commit.author = 'author';
     expect(commit.author).to.equal('author');
   });
 
   it('author should error when invalid', () => {
-    expect(() => commit.author = false).to.throw('Invalid author');
+    expect(() => {
+      commit.author = false;
+    }).to.throw('Invalid author');
   });
 
   it('email should work', () => {
-    expect(commit.email).to.be.undefined;
+    expect(commit.email).to.equal(undefined);
     commit.email = 'email';
     expect(commit.email).to.equal('email');
   });
 
   it('email should error when invalid', () => {
-    expect(() => commit.email = 1234).to.throw('Invalid email');
+    expect(() => {
+      commit.email = 1234;
+    }).to.throw('Invalid email');
   });
 
   it('message should work', () => {
-    expect(commit.message).to.be.undefined;
+    expect(commit.message).to.equal(undefined);
     commit.message = 'message';
     expect(commit.message).to.equal('message');
   });
 
   it('message should error when invalid', () => {
-    expect(() => commit.message = 1234).to.throw('Invalid message');
+    expect(() => {
+      commit.message = 1234;
+    }).to.throw('Invalid message');
   });
 
   it('nodes should work', () => {
@@ -114,7 +129,9 @@ describe('Commit', () => {
   });
 
   it('nodes should error when set', () => {
-    expect(() => commit.nodes = []).to.throw('Cannot set nodes');
+    expect(() => {
+      commit.nodes = [];
+    }).to.throw('Cannot set nodes');
   });
 
   it('getNode should work', () => {
@@ -240,7 +257,9 @@ describe('Commit', () => {
   });
 
   it('edges should error when set', () => {
-    expect(() => commit.edges = []).to.throw('Cannot set edges');
+    expect(() => {
+      commit.edges = [];
+    }).to.throw('Cannot set edges');
   });
 
   it('getEdge should work', () => {

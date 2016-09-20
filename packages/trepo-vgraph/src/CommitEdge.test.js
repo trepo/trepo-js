@@ -1,11 +1,9 @@
-import Constant from './Constant.js';
 import CommitEdge from './CommitEdge.js';
 
 let expect = require('chai').expect;
 let uuidv4 = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
 let uuid1 = '6911bdc1-3b72-4827-91ce-92daf6a9a29c';
 let uuid2 = 'a3167aff-a1aa-43d0-b12e-3fbea6ed7b9d';
-let sha1 = 'bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f'; // SHA-1 of {}
 
 let commitEdge;
 
@@ -27,74 +25,87 @@ describe('CommitEdge', () => {
   });
 
   it('id should work', () => {
-    expect(commitEdge.id).to.be.undefined;
+    expect(commitEdge.id).to.equal(undefined);
     commitEdge.id = uuidv4;
     expect(commitEdge.id).to.equal(uuidv4);
   });
 
   it('id should error in invalid id', () => {
-    expect(() => commitEdge.id = '1234').to.throw('Invalid id');
+    expect(() => {
+      commitEdge.id = '1234';
+    }).to.throw('Invalid id');
   });
 
   it('label should work', () => {
-    expect(commitEdge.label).to.be.undefined;
+    expect(commitEdge.label).to.equal(undefined);
     commitEdge.label = 'label';
     expect(commitEdge.label).to.equal('label');
   });
 
   it('label should error in invalid label', () => {
-    expect(() => commitEdge.label = '_invalid').to.throw('Invalid label');
+    expect(() => {
+      commitEdge.label = '_invalid';
+    }).to.throw('Invalid label');
   });
 
   it('from should work', () => {
-    expect(commitEdge.from).to.be.undefined;
+    expect(commitEdge.from).to.equal(undefined);
     commitEdge.from = uuid1;
     expect(commitEdge.from).to.equal(uuid1);
   });
 
   it('from should error in invalid from', () => {
-    expect(() => commitEdge.from = 1234).to.throw('Invalid from');
+    expect(() => {
+      commitEdge.from = 1234;
+    }).to.throw('Invalid from');
   });
 
   it('to should work', () => {
-    expect(commitEdge.to).to.be.undefined;
+    expect(commitEdge.to).to.equal(undefined);
     commitEdge.to = uuid2;
     expect(commitEdge.to).to.equal(uuid2);
   });
 
   it('to should error in invalid to', () => {
-    expect(() => commitEdge.to = false).to.throw('Invalid to');
+    expect(() => {
+      commitEdge.to = false;
+    }).to.throw('Invalid to');
   });
 
   it('action should work', () => {
-    expect(commitEdge.action).to.be.undefined;
+    expect(commitEdge.action).to.equal(undefined);
     commitEdge.action = 'create';
     expect(commitEdge.action).to.equal('create');
   });
 
   it('action should error in invalid action', () => {
-    expect(() => commitEdge.action = 'read').to.throw('Invalid action');
+    expect(() => {
+      commitEdge.action = 'read';
+    }).to.throw('Invalid action');
   });
 
   it('origProps should work', () => {
-    expect(commitEdge.origProps).to.be.undefined;
+    expect(commitEdge.origProps).to.equal(undefined);
     commitEdge.origProps = {foo: 'bar'};
     expect(commitEdge.origProps).to.deep.equal({foo: 'bar'});
   });
 
   it('origProps should error in invalid origProps', () => {
-    expect(() => commitEdge.origProps = '1234').to.throw('Invalid origProps');
+    expect(() => {
+      commitEdge.origProps = '1234';
+    }).to.throw('Invalid origProps');
   });
 
   it('props should work', () => {
-    expect(commitEdge.props).to.be.undefined;
+    expect(commitEdge.props).to.equal(undefined);
     commitEdge.props = {foo: 'bar'};
     expect(commitEdge.props).to.deep.equal({foo: 'bar'});
   });
 
   it('props should error in invalid props', () => {
-    expect(() => commitEdge.props = 'false')
-      .to.throw('Invalid props');
+    expect(() => {
+      commitEdge.props = 'false';
+    }).to.throw('Invalid props');
   });
 
   it('validate should work on create', () => {
