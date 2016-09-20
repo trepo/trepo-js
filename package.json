@@ -1,5 +1,5 @@
 {
-  "name": "trepo",
+  "name": "trepo-monorepo",
   "private": true,
   "devDependencies": {
     "babel-eslint": "^6.1.2",
