@@ -1,0 +1,23 @@
+{
+  "name": "trepo-vgraph",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/VGraph.js",
+  "scripts": {
+    "build": "babel src --out-dir dist --ignore *.test.js",
+    "test": "mocha --require babel-register 'src/**/*.test.js'"
+  },
+  "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.14.0",
+    "babel-register": "^6.14.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  },
+  "dependencies": {
+    "vagabond-db": "^0.8.1"
+  }
+}
