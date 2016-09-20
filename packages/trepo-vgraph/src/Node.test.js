@@ -590,7 +590,8 @@ describe('Node', () => {
         let node = new Node(rootNode, vGraph);
         let promises = [];
 
-        for (let bothNode of node.getNodes(Direction.BOTH, 'label1', 'label4')) {
+        for (let bothNode of
+            node.getNodes(Direction.BOTH, 'label1', 'label4')) {
           promises.push(bothNode.getId());
         }
         return Promise.all(promises);
@@ -724,7 +725,7 @@ describe('Node', () => {
       })
       .then(ignored => rawNode.getProperty('foo'))
       .then(property => {
-        expect(property).to.be.undefined;
+        expect(property).to.equal(undefined);
         done();
       })
       .catch(error => done(error));

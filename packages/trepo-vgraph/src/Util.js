@@ -3,7 +3,7 @@ import Constant from './Constant.js';
 
 let Util = {
   isValidUUIDv4: id => {
-    return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id);
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id); // eslint-disable-line max-len
   },
 
   isValidSHA1: sha => {
@@ -36,10 +36,8 @@ let Util = {
           if (allowed.indexOf(initialType) < 0) {
             return false;
           }
-        } else {
-          if (typeof value[x] !== initialType) {
-            return false;
-          }
+        } else if (typeof value[x] !== initialType) {
+          return false;
         }
         i++;
       }
@@ -57,7 +55,7 @@ let Util = {
     let properties = {};
 
     Object.keys(obj).forEach(key => {
-      if (key.charAt(0) != '_') {
+      if (key.charAt(0) !== '_') {
         // Clone objects to prevent old object refs
         if (typeof obj[key] === 'object') {
           properties[key] = JSON.parse(JSON.stringify(obj[key]));
@@ -75,11 +73,11 @@ let Util = {
     for (let i = 0; i < 32; i++) {
       let random = Math.random() * 16 | 0;
 
-      if (i == 8 || i == 12 || i == 16 || i == 20) {
+      if (i === 8 || i === 12 || i === 16 || i === 20) {
         uuid += '-';
       }
 
-      uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random))
+      uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)) // eslint-disable-line no-nested-ternary
         .toString(16);
     }
 
@@ -110,10 +108,10 @@ let Util = {
 
   // Returns true if element has been changed
   changedFilter: (properties, id) => {
-    if (properties[Constant.STATUS] == undefined) {
+    if (properties[Constant.STATUS] === undefined) {
       throw new Error('Invalid State: Missing Status on ' + id);
     }
-    if (properties[Constant.STATUS] == 0) {
+    if (properties[Constant.STATUS] === 0) {
       return false;
     }
     return true;

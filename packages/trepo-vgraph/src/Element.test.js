@@ -1,5 +1,4 @@
 import Constant from './Constant.js';
-import Util from './Util.js';
 import Element from './Element.js';
 import Vagabond from 'vagabond-db';
 
@@ -128,7 +127,7 @@ describe('Element', () => {
         return element.getProperty('foo');
       })
       .then(property => {
-        expect(property).to.be.undefined;
+        expect(property).to.equal(undefined);
         return element.setProperty('foo', 'bar');
       })
       .then(ignored => element.getProperty('foo'))
@@ -177,7 +176,7 @@ describe('Element', () => {
         return element.getProperty('foo');
       })
       .then(property => {
-        expect(property).to.be.undefined;
+        expect(property).to.equal(undefined);
         return element.setProperty('foo', 'bar');
       })
       .then(ignored => element.getProperty('foo'))
@@ -330,7 +329,7 @@ describe('Element', () => {
         return element.getProperty('foo');
       })
       .then(property => {
-        expect(property).to.be.undefined;
+        expect(property).to.equal(undefined);
         return element.setProperty('foo', 'bar');
       })
       .then(ignored => element.getProperty('foo'))
@@ -341,7 +340,7 @@ describe('Element', () => {
       })
       .then(ignored => element.getProperty('foo'))
       .then(property => {
-        expect(property).to.be.undefined;
+        expect(property).to.equal(undefined);
         done();
       })
       .catch(error => done(error));
@@ -574,7 +573,7 @@ describe('Element', () => {
     vagabond.addNode('1234', 'label')
       .then(node => {
         element = new Element(node, fakeVGraph);
-        return element.setProperties({'__invalid': 'value'});
+        return element.setProperties({__invalid: 'value'});
       })
       .then(ignored => done('Should have errored'), error => {
         expect(error.message).to.equal('Invalid Key');
@@ -588,7 +587,7 @@ describe('Element', () => {
 
     let shouldWork = function(value) {
       return new Promise((resolve, reject) => {
-        element.setProperties({'foo': value})
+        element.setProperties({foo: value})
           .then(ignored => resolve(null))
           .catch(error => reject(new Error(value + ' should have worked')));
       });
@@ -596,7 +595,7 @@ describe('Element', () => {
     // If the set worked, then fail
     let shouldError = function(value) {
       return new Promise((resolve, reject) => {
-        element.setProperties({'foo': value}).then(ignored => {
+        element.setProperties({foo: value}).then(ignored => {
           reject(new Error(value + ' should have failed'));
         }).catch(error => {
           resolve(null);
@@ -635,7 +634,7 @@ describe('Element', () => {
         return node.setProperty(Constant.STATUS, 4);
       })
       .then(node => {
-        return new Element(node, fakeVGraph).setProperties({'key': 'value'});
+        return new Element(node, fakeVGraph).setProperties({key: 'value'});
       })
       .catch(error => {
         expect(error.message).to.equal('Deleted');

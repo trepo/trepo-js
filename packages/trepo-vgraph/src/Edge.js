@@ -6,17 +6,6 @@ import Node from './Node.js';
  * An Edge in vGraph.
  */
 class Edge extends Element {
-
-  /**
-   * Create a new Edge.
-   *
-   * @param  {Vagabond} element The Vagabond Element to wrap.
-   * @param  {VGraph} vGraph The vGraph instance.
-   */
-  constructor(element, vGraph) {
-    super(element, vGraph);
-  }
-
   /**
    * Get the Node this Edge is connected to.
    *

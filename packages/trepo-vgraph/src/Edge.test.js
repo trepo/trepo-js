@@ -2,7 +2,6 @@ import Constant from './Constant.js';
 import Edge from './Edge.js';
 import Direction from './Direction.js';
 import VGraph from './VGraph.js';
-import Vagabond from 'vagabond-db';
 
 let expect = require('chai').expect;
 let vagabond;

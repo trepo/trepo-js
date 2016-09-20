@@ -121,10 +121,10 @@ class Element {
           if (properties[Constant.STATUS] >= 4) {
             reject(new Error('Deleted'));
           } else if (properties.hasOwnProperty(key) &&
-            properties[key] == value) {
+            properties[key] === value) {
             resolve(null);
           } else {
-            if (properties[Constant.STATUS] == 0) {
+            if (properties[Constant.STATUS] === 0) {
               let originalProperties = Util.getProperties(properties);
               properties[Constant.ORIG_PROPS] =
                 JSON.stringify(originalProperties);
@@ -156,10 +156,10 @@ class Element {
         .then(properties => {
           if (properties[Constant.STATUS] >= 4) {
             reject(new Error('Deleted'));
-          } else if (!properties.hasOwnProperty(key)) {
+          } else if (properties.hasOwnProperty(key) === false) {
             resolve(null);
           } else {
-            if (properties[Constant.STATUS] == 0) {
+            if (properties[Constant.STATUS] === 0) {
               let originalProperties = Util.getProperties(properties);
               properties[Constant.ORIG_PROPS] =
                 JSON.stringify(originalProperties);
@@ -226,6 +226,7 @@ class Element {
    * Set properties.
    *
    * @param {Promise<Null>} properties A Promise that resolves to Null.
+   * @return {Promise} a Promise.
    */
   setProperties(properties) {
     return new Promise((resolve, reject) => {
@@ -243,19 +244,19 @@ class Element {
           let originalProperties = Util.getProperties(elementProperties);
           if (elementProperties[Constant.STATUS] >= 4) {
             reject(new Error('Deleted'));
-          } else if (Util.calculateHash(properties) ==
+          } else if (Util.calculateHash(properties) ===
             Util.calculateHash(originalProperties)) {
             resolve(null);
           } else {
-            if (elementProperties[Constant.STATUS] == 0) {
+            if (elementProperties[Constant.STATUS] === 0) {
               elementProperties[Constant.ORIG_PROPS] =
                 JSON.stringify(originalProperties);
               elementProperties[Constant.STATUS] = 2;
             }
-            for (let key in originalProperties) {
+            for (let key of Object.keys(originalProperties)) {
               delete elementProperties[key];
             }
-            for (let key in properties) {
+            for (let key of Object.keys(properties)) {
               elementProperties[key] = properties[key];
             }
             this._vGraph._dirty = true;
