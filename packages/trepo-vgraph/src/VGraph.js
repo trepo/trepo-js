@@ -1530,4 +1530,13 @@ class VGraph {
 
 }
 
-export {VGraph as default, VGraph as VGraph, Edge as Edge, Node as Node, Commit as Commit, Constant as Constant, Direction as Direction, Util as Util};
+export {
+  VGraph as default,
+  VGraph as VGraph,
+  Edge as Edge,
+  Node as Node,
+  Commit as Commit,
+  Constant as Constant,
+  Direction as Direction,
+  Util as Util,
+};
