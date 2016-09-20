@@ -72,6 +72,7 @@ describe('VGraph - log', () => {
         expect(entries[0]).to.deep.equal({
           id: uuid4,
           timestamp: 1234,
+          repo: 'r',
           author: 'a',
           email: 'e',
           message: 'm',

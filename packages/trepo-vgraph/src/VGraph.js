@@ -119,7 +119,7 @@ class VGraph {
           // Get all nodes that aren't clean
           let query = this._vagabond.query()
             .hasNot(Constant.META).filter(Util.changedFilter);
-          for (let node of query.nodes()) {
+          for (let node of query.nodes()) { // eslint-disable-line no-unused-vars
             this._dirty = true;
             break;
           }
@@ -127,7 +127,7 @@ class VGraph {
           // Get all edges that aren't clean
           query = this._vagabond.query()
             .hasNot(Constant.META).filter(Util.changedFilter);
-          for (let edge of query.edges()) {
+          for (let edge of query.edges()) { // eslint-disable-line no-unused-vars
             this._dirty = true;
             break;
           }
@@ -477,7 +477,7 @@ class VGraph {
         .then(properties => {
           resolve({
             id: commitNode.id,
-            timestamp: properties[Constant.COMMIT_NODE_REPO],
+            repo: properties[Constant.COMMIT_NODE_REPO],
             timestamp: properties[Constant.COMMIT_NODE_TIMESTAMP],
             author: properties[Constant.COMMIT_NODE_AUTHOR],
             email: properties[Constant.COMMIT_NODE_EMAIL],
