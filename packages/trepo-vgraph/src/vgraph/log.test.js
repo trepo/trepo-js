@@ -1,8 +1,4 @@
 import Constant from '../Constant.js';
-import Node from '../Node.js';
-import Edge from '../Edge.js';
-import Direction from '../Direction.js';
-import Commit from '../Commit.js';
 import VGraph from '../VGraph.js';
 
 let expect = require('chai').expect;

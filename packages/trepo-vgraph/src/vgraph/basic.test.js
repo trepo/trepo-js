@@ -2,7 +2,6 @@ import Constant from '../Constant.js';
 import Node from '../Node.js';
 import Edge from '../Edge.js';
 import Direction from '../Direction.js';
-import Commit from '../Commit.js';
 import VGraph from '../VGraph.js';
 
 let expect = require('chai').expect;
@@ -29,7 +28,9 @@ describe('VGraph - basic', () => {
 
   it('repo should work', () => {
     expect(vGraph.repo).to.equal('repo');
-    expect(() => vGraph.repo = 'foo').to.throw(Error);
+    expect(() => {
+      vGraph.repo = 'foo';
+    }).to.throw(Error);
   });
 
   it('addNode should work', done => {
@@ -129,7 +130,6 @@ describe('VGraph - basic', () => {
 
   it('removeNode should delete all attached edges as well', done => {
     let nodes;
-    let edges;
     Promise.all([
       vGraph._vagabond.addNode(uuid1, 'label'),
       vGraph._vagabond.addNode(uuid2, 'label'),
@@ -146,7 +146,6 @@ describe('VGraph - basic', () => {
       ]);
     })
     .then(values => {
-      edges = values;
       return Promise.all([
         values[0].setProperty(Constant.STATUS, 0),
         values[1].setProperty(Constant.STATUS, 0),
