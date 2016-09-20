@@ -572,7 +572,7 @@ class VGraph {
             commit.addNode(commitNode);
           }
         } else {
-          if (properties.hasOwnProperty(Constant.ORIG_PROPS)) {
+          if (properties.hasOwnProperty(Constant.ORIG_PROPS)) { // eslint-disable-line no-lonely-if
             let commitNode = new CommitNode(node.id, node.label);
             commitNode.action = Constant.UPDATE;
             commitNode.boundary = false;
@@ -590,7 +590,7 @@ class VGraph {
         }
       // Created Nodes
       } else {
-        if (properties.hasOwnProperty(Constant.REPO)) {
+        if (properties.hasOwnProperty(Constant.REPO)) { // eslint-disable-line no-lonely-if
           let commitNode = new CommitNode(node.id, node.label);
           commitNode.action = Constant.CREATE;
           commitNode.boundary = true;
@@ -976,7 +976,7 @@ class VGraph {
             properties[Constant.REPO] = commitNode.origRepo;
           }
         } else {
-          if (commitNode.origRepo) {
+          if (commitNode.origRepo) { // eslint-disable-line no-lonely-if
             let oldProperties = Util.getProperties(properties);
             for (let key of Object.keys(oldProperties)) {
               delete properties[key];
