@@ -30,44 +30,44 @@ describe('VGraph - log', () => {
         vGraph._vagabond.addNode(uuid1, Constant.COMMIT_NODE_LABEL),
         vGraph._vagabond.addNode(uuid2, Constant.COMMIT_NODE_LABEL),
         vGraph._vagabond.addNode(uuid3, Constant.COMMIT_NODE_LABEL),
-        vGraph._vagabond.addNode(uuid4, Constant.COMMIT_NODE_LABEL)
+        vGraph._vagabond.addNode(uuid4, Constant.COMMIT_NODE_LABEL),
       ]))
       .then(values => {
         return Promise.all([
-            vGraph._vagabond.addEdge(uuid5, Constant.COMMIT_EDGE_LABEL,
+          vGraph._vagabond.addEdge(uuid5, Constant.COMMIT_EDGE_LABEL,
               values[0], values[1]),
-            vGraph._vagabond.addEdge(uuid6, Constant.COMMIT_EDGE_LABEL,
+          vGraph._vagabond.addEdge(uuid6, Constant.COMMIT_EDGE_LABEL,
               values[1], values[2]),
-            vGraph._vagabond.addEdge(uuid7, Constant.COMMIT_EDGE_LABEL,
+          vGraph._vagabond.addEdge(uuid7, Constant.COMMIT_EDGE_LABEL,
               values[2], values[3]),
-            vGraph._vagabond.addEdge(uuid8, Constant.COMMIT_EDGE_LABEL,
+          vGraph._vagabond.addEdge(uuid8, Constant.COMMIT_EDGE_LABEL,
               values[3], values[4]),
-            vGraph._vagabond.addEdge(uuid9, Constant.COMMIT_EDGE_LABEL,
+          vGraph._vagabond.addEdge(uuid9, Constant.COMMIT_EDGE_LABEL,
               values[4], values[0]),
-            values[0].setProperties({__meta: Constant.ROOT_META,
+          values[0].setProperties({__meta: Constant.ROOT_META,
               __version: Constant.DATA_VERSION, __repo: 'repo'}),
-            values[1].setProperties({__meta: Constant.COMMIT_NODE_META,
-              __id: uuid1, __repo: 'r',__timestamp: 1234, __author: 'a',
+          values[1].setProperties({__meta: Constant.COMMIT_NODE_META,
+              __id: uuid1, __repo: 'r', __timestamp: 1234, __author: 'a',
               __email: 'e', __message: 'm'}),
-            values[2].setProperties({__meta: Constant.COMMIT_NODE_META,
-              __id: uuid2, __repo: 'r',__timestamp: 1234, __author: 'a',
+          values[2].setProperties({__meta: Constant.COMMIT_NODE_META,
+              __id: uuid2, __repo: 'r', __timestamp: 1234, __author: 'a',
               __email: 'e', __message: 'm'}),
-            values[3].setProperties({__meta: Constant.COMMIT_NODE_META,
-              __id: uuid3, __repo: 'r',__timestamp: 1234, __author: 'a',
+          values[3].setProperties({__meta: Constant.COMMIT_NODE_META,
+              __id: uuid3, __repo: 'r', __timestamp: 1234, __author: 'a',
               __email: 'e', __message: 'm'}),
-            values[4].setProperties({__meta: Constant.COMMIT_NODE_META,
-              __id: uuid4, __repo: 'r',__timestamp: 1234, __author: 'a',
+          values[4].setProperties({__meta: Constant.COMMIT_NODE_META,
+              __id: uuid4, __repo: 'r', __timestamp: 1234, __author: 'a',
               __email: 'e', __message: 'm'}),
-          ]);
+        ]);
       })
       .then(values => {
         return Promise.all([
-            values[0].setProperties({__meta: Constant.COMMIT_EDGE_META}),
-            values[1].setProperties({__meta: Constant.COMMIT_EDGE_META}),
-            values[2].setProperties({__meta: Constant.COMMIT_EDGE_META}),
-            values[3].setProperties({__meta: Constant.COMMIT_EDGE_META}),
-            values[4].setProperties({__meta: Constant.COMMIT_EDGE_META}),
-          ]);
+          values[0].setProperties({__meta: Constant.COMMIT_EDGE_META}),
+          values[1].setProperties({__meta: Constant.COMMIT_EDGE_META}),
+          values[2].setProperties({__meta: Constant.COMMIT_EDGE_META}),
+          values[3].setProperties({__meta: Constant.COMMIT_EDGE_META}),
+          values[4].setProperties({__meta: Constant.COMMIT_EDGE_META}),
+        ]);
       })
       .then(ignored => vGraph.init())
       .then(ignored => vGraph.log(2, 0))
@@ -78,7 +78,7 @@ describe('VGraph - log', () => {
           timestamp: 1234,
           author: 'a',
           email: 'e',
-          message: 'm'
+          message: 'm',
         });
         expect(entries[1].id).to.equal(uuid3);
       })

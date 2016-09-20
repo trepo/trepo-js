@@ -3,7 +3,6 @@ import Util from './Util.js';
 let expect = require('chai').expect;
 
 describe('CommitNode', () => {
-
   it('isValidUUIDv4 should work', () => {
     expect(Util.isValidUUIDv4('f47ac10b-58cc-4372-a567-0e02b2c3d479'))
       .to.equal(true);
@@ -37,7 +36,6 @@ describe('CommitNode', () => {
     }
     expect(Util.isValidLabel(str)).to.equal(true);
     expect(Util.isValidLabel(str + 'a')).to.equal(false);
-
   });
 
   it('isValidPropertyKey should work', () => {
@@ -51,7 +49,6 @@ describe('CommitNode', () => {
     }
     expect(Util.isValidPropertyKey(str)).to.equal(true);
     expect(Util.isValidPropertyKey(str + 'a')).to.equal(false);
-
   });
 
   it('isValidPropertyValue should work', () => {
@@ -72,7 +69,6 @@ describe('CommitNode', () => {
     expect(Util.isValidPropertyValue([true, 1, 'string'])).to.equal(false);
     expect(Util.isValidPropertyValue([{foo: 'bar'},
       {foo: 'b'}])).to.equal(false);
-
   });
 
   it('isValidRepo should work', () => {
@@ -86,20 +82,19 @@ describe('CommitNode', () => {
     }
     expect(Util.isValidRepo(str)).to.equal(true);
     expect(Util.isValidRepo(str + 'a')).to.equal(false);
-
   });
 
   it('getProperties should work', () => {
     expect(Util.getProperties({
-        __label: 'label',
-        foo: 'bar',
-        prop: true,
-        arr: [1,2,3]
-      })).to.deep.equal({
-        foo: 'bar',
-        prop: true,
-        arr: [1,2,3]
-      });
+      __label: 'label',
+      foo: 'bar',
+      prop: true,
+      arr: [1, 2, 3],
+    })).to.deep.equal({
+      foo: 'bar',
+      prop: true,
+      arr: [1, 2, 3],
+    });
   });
 
   it('generateUUIDv4 should work', () => {
@@ -114,8 +109,7 @@ describe('CommitNode', () => {
       d: true,
       b: null,
       e: 'string',
-      a: [1, 2, 3]
+      a: [1, 2, 3],
     })).to.equal('2cc41debd9a6019aae585eff7d2cd2f5154f4939');
   });
-
 });

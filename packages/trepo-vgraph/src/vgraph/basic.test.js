@@ -23,7 +23,6 @@ beforeEach(() => {
 });
 
 describe('VGraph - basic', () => {
-
   it('Constructor should error on invalid repo', () => {
     expect(() => new VGraph('')).to.throw(Error);
   });
@@ -49,7 +48,7 @@ describe('VGraph - basic', () => {
       .then(node => node.getProperties())
       .then(properties => {
         expect(properties).to.deep.equal({
-          __status: 1
+          __status: 1,
         });
         done();
       })
@@ -132,26 +131,26 @@ describe('VGraph - basic', () => {
     let nodes;
     let edges;
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+    ])
     .then(values => {
       nodes = values;
       return Promise.all([
-          vGraph._vagabond.addEdge(uuid4, 'label', nodes[0], nodes[1]),
-          vGraph._vagabond.addEdge(uuid5, 'label', nodes[2], nodes[0]),
-          values[0].setProperty(Constant.STATUS, 0),
-          values[1].setProperty(Constant.STATUS, 0),
-          values[2].setProperty(Constant.STATUS, 0)
-        ]);
+        vGraph._vagabond.addEdge(uuid4, 'label', nodes[0], nodes[1]),
+        vGraph._vagabond.addEdge(uuid5, 'label', nodes[2], nodes[0]),
+        values[0].setProperty(Constant.STATUS, 0),
+        values[1].setProperty(Constant.STATUS, 0),
+        values[2].setProperty(Constant.STATUS, 0),
+      ]);
     })
     .then(values => {
       edges = values;
       return Promise.all([
-          values[0].setProperty(Constant.STATUS, 0),
-          values[1].setProperty(Constant.STATUS, 0)
-        ]);
+        values[0].setProperty(Constant.STATUS, 0),
+        values[1].setProperty(Constant.STATUS, 0),
+      ]);
     })
     .then(ignored => vGraph.removeNode(uuid1))
     .then(ignored => {
@@ -175,30 +174,30 @@ describe('VGraph - basic', () => {
     let nodes;
     let edges;
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+    ])
     .then(values => {
       nodes = values;
       return Promise.all([
-          vGraph._vagabond.addEdge(uuid4, 'label', nodes[0], nodes[1]),
-          vGraph._vagabond.addEdge(uuid5, 'label', nodes[1], nodes[0]),
-          vGraph._vagabond.addEdge(uuid6, 'label', nodes[0], nodes[2]),
-          vGraph._vagabond.addEdge(uuid7, 'label', nodes[2], nodes[0]),
-          values[0].setProperty(Constant.STATUS, 0),
-          values[1].setProperty(Constant.STATUS, 0),
-          values[2].setProperty(Constant.STATUS, 0)
-        ]);
+        vGraph._vagabond.addEdge(uuid4, 'label', nodes[0], nodes[1]),
+        vGraph._vagabond.addEdge(uuid5, 'label', nodes[1], nodes[0]),
+        vGraph._vagabond.addEdge(uuid6, 'label', nodes[0], nodes[2]),
+        vGraph._vagabond.addEdge(uuid7, 'label', nodes[2], nodes[0]),
+        values[0].setProperty(Constant.STATUS, 0),
+        values[1].setProperty(Constant.STATUS, 0),
+        values[2].setProperty(Constant.STATUS, 0),
+      ]);
     })
     .then(values => {
       edges = values;
       return Promise.all([
-          edges[0].setProperty(Constant.STATUS, 0),
-          edges[1].setProperty(Constant.STATUS, 5),
-          edges[2].setProperty(Constant.STATUS, 0),
-          edges[3].setProperty(Constant.STATUS, 5),
-        ]);
+        edges[0].setProperty(Constant.STATUS, 0),
+        edges[1].setProperty(Constant.STATUS, 5),
+        edges[2].setProperty(Constant.STATUS, 0),
+        edges[3].setProperty(Constant.STATUS, 5),
+      ]);
     })
     .then(ignored => vGraph.removeNode(uuid1))
     .then(ignored => {
@@ -286,18 +285,18 @@ describe('VGraph - basic', () => {
 
   it('getNodes should work', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label'),
-        vGraph._vagabond.addNode(uuid4, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+      vGraph._vagabond.addNode(uuid4, 'label'),
+    ])
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 0),
-            values[1].setProperty(Constant.STATUS, 0),
-            values[2].setProperty(Constant.STATUS, 0),
-            values[3].setProperty(Constant.STATUS, 0)
-          ]);
+          values[0].setProperty(Constant.STATUS, 0),
+          values[1].setProperty(Constant.STATUS, 0),
+          values[2].setProperty(Constant.STATUS, 0),
+          values[3].setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => {
         let promises = [];
@@ -315,18 +314,18 @@ describe('VGraph - basic', () => {
 
   it('getNodes should filter out deleted nodes', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label'),
-        vGraph._vagabond.addNode(uuid4, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+      vGraph._vagabond.addNode(uuid4, 'label'),
+    ])
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 0),
-            values[1].setProperty(Constant.STATUS, 4),
-            values[2].setProperty(Constant.STATUS, 0),
-            values[3].setProperty(Constant.STATUS, 4)
-          ]);
+          values[0].setProperty(Constant.STATUS, 0),
+          values[1].setProperty(Constant.STATUS, 4),
+          values[2].setProperty(Constant.STATUS, 0),
+          values[3].setProperty(Constant.STATUS, 4),
+        ]);
       })
       .then(ignored => {
         let promises = [];
@@ -344,18 +343,18 @@ describe('VGraph - basic', () => {
 
   it('getNodes should filter on labels', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label_nope'),
-        vGraph._vagabond.addNode(uuid3, 'label'),
-        vGraph._vagabond.addNode(uuid4, 'label_nope')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label_nope'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+      vGraph._vagabond.addNode(uuid4, 'label_nope'),
+    ])
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 0),
-            values[1].setProperty(Constant.STATUS, 0),
-            values[2].setProperty(Constant.STATUS, 0),
-            values[3].setProperty(Constant.STATUS, 0)
-          ]);
+          values[0].setProperty(Constant.STATUS, 0),
+          values[1].setProperty(Constant.STATUS, 0),
+          values[2].setProperty(Constant.STATUS, 0),
+          values[3].setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => {
         let promises = [];
@@ -373,9 +372,9 @@ describe('VGraph - basic', () => {
 
   it('addEdge should work', done => {
     Promise.all([
-        vGraph.addNode('label'),
-        vGraph.addNode('label')
-      ])
+      vGraph.addNode('label'),
+      vGraph.addNode('label'),
+    ])
       .then(values => {
         expect(vGraph._dirty).to.equal(true);
         vGraph._dirty = false; // Fake a commit
@@ -392,7 +391,7 @@ describe('VGraph - basic', () => {
       })
       .then(properties => {
         expect(properties).to.deep.equal({
-          __status: 1
+          __status: 1,
         });
         done();
       })
@@ -434,9 +433,9 @@ describe('VGraph - basic', () => {
 
   it('addEdge should error on invalid label', done => {
     Promise.all([
-        vGraph.addNode('label'),
-        vGraph.addNode('label')
-      ])
+      vGraph.addNode('label'),
+      vGraph.addNode('label'),
+    ])
       .then(values => vGraph.addEdge('__invalid', values[0], values[1]))
       .then(edge => done(new Error('should have errored')))
       .catch(error => {
@@ -449,9 +448,9 @@ describe('VGraph - basic', () => {
   it('removeEdge should work', done => {
     let id;
     Promise.all([
-        vGraph.addNode('label'),
-        vGraph.addNode('label')
-      ])
+      vGraph.addNode('label'),
+      vGraph.addNode('label'),
+    ])
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(edge => edge.getId())
       .then(newId => {
@@ -500,9 +499,9 @@ describe('VGraph - basic', () => {
   it('removeEdge should error on already deleted edge', done => {
     let id;
     Promise.all([
-        vGraph.addNode('label'),
-        vGraph.addNode('label')
-      ])
+      vGraph.addNode('label'),
+      vGraph.addNode('label'),
+    ])
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(edge => edge.getId())
       .then(newId => {
@@ -520,9 +519,9 @@ describe('VGraph - basic', () => {
 
   it('getEdge should work', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+    ])
       .then(values => vGraph._vagabond.addEdge(uuid3, 'label',
         values[0], values[1]))
       .then(edge => edge.setProperty(Constant.STATUS, 0))
@@ -573,9 +572,9 @@ describe('VGraph - basic', () => {
 
   it('getEdge should error on deleted edge', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+    ])
       .then(values => vGraph._vagabond.addEdge(uuid3, 'label',
         values[0], values[1]))
       .then(edge => edge.setProperty(Constant.STATUS, 4))
@@ -590,27 +589,27 @@ describe('VGraph - basic', () => {
 
   it('getEdges should work', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label'),
-        vGraph._vagabond.addNode(uuid4, 'label'),
-        vGraph._vagabond.addNode(uuid5, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+      vGraph._vagabond.addNode(uuid4, 'label'),
+      vGraph._vagabond.addNode(uuid5, 'label'),
+    ])
       .then(values => {
         return Promise.all([
-            vGraph._vagabond.addEdge(uuid6, 'label', values[0], values[1]),
-            vGraph._vagabond.addEdge(uuid7, 'label', values[2], values[0]),
-            vGraph._vagabond.addEdge(uuid8, 'label', values[0], values[3]),
-            vGraph._vagabond.addEdge(uuid9, 'label', values[4], values[0])
-          ]);
+          vGraph._vagabond.addEdge(uuid6, 'label', values[0], values[1]),
+          vGraph._vagabond.addEdge(uuid7, 'label', values[2], values[0]),
+          vGraph._vagabond.addEdge(uuid8, 'label', values[0], values[3]),
+          vGraph._vagabond.addEdge(uuid9, 'label', values[4], values[0]),
+        ]);
       })
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 0),
-            values[1].setProperty(Constant.STATUS, 0),
-            values[2].setProperty(Constant.STATUS, 0),
-            values[3].setProperty(Constant.STATUS, 0)
-          ]);
+          values[0].setProperty(Constant.STATUS, 0),
+          values[1].setProperty(Constant.STATUS, 0),
+          values[2].setProperty(Constant.STATUS, 0),
+          values[3].setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => {
         let promises = [];
@@ -628,27 +627,27 @@ describe('VGraph - basic', () => {
 
   it('getEdges should filter out deleted edges', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label'),
-        vGraph._vagabond.addNode(uuid4, 'label'),
-        vGraph._vagabond.addNode(uuid5, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+      vGraph._vagabond.addNode(uuid4, 'label'),
+      vGraph._vagabond.addNode(uuid5, 'label'),
+    ])
       .then(values => {
         return Promise.all([
-            vGraph._vagabond.addEdge(uuid6, 'label', values[0], values[1]),
-            vGraph._vagabond.addEdge(uuid7, 'label', values[2], values[0]),
-            vGraph._vagabond.addEdge(uuid8, 'label', values[0], values[3]),
-            vGraph._vagabond.addEdge(uuid9, 'label', values[4], values[0])
-          ]);
+          vGraph._vagabond.addEdge(uuid6, 'label', values[0], values[1]),
+          vGraph._vagabond.addEdge(uuid7, 'label', values[2], values[0]),
+          vGraph._vagabond.addEdge(uuid8, 'label', values[0], values[3]),
+          vGraph._vagabond.addEdge(uuid9, 'label', values[4], values[0]),
+        ]);
       })
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 0),
-            values[1].setProperty(Constant.STATUS, 4),
-            values[2].setProperty(Constant.STATUS, 0),
-            values[3].setProperty(Constant.STATUS, 4)
-          ]);
+          values[0].setProperty(Constant.STATUS, 0),
+          values[1].setProperty(Constant.STATUS, 4),
+          values[2].setProperty(Constant.STATUS, 0),
+          values[3].setProperty(Constant.STATUS, 4),
+        ]);
       })
       .then(ignored => {
         let promises = [];
@@ -666,27 +665,27 @@ describe('VGraph - basic', () => {
 
   it('getEdges should filter on labels', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label'),
-        vGraph._vagabond.addNode(uuid3, 'label'),
-        vGraph._vagabond.addNode(uuid4, 'label'),
-        vGraph._vagabond.addNode(uuid5, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+      vGraph._vagabond.addNode(uuid3, 'label'),
+      vGraph._vagabond.addNode(uuid4, 'label'),
+      vGraph._vagabond.addNode(uuid5, 'label'),
+    ])
       .then(values => {
         return Promise.all([
-            vGraph._vagabond.addEdge(uuid6, 'label1', values[0], values[1]),
-            vGraph._vagabond.addEdge(uuid7, 'label2', values[2], values[0]),
-            vGraph._vagabond.addEdge(uuid8, 'label3', values[0], values[3]),
-            vGraph._vagabond.addEdge(uuid9, 'label4', values[4], values[0])
-          ]);
+          vGraph._vagabond.addEdge(uuid6, 'label1', values[0], values[1]),
+          vGraph._vagabond.addEdge(uuid7, 'label2', values[2], values[0]),
+          vGraph._vagabond.addEdge(uuid8, 'label3', values[0], values[3]),
+          vGraph._vagabond.addEdge(uuid9, 'label4', values[4], values[0]),
+        ]);
       })
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 0),
-            values[1].setProperty(Constant.STATUS, 0),
-            values[2].setProperty(Constant.STATUS, 0),
-            values[3].setProperty(Constant.STATUS, 0)
-          ]);
+          values[0].setProperty(Constant.STATUS, 0),
+          values[1].setProperty(Constant.STATUS, 0),
+          values[2].setProperty(Constant.STATUS, 0),
+          values[3].setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => {
         let promises = [];
@@ -759,5 +758,4 @@ describe('VGraph - basic', () => {
       })
       .catch(error => done(error));
   });
-
 });

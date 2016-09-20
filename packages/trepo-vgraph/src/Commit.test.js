@@ -18,7 +18,6 @@ beforeEach(() => {
 });
 
 describe('Commit', () => {
-
   it('version should work', () => {
     expect(commit.version).to.equal(Constant.COMMIT_VERSION);
   });
@@ -142,7 +141,6 @@ describe('Commit', () => {
     commit.addNode(commitNode);
 
     expect(commit.getNode(uuidv4)).to.equal(commitNode);
-
   });
 
   it('hasNode should work', () => {
@@ -590,15 +588,15 @@ describe('Commit', () => {
           label: 'label',
           action: 'create',
           boundary: false,
-          props: {}
+          props: {},
         },
         {
           id: uuid2,
           label: 'label',
           action: 'create',
           boundary: false,
-          props: {}
-        }
+          props: {},
+        },
       ],
       edges: [
         {
@@ -607,9 +605,9 @@ describe('Commit', () => {
           from: uuid1,
           to: uuid2,
           action: 'create',
-          props: {}
-        }
-      ]
+          props: {},
+        },
+      ],
     };
 
     commit.fromJSON(json);
@@ -644,7 +642,7 @@ describe('Commit', () => {
       email: 'email',
       message: 'message',
       nodes: [],
-      edges: []
+      edges: [],
     };
 
     commit.fromJSON(json);
@@ -670,11 +668,10 @@ describe('Commit', () => {
       email: 'email',
       message: 'message',
       nodes: [],
-      edges: []
+      edges: [],
     };
 
     expect(() => commit.fromJSON(json)).to.throw('Invalid version');
-
   });
 
   it('fromJSON should error on invalid', () => {
@@ -687,15 +684,13 @@ describe('Commit', () => {
       email: 'email',
       message: 'message',
       nodes: [],
-      edges: []
+      edges: [],
     };
 
     expect(() => commit.fromJSON(json)).to.throw('Invalid id');
-
   });
 
   it('toJSON should work', () => {
-
     commit.id = uuidv4;
     commit.repo = 'repo';
     commit.timestamp = now;
@@ -751,7 +746,7 @@ describe('Commit', () => {
           repo: undefined,
           origRepo: undefined,
           props: {},
-          origProps: undefined
+          origProps: undefined,
         },
         {
           id: uuid2,
@@ -761,8 +756,8 @@ describe('Commit', () => {
           repo: undefined,
           origRepo: undefined,
           props: {},
-          origProps: undefined
-        }
+          origProps: undefined,
+        },
       ],
       edges: [
         {
@@ -772,10 +767,9 @@ describe('Commit', () => {
           to: uuid2,
           action: 'create',
           props: {},
-          origProps: undefined
-        }
-      ]
+          origProps: undefined,
+        },
+      ],
     });
   });
-
 });

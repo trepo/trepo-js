@@ -23,13 +23,12 @@ beforeEach(() => {
 });
 
 describe('VGraph - reset', () => {
-
   it('reset should undo deleted edge', done => {
     let id;
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(edge => edge.getId())
@@ -76,18 +75,18 @@ describe('VGraph - reset', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
         edge = newEdge;
         return Promise.all([
-            edge.getId(),
-            edge.setProperties({
-              foo: 'bar',
-              props: true
-            })
-          ]);
+          edge.getId(),
+          edge.setProperties({
+            foo: 'bar',
+            props: true,
+          }),
+        ]);
       })
       .then(values => {
         id = values[0];
@@ -95,14 +94,14 @@ describe('VGraph - reset', () => {
       })
       .then(ignored => edge.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.reset())
       .then(ignored => edge.getProperties())
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -116,7 +115,7 @@ describe('VGraph - reset', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => {
         fromNode = values[0];
@@ -144,22 +143,22 @@ describe('VGraph - reset', () => {
       .then(ignored => vGraph.addNode('label'))
       .then(newNode => {
         node = newNode;
-        return node .setProperties({
+        return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => node.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.reset())
       .then(ignored => node.getProperties())
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -172,9 +171,9 @@ describe('VGraph - reset', () => {
       .then(ignored => vGraph.addNode('label'))
       .then(newNode => {
         node = newNode;
-        return node .setProperties({
+        return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
@@ -184,7 +183,7 @@ describe('VGraph - reset', () => {
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -220,7 +219,7 @@ describe('VGraph - reset', () => {
       .then(ignored => node.convertToNode())
       .then(ignored => node.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.reset())
       .then(ignored => node.getRepo())

@@ -2,23 +2,23 @@ import Sha1 from './vendor/Sha1.js';
 import Constant from './Constant.js';
 
 let Util = {
-  isValidUUIDv4: (id) => {
+  isValidUUIDv4: id => {
     return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id);
   },
 
-  isValidSHA1: (sha) => {
+  isValidSHA1: sha => {
     return /^[0-9a-f]{40}$/.test(sha);
   },
 
-  isValidLabel: (label) => {
+  isValidLabel: label => {
     return /^[A-Za-z][A-Za-z_]{0,254}$/.test(label);
   },
 
-  isValidPropertyKey: (key) => {
+  isValidPropertyKey: key => {
     return /^[A-Za-z][A-Za-z0-9_]{0,254}$/.test(key);
   },
 
-  isValidPropertyValue: (value) => {
+  isValidPropertyValue: value => {
     let allowed = ['boolean', 'number', 'string'];
 
     // Allow basic values
@@ -53,7 +53,7 @@ let Util = {
     return /^.{1,255}$/.test(repo);
   },
 
-  getProperties: (obj) => {
+  getProperties: obj => {
     let properties = {};
 
     Object.keys(obj).forEach(key => {
@@ -86,7 +86,7 @@ let Util = {
     return uuid;
   },
 
-  calculateHash: (obj) => {
+  calculateHash: obj => {
     let keys = Object.keys(obj).sort();
     let json = '{';
 
@@ -101,7 +101,7 @@ let Util = {
   },
 
   // Returns true if element is not deleted
-  notDeletedFilter: (properties) => {
+  notDeletedFilter: properties => {
     if (properties[Constant.STATUS] >= 4) {
       return false;
     }
@@ -117,7 +117,7 @@ let Util = {
       return false;
     }
     return true;
-  }
+  },
 };
 
 export default Util;

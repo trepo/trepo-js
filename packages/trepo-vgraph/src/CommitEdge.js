@@ -238,7 +238,7 @@ class CommitEdge {
       to: this._to,
       action: this._action,
       origProps: this._origProps,
-      props: this._props
+      props: this._props,
     };
   }
 }

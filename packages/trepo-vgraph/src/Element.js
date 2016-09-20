@@ -86,9 +86,9 @@ class Element {
       }
 
       Promise.all([
-          this._element.getProperty(Constant.STATUS),
-          this._element.getProperty(key)
-        ])
+        this._element.getProperty(Constant.STATUS),
+        this._element.getProperty(key),
+      ])
         .then(values => {
           if (values[0] >= 4) {
             reject(new Error('Deleted'));
@@ -183,9 +183,9 @@ class Element {
   getPropertyKeys() {
     return new Promise((resolve, reject) => {
       Promise.all([
-          this._element.getProperty(Constant.STATUS),
-          this._element.getPropertyKeys()
-        ])
+        this._element.getProperty(Constant.STATUS),
+        this._element.getPropertyKeys(),
+      ])
         .then(values => {
           if (values[0] >= 4) {
             reject(new Error('Deleted'));

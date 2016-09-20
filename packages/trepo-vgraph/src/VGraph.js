@@ -130,7 +130,6 @@ class VGraph {
             this._dirty = true;
             break;
           }
-
         })
         .then(resolve)
         .catch(reject);
@@ -385,7 +384,7 @@ class VGraph {
       'version': this._version,
       'repo': this._repo,
       'commit': this._lastCommit,
-      'clean': !this._dirty
+      'clean': !this._dirty,
     });
   }
 
@@ -1010,7 +1009,6 @@ class VGraph {
    * @param  {Commit} commit the Commit to apply.
    */
   async patch(commit) {
-
     try {
       commit.validate();
     } catch (error) {
@@ -1483,7 +1481,6 @@ class VGraph {
   }
 
   async _inflateCommit(node, prev = null) {
-
     let properties = await node.getProperties();
 
     let commit = new Commit();
@@ -1515,7 +1512,6 @@ class VGraph {
   }
 
   * _commitNodes(direction) {
-
     if (this._lastCommitNode !== null) {
       let currentNode = this._nextCommitNode(this._rootNode, direction);
       while (currentNode != null && currentNode.id != Constant.ROOT_ID) {

@@ -94,9 +94,9 @@ describe('Node', () => {
         rawNode = n;
         node = new Node(rawNode, vGraph);
         return Promise.all([
-            n.setProperty(Constant.REPO, 'external'),
-            n.setProperty(Constant.STATUS, 0),
-          ]);
+          n.setProperty(Constant.REPO, 'external'),
+          n.setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => node.getRepo())
       .then(repo => {
@@ -122,9 +122,9 @@ describe('Node', () => {
         rawNode = n;
         node = new Node(rawNode, vGraph);
         return Promise.all([
-            n.setProperty(Constant.REPO, 'external'),
-            n.setProperty(Constant.STATUS, 0),
-          ]);
+          n.setProperty(Constant.REPO, 'external'),
+          n.setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => node.getRepo())
       .then(repo => {
@@ -168,9 +168,9 @@ describe('Node', () => {
       .then(rawNode => {
         node = new Node(rawNode, vGraph);
         return Promise.all([
-            rawNode.setProperty(Constant.REPO, 'external'),
-            rawNode.setProperty(Constant.STATUS, 4),
-          ]);
+          rawNode.setProperty(Constant.REPO, 'external'),
+          rawNode.setProperty(Constant.STATUS, 4),
+        ]);
       })
       .then(ignored => node.setRepo('external'))
       .then(ignored => done(new Error('should have errored')))
@@ -259,9 +259,9 @@ describe('Node', () => {
       .then(n => {
         rawNode = n;
         return Promise.all([
-            n.setProperty('foo', 'bar'),
-            n.setProperty(Constant.STATUS, 0)
-          ]);
+          n.setProperty('foo', 'bar'),
+          n.setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => new Node(rawNode, vGraph).convertToBoundary('external'))
       .then(ignored => rawNode.getProperties())
@@ -269,7 +269,7 @@ describe('Node', () => {
         expect(properties[Constant.REPO]).to.equal('external');
         expect(Util.getProperties(properties)).to.deep.equal({});
         expect(JSON.parse(properties[Constant.ORIG_PROPS])).to.deep.equal({
-          foo: 'bar'
+          foo: 'bar',
         });
         expect(properties[Constant.STATUS]).to.equal(2);
         expect(vGraph._dirty).to.equal(true);
@@ -354,9 +354,9 @@ describe('Node', () => {
       .then(n => {
         rawNode = n;
         return Promise.all([
-            n.setProperty(Constant.REPO, 'external'),
-            n.setProperty(Constant.STATUS, 0)
-          ]);
+          n.setProperty(Constant.REPO, 'external'),
+          n.setProperty(Constant.STATUS, 0),
+        ]);
       })
       .then(ignored => new Node(rawNode, vGraph).convertToNode())
       .then(ignored => rawNode.getProperties())
@@ -377,9 +377,9 @@ describe('Node', () => {
       .then(rawNode => {
         node = new Node(rawNode, vGraph);
         return Promise.all([
-            rawNode.setProperty(Constant.REPO, 'external'),
-            rawNode.setProperty(Constant.STATUS, 4)
-          ]);
+          rawNode.setProperty(Constant.REPO, 'external'),
+          rawNode.setProperty(Constant.STATUS, 4),
+        ]);
       })
       .then(ignored => node.convertToNode())
       .then(ignored => done(new Error('should have errored')))
@@ -407,12 +407,12 @@ describe('Node', () => {
       addEdge: function() {
         called = true;
         return Promise.resolve('fake edge');
-      }
+      },
     };
     Promise.all([
-        vagabond.addNode('1234', 'label'),
-        vagabond.addNode('5678', 'label')
-      ])
+      vagabond.addNode('1234', 'label'),
+      vagabond.addNode('5678', 'label'),
+    ])
     .then(values => {
       let fromNode = new Node(values[0], fakeGraph);
       let toNode = new Node(values[1], fakeGraph);
@@ -429,12 +429,12 @@ describe('Node', () => {
   it('getEdges should get edges in the specified direction', done => {
     let rootNode;
     Promise.all([
-        vagabond.addNode('n0', 'label'),
-        vagabond.addNode('n1', 'label'),
-        vagabond.addNode('n2', 'label'),
-        vagabond.addNode('n3', 'label'),
-        vagabond.addNode('n4', 'label'),
-      ])
+      vagabond.addNode('n0', 'label'),
+      vagabond.addNode('n1', 'label'),
+      vagabond.addNode('n2', 'label'),
+      vagabond.addNode('n3', 'label'),
+      vagabond.addNode('n4', 'label'),
+    ])
       .then(values => {
         rootNode = values[0];
         return Promise.all([
@@ -463,12 +463,12 @@ describe('Node', () => {
   it('getEdges should filter by labels', done => {
     let rootNode;
     Promise.all([
-        vagabond.addNode('n0', 'label'),
-        vagabond.addNode('n1', 'label'),
-        vagabond.addNode('n2', 'label'),
-        vagabond.addNode('n3', 'label'),
-        vagabond.addNode('n4', 'label'),
-      ])
+      vagabond.addNode('n0', 'label'),
+      vagabond.addNode('n1', 'label'),
+      vagabond.addNode('n2', 'label'),
+      vagabond.addNode('n3', 'label'),
+      vagabond.addNode('n4', 'label'),
+    ])
       .then(values => {
         rootNode = values[0];
         return Promise.all([
@@ -497,12 +497,12 @@ describe('Node', () => {
   it('getEdges should filter out deleted edges', done => {
     let rootNode;
     Promise.all([
-        vagabond.addNode('n0', 'label'),
-        vagabond.addNode('n1', 'label'),
-        vagabond.addNode('n2', 'label'),
-        vagabond.addNode('n3', 'label'),
-        vagabond.addNode('n4', 'label'),
-      ])
+      vagabond.addNode('n0', 'label'),
+      vagabond.addNode('n1', 'label'),
+      vagabond.addNode('n2', 'label'),
+      vagabond.addNode('n3', 'label'),
+      vagabond.addNode('n4', 'label'),
+    ])
       .then(values => {
         rootNode = values[0];
         return Promise.all([
@@ -514,9 +514,9 @@ describe('Node', () => {
       })
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 4),
-            values[3].setProperty(Constant.STATUS, 4),
-          ]);
+          values[0].setProperty(Constant.STATUS, 4),
+          values[3].setProperty(Constant.STATUS, 4),
+        ]);
       })
       .then(values => {
         let node = new Node(rootNode, vGraph);
@@ -537,12 +537,12 @@ describe('Node', () => {
   it('getNodes should get nodes in the specified direction', done => {
     let rootNode;
     Promise.all([
-        vagabond.addNode('n0', 'label'),
-        vagabond.addNode('n1', 'label'),
-        vagabond.addNode('n2', 'label'),
-        vagabond.addNode('n3', 'label'),
-        vagabond.addNode('n4', 'label'),
-      ])
+      vagabond.addNode('n0', 'label'),
+      vagabond.addNode('n1', 'label'),
+      vagabond.addNode('n2', 'label'),
+      vagabond.addNode('n3', 'label'),
+      vagabond.addNode('n4', 'label'),
+    ])
       .then(values => {
         rootNode = values[0];
         return Promise.all([
@@ -571,12 +571,12 @@ describe('Node', () => {
   it('getNodes should filter by edge labels', done => {
     let rootNode;
     Promise.all([
-        vagabond.addNode('n0', 'label'),
-        vagabond.addNode('n1', 'label'),
-        vagabond.addNode('n2', 'label'),
-        vagabond.addNode('n3', 'label'),
-        vagabond.addNode('n4', 'label'),
-      ])
+      vagabond.addNode('n0', 'label'),
+      vagabond.addNode('n1', 'label'),
+      vagabond.addNode('n2', 'label'),
+      vagabond.addNode('n3', 'label'),
+      vagabond.addNode('n4', 'label'),
+    ])
       .then(values => {
         rootNode = values[0];
         return Promise.all([
@@ -605,12 +605,12 @@ describe('Node', () => {
   it('getNodes should filter out deleted edges', done => {
     let rootNode;
     Promise.all([
-        vagabond.addNode('n0', 'label'),
-        vagabond.addNode('n1', 'label'),
-        vagabond.addNode('n2', 'label'),
-        vagabond.addNode('n3', 'label'),
-        vagabond.addNode('n4', 'label'),
-      ])
+      vagabond.addNode('n0', 'label'),
+      vagabond.addNode('n1', 'label'),
+      vagabond.addNode('n2', 'label'),
+      vagabond.addNode('n3', 'label'),
+      vagabond.addNode('n4', 'label'),
+    ])
       .then(values => {
         rootNode = values[0];
         return Promise.all([
@@ -622,9 +622,9 @@ describe('Node', () => {
       })
       .then(values => {
         return Promise.all([
-            values[0].setProperty(Constant.STATUS, 4),
-            values[3].setProperty(Constant.STATUS, 4),
-          ]);
+          values[0].setProperty(Constant.STATUS, 4),
+          values[3].setProperty(Constant.STATUS, 4),
+        ]);
       })
       .then(values => {
         let node = new Node(rootNode, vGraph);
@@ -791,15 +791,15 @@ describe('Node', () => {
         rawNode = n;
         node = new Node(rawNode, vGraph);
         return Promise.all([
-            rawNode.setProperty('foo', 'bar'),
-            rawNode.setProperty('props', true)
-          ]);
+          rawNode.setProperty('foo', 'bar'),
+          rawNode.setProperty('props', true),
+        ]);
       })
       .then(ignored => node.getProperties())
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -833,14 +833,14 @@ describe('Node', () => {
         node = new Node(rawNode, vGraph);
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => rawNode.getProperties())
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })

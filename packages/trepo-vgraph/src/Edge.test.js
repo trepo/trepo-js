@@ -22,7 +22,7 @@ describe('Edge', () => {
   it('getNode should work', done => {
     Promise.all([
       vagabond.addNode('1234', 'label'),
-      vagabond.addNode('5678', 'label')
+      vagabond.addNode('5678', 'label'),
     ])
     .then(values => {
       return vagabond.addEdge('e1', 'label', values[0], values[1]);
@@ -41,7 +41,7 @@ describe('Edge', () => {
     let rawEdge;
     Promise.all([
       vagabond.addNode('1234', 'label'),
-      vagabond.addNode('5678', 'label')
+      vagabond.addNode('5678', 'label'),
     ])
     .then(values => {
       return vagabond.addEdge('e1', 'label', values[0], values[1]);

@@ -20,61 +20,60 @@ let uuid8 = '86919ef3-bcea-4d11-b154-3495b9167628';
 let uuid9 = '93ae3afe-48ef-4d51-9f31-4e254ad86148';
 
 let commitJSON = {
-    'version': Constant.COMMIT_VERSION,
-    'id': 'e793dac9-0365-4ae2-98b3-f9acd19b0358',
-    'prev': null,
-    'repo': 'repo',
-    'timestamp': 1441294877135,
-    'author': 'author',
-    'email': 'email',
-    'message': 'message',
-    'nodes': [
-      {
-        'id': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
-        'label': 'label',
-        'action': 'create',
-        'boundary': true,
-        'repo': 'externalRepo'
-      },
-      {
-        'id': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
-        'label': 'label',
-        'action': 'create',
-        'boundary': false,
-        'props': {'foo': 'bar'}
-      }
-    ],
-    'edges': [
-      {
-        'id': '523f993f-f271-493e-a860-84e93af3dae7',
-        'label': 'label',
-        'from': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
-        'to': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
-        'action': 'create',
-        'props': {'foo': 'bar'}
-      }
-    ]
-  };
+  'version': Constant.COMMIT_VERSION,
+  'id': 'e793dac9-0365-4ae2-98b3-f9acd19b0358',
+  'prev': null,
+  'repo': 'repo',
+  'timestamp': 1441294877135,
+  'author': 'author',
+  'email': 'email',
+  'message': 'message',
+  'nodes': [
+    {
+      'id': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
+      'label': 'label',
+      'action': 'create',
+      'boundary': true,
+      'repo': 'externalRepo',
+    },
+    {
+      'id': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
+      'label': 'label',
+      'action': 'create',
+      'boundary': false,
+      'props': {'foo': 'bar'},
+    },
+  ],
+  'edges': [
+    {
+      'id': '523f993f-f271-493e-a860-84e93af3dae7',
+      'label': 'label',
+      'from': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
+      'to': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
+      'action': 'create',
+      'props': {'foo': 'bar'},
+    },
+  ],
+};
 
 let emptyCommitJSON = {
-    'version': Constant.COMMIT_VERSION,
-    'id': 'e793dac9-0365-4ae2-98b3-f9acd19b0358',
-    'prev': null,
-    'repo': 'repo',
-    'timestamp': 1441294877135,
-    'author': 'author',
-    'email': 'email',
-    'message': 'message',
-    'nodes': [],
-    'edges': []
-  };
+  'version': Constant.COMMIT_VERSION,
+  'id': 'e793dac9-0365-4ae2-98b3-f9acd19b0358',
+  'prev': null,
+  'repo': 'repo',
+  'timestamp': 1441294877135,
+  'author': 'author',
+  'email': 'email',
+  'message': 'message',
+  'nodes': [],
+  'edges': [],
+};
 
 beforeEach(() => {
   vGraph = new VGraph('repo');
 });
 
 describe('VGraph - patch', () => {
-
   it('patch should validate commit', done => {
     let commit = new Commit();
     commit.fromJSON(commitJSON);
@@ -129,7 +128,7 @@ describe('VGraph - patch', () => {
         commit.prev = newCommit.id;
         return Promise.all([
           vGraph._vagabond.getNode(Constant.ROOT_ID),
-          vGraph._vagabond.getNode(newCommit.id)
+          vGraph._vagabond.getNode(newCommit.id),
         ]);
       })
       .then(([rootNode, commitNode]) => vGraph._vagabond.addEdge(uuid1,
@@ -176,10 +175,10 @@ describe('VGraph - patch', () => {
           }
         }
         return Promise.all([
-            fromCommitEdge.getProperties(),
-            toCommitEdge.getProperties(),
-            commitNode.getProperties()
-          ]);
+          fromCommitEdge.getProperties(),
+          toCommitEdge.getProperties(),
+          commitNode.getProperties(),
+        ]);
       })
       .then(([fromCommitEdge, toCommitEdge, commitNode]) => {
         expect(fromCommitEdge[Constant.META])
@@ -220,7 +219,7 @@ describe('VGraph - patch', () => {
       .then(ignored => {
         for (let node of vGraph._vagabond.getNodes()) {
           let count = 0;
-          switch (node.id){
+          switch (node.id) {
             case Constant.ROOT_ID:
               for (let edge of node.getEdges(Direction.OUT)) {
                 expect(edge.to).to.equal(commit1.id);
@@ -286,7 +285,7 @@ describe('VGraph - patch', () => {
         node.getLabel(),
         node.isBoundary(),
         node.getRepo(),
-        node._element.getProperty(Constant.STATUS)
+        node._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
@@ -308,8 +307,8 @@ describe('VGraph - patch', () => {
         node.getId(),
         node.setProperties({
           foo: 'bar',
-          props: true
-        })
+          props: true,
+        }),
       ]))
       .then(values => {
         id = values[0];
@@ -327,7 +326,7 @@ describe('VGraph - patch', () => {
         node.isBoundary(),
         node.getRepo(),
         node.getProperties(),
-        node._element.getProperty(Constant.STATUS)
+        node._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
@@ -335,7 +334,7 @@ describe('VGraph - patch', () => {
         expect(values[2]).to.equal('repo');
         expect(values[3]).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         expect(values[4]).to.equal(0);
         done();
@@ -353,14 +352,14 @@ describe('VGraph - patch', () => {
         node = newNode;
         return Promise.all([
           node.getId(),
-          vGraph.commit('author', 'email', 'message')
+          vGraph.commit('author', 'email', 'message'),
         ]);
       })
       .then(values => {
         id = values[0];
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => vGraph.status())
@@ -401,7 +400,7 @@ describe('VGraph - patch', () => {
         node.getLabel(),
         node.isBoundary(),
         node.getRepo(),
-        node._element.getProperty(Constant.STATUS)
+        node._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
@@ -422,7 +421,7 @@ describe('VGraph - patch', () => {
       .then(newNode => {
         node = newNode;
         return node.setProperties({
-          byebye: true
+          byebye: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
@@ -437,7 +436,7 @@ describe('VGraph - patch', () => {
         node.getLabel(),
         node.isBoundary(),
         node.getRepo(),
-        node._element.getProperty(Constant.STATUS)
+        node._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
@@ -462,7 +461,7 @@ describe('VGraph - patch', () => {
       .then(ignored => node.convertToNode())
       .then(ignored => node.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.status())
       .then(statusCommit => {
@@ -475,7 +474,7 @@ describe('VGraph - patch', () => {
         node.isBoundary(),
         node.getRepo(),
         node.getProperties(),
-        node._element.getProperty(Constant.STATUS)
+        node._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
@@ -483,7 +482,7 @@ describe('VGraph - patch', () => {
         expect(values[2]).to.equal('repo');
         expect(values[3]).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         expect(values[4]).to.equal(0);
         done();
@@ -500,13 +499,13 @@ describe('VGraph - patch', () => {
       .then(newNode => {
         node = newNode;
         return node.setProperties({
-          byebye: true
+          byebye: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => node.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.status())
       .then(statusCommit => {
@@ -519,7 +518,7 @@ describe('VGraph - patch', () => {
         node.isBoundary(),
         node.getRepo(),
         node.getProperties(),
-        node._element.getProperty(Constant.STATUS)
+        node._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
@@ -527,7 +526,7 @@ describe('VGraph - patch', () => {
         expect(values[2]).to.equal('repo');
         expect(values[3]).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         expect(values[4]).to.equal(0);
         done();
@@ -539,12 +538,12 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => Promise.all([
         values[0],
         values[1],
-        vGraph.commit('author', 'email', 'message')
+        vGraph.commit('author', 'email', 'message'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(ignored => vGraph.commit('author', 'email', 'message'))
@@ -568,20 +567,20 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => Promise.all([
         values[0],
         values[1],
-        vGraph.commit('author', 'email', 'message')
+        vGraph.commit('author', 'email', 'message'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(edge => Promise.all([
         edge.getId(),
         edge.setProperties({
           foo: 'bar',
-          props: true
-        })
+          props: true,
+        }),
       ]))
       .then(values => {
         id = values[0];
@@ -596,13 +595,13 @@ describe('VGraph - patch', () => {
       .then(edge => Promise.all([
         edge.getLabel(),
         edge.getProperties(),
-        edge._element.getProperty(Constant.STATUS)
+        edge._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
         expect(values[1]).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         expect(values[2]).to.equal(0);
         done();
@@ -617,19 +616,19 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
         edge = newEdge;
         return edge.setProperties({
-          byebye: true
+          byebye: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => edge.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.status())
       .then(statusCommit => {
@@ -656,19 +655,19 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
         edge = newEdge;
         return edge.setProperties({
-          byebye: true
+          byebye: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => edge.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.status())
       .then(statusCommit => {
@@ -695,19 +694,19 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
         edge = newEdge;
         return edge.setProperties({
-          byebye: true
+          byebye: true,
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => edge.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.status())
       .then(statusCommit => {
@@ -735,7 +734,7 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
@@ -743,8 +742,8 @@ describe('VGraph - patch', () => {
         return Promise.all([
           edge.getId(),
           edge.setProperties({
-            byebye: true
-          })
+            byebye: true,
+          }),
         ]);
       })
       .then(values => {
@@ -753,7 +752,7 @@ describe('VGraph - patch', () => {
       })
       .then(ignored => edge.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.status())
       .then(statusCommit => {
@@ -765,13 +764,13 @@ describe('VGraph - patch', () => {
       .then(edge => Promise.all([
         edge.getLabel(),
         edge.getProperties(),
-        edge._element.getProperty(Constant.STATUS)
+        edge._element.getProperty(Constant.STATUS),
       ]))
       .then(values => {
         expect(values[0]).to.equal('label');
         expect(values[1]).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         expect(values[2]).to.equal(0);
         done();
@@ -787,7 +786,7 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
@@ -795,8 +794,8 @@ describe('VGraph - patch', () => {
         return Promise.all([
           edge.getId(),
           edge.setProperties({
-            byebye: true
-          })
+            byebye: true,
+          }),
         ]);
       })
       .then(values => {
@@ -830,7 +829,7 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
@@ -838,8 +837,8 @@ describe('VGraph - patch', () => {
         return Promise.all([
           edge.getId(),
           edge.setProperties({
-            byebye: true
-          })
+            byebye: true,
+          }),
         ]);
       })
       .then(values => {
@@ -873,7 +872,7 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
@@ -881,8 +880,8 @@ describe('VGraph - patch', () => {
         return Promise.all([
           edge.getId(),
           edge.setProperties({
-            byebye: true
-          })
+            byebye: true,
+          }),
         ]);
       })
       .then(values => {
@@ -916,7 +915,7 @@ describe('VGraph - patch', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(newEdge => {
@@ -924,8 +923,8 @@ describe('VGraph - patch', () => {
         return Promise.all([
           edge.getId(),
           edge.setProperties({
-            byebye: true
-          })
+            byebye: true,
+          }),
         ]);
       })
       .then(values => {
@@ -958,7 +957,7 @@ describe('VGraph - patch', () => {
         node = newNode;
         return Promise.all([
           node.getId(),
-          vGraph.commit('author', 'email', 'message')
+          vGraph.commit('author', 'email', 'message'),
         ]);
       })
       .then(values => {
@@ -992,7 +991,7 @@ describe('VGraph - patch', () => {
         node = newNode;
         return Promise.all([
           node.getId(),
-          vGraph.commit('author', 'email', 'message')
+          vGraph.commit('author', 'email', 'message'),
         ]);
       })
       .then(values => {
@@ -1027,7 +1026,7 @@ describe('VGraph - patch', () => {
         node = newNode;
         return Promise.all([
           node.getId(),
-          vGraph.commit('author', 'email', 'message')
+          vGraph.commit('author', 'email', 'message'),
         ]);
       })
       .then(values => {
@@ -1062,7 +1061,7 @@ describe('VGraph - patch', () => {
         node = newNode;
         return Promise.all([
           node.getId(),
-          vGraph.commit('author', 'email', 'message')
+          vGraph.commit('author', 'email', 'message'),
         ]);
       })
       .then(values => {
@@ -1094,7 +1093,7 @@ describe('VGraph - patch', () => {
         node = newNode;
         return Promise.all([
           node.getId(),
-          vGraph.commit('author', 'email', 'message')
+          vGraph.commit('author', 'email', 'message'),
         ]);
       })
       .then(values => {
@@ -1115,5 +1114,4 @@ describe('VGraph - patch', () => {
       })
       .catch(error => done(error));
   });
-
 });

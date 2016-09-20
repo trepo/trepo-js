@@ -23,7 +23,6 @@ beforeEach(() => {
 });
 
 describe('VGraph - getCommit', () => {
-
   it('should error on invalid id', done => {
     vGraph.init()
       .then(ignored => vGraph.getCommit('1234'))
@@ -101,5 +100,4 @@ describe('VGraph - getCommit', () => {
       })
       .catch(error => done(error));
   });
-
 });

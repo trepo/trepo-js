@@ -24,7 +24,6 @@ beforeEach(() => {
 });
 
 describe('VGraph - commit', () => {
-
   it('commit should error on invalid parameters', done => {
     vGraph.init()
       .then(ignored => vGraph.commit())
@@ -60,7 +59,7 @@ describe('VGraph - commit', () => {
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(commit => Promise.all([
         vGraph._vagabond.getNode(Constant.ROOT_ID),
-        vGraph._vagabond.getNode(commit.id)
+        vGraph._vagabond.getNode(commit.id),
       ]))
       .then(([rootNode, commitNode]) => vGraph._vagabond.addEdge(uuid1,
         Constant.COMMIT_EDGE_LABEL, commitNode, rootNode))
@@ -105,10 +104,10 @@ describe('VGraph - commit', () => {
           }
         }
         return Promise.all([
-            fromCommitEdge.getProperties(),
-            toCommitEdge.getProperties(),
-            commitNode.getProperties()
-          ]);
+          fromCommitEdge.getProperties(),
+          toCommitEdge.getProperties(),
+          commitNode.getProperties(),
+        ]);
       })
       .then(([fromCommitEdge, toCommitEdge, commitNode]) => {
         expect(fromCommitEdge[Constant.META])
@@ -153,7 +152,7 @@ describe('VGraph - commit', () => {
         commit3 = commit.id;
         for (let node of vGraph._vagabond.getNodes()) {
           let count = 0;
-          switch (node.id){
+          switch (node.id) {
             case Constant.ROOT_ID:
               for (let edge of node.getEdges(Direction.OUT)) {
                 expect(edge.to).to.equal(commit1);
@@ -198,7 +197,7 @@ describe('VGraph - commit', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(([node1, node2]) => {
         fromNode = node1;
@@ -230,18 +229,18 @@ describe('VGraph - commit', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(([node1, node2]) => vGraph.addEdge('label', node1, node2))
       .then(newEdge => {
         edge = newEdge;
         return Promise.all([
-            edge.getId(),
-            edge.setProperties({
-              foo: 'bar',
-              props: true
-            })
-          ]);
+          edge.getId(),
+          edge.setProperties({
+            foo: 'bar',
+            props: true,
+          }),
+        ]);
       })
       .then(([edgeId, props]) => {
         id = edgeId;
@@ -249,7 +248,7 @@ describe('VGraph - commit', () => {
       })
       .then(ignored => edge.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(commit => {
@@ -272,18 +271,18 @@ describe('VGraph - commit', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(([node1, node2]) => vGraph.addEdge('label', node1, node2))
       .then(newEdge => {
         edge = newEdge;
         return Promise.all([
-            edge.getId(),
-            edge.setProperties({
-              foo: 'bar',
-              props: true
-            })
-          ]);
+          edge.getId(),
+          edge.setProperties({
+            foo: 'bar',
+            props: true,
+          }),
+        ]);
       })
       .then(([edgeId, props]) => {
         id = edgeId;
@@ -334,12 +333,12 @@ describe('VGraph - commit', () => {
       .then(newNode => {
         node = newNode;
         return Promise.all([
-            node.getId(),
-            node.setProperties({
-              foo: 'bar',
-              props: true
-            })
-          ]);
+          node.getId(),
+          node.setProperties({
+            foo: 'bar',
+            props: true,
+          }),
+        ]);
       })
       .then(([nodeId, props]) => {
         id = nodeId;
@@ -347,7 +346,7 @@ describe('VGraph - commit', () => {
       })
       .then(ignored => node.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(commit => {

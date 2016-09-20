@@ -10,7 +10,6 @@ beforeEach(() => {
 });
 
 describe('CommitNode', () => {
-
   it('constructor should work', () => {
     commitNode = new CommitNode(uuidv4, 'label');
     expect(commitNode.id).to.equal(uuidv4);
@@ -324,7 +323,7 @@ describe('CommitNode', () => {
       action: 'update',
       boundary: false,
       origProps: {foo: 'bar'},
-      props: {}
+      props: {},
     };
 
     commitNode.fromJSON(json);
@@ -338,7 +337,6 @@ describe('CommitNode', () => {
     expect(commitNode.props).to.deep.equal({});
 
     commitNode.validate();
-
   });
 
   it('fromJSON should import correctly for boundary', () => {
@@ -348,7 +346,7 @@ describe('CommitNode', () => {
       action: 'update',
       boundary: true,
       repo: 'external',
-      origRepo: 'external-old'
+      origRepo: 'external-old',
     };
 
     commitNode.fromJSON(json);
@@ -363,7 +361,6 @@ describe('CommitNode', () => {
     expect(commitNode.props).to.equal(undefined);
 
     commitNode.validate();
-
   });
 
   it('fromJSON should error when invalid', () => {
@@ -373,7 +370,7 @@ describe('CommitNode', () => {
       boundary: false,
       repo: undefined,
       origProps: {foo: 'bar'},
-      props: {}
+      props: {},
     };
 
     expect(() => commitNode.fromJSON(json)).to.throw('Invalid id');
@@ -399,8 +396,7 @@ describe('CommitNode', () => {
       repo: undefined,
       origRepo: undefined,
       origProps: {foo: 'bar'},
-      props: {}
+      props: {},
     });
   });
-
 });

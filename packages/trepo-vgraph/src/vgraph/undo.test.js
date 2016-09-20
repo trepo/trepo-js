@@ -24,7 +24,6 @@ beforeEach(() => {
 });
 
 describe('VGraph - undo', () => {
-
   it('undo should error on invalid id', done => {
     vGraph.init()
       .then(ignored => vGraph.undo('1234'))
@@ -123,8 +122,8 @@ describe('VGraph - undo', () => {
         node.getId(),
         node.setProperties({
           foo: 'bar',
-          props: false
-        })
+          props: false,
+        }),
       ]))
       .then(([nodeId, ignored]) => {
         id = nodeId;
@@ -182,15 +181,15 @@ describe('VGraph - undo', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addBoundary(uuid1, 'label', 'external'),
-        vGraph.addBoundary(uuid2, 'label', 'external')
+        vGraph.addBoundary(uuid2, 'label', 'external'),
       ]))
       .then(([node1, node2]) => vGraph.addEdge('label', node1, node2))
       .then(edge => Promise.all([
         edge.getId(),
         edge.setProperties({
           foo: 'bar',
-          props: false
-        })
+          props: false,
+        }),
       ]))
       .then(([edgeId, ignored]) => {
         id = edgeId;
@@ -224,7 +223,7 @@ describe('VGraph - undo', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addBoundary(uuid1, 'label', 'external'),
-        vGraph.addBoundary(uuid2, 'label', 'external')
+        vGraph.addBoundary(uuid2, 'label', 'external'),
       ]))
       .then(([node1, node2]) => vGraph.addEdge('label', node1, node2))
       .then(newEdge => {
@@ -233,8 +232,8 @@ describe('VGraph - undo', () => {
           edge.getId(),
           edge.setProperties({
             foo: 'bar',
-            props: false
-          })
+            props: false,
+          }),
         ]);
       })
       .then(([edgeId, ignored]) => {
@@ -244,10 +243,10 @@ describe('VGraph - undo', () => {
       .then(commit => {
         commitId = commit.id;
         return edge.setProperties({
-            foo: 'bar2',
-            props: true,
-            newProp: 'boo!'
-          });
+          foo: 'bar2',
+          props: true,
+          newProp: 'boo!',
+        });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => {
@@ -276,7 +275,7 @@ describe('VGraph - undo', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addBoundary(uuid1, 'label', 'external'),
-        vGraph.addBoundary(uuid2, 'label', 'external')
+        vGraph.addBoundary(uuid2, 'label', 'external'),
       ]))
       .then(([node1, node2]) => {
         fromNode = node1;
@@ -311,12 +310,12 @@ describe('VGraph - undo', () => {
       .then(newNode => {
         node = newNode;
         return Promise.all([
-            node.getId(),
-            node.setProperties({
-              foo: 'bar',
-              props: false
-            })
-          ]);
+          node.getId(),
+          node.setProperties({
+            foo: 'bar',
+            props: false,
+          }),
+        ]);
       })
       .then(([nodeId, ignored]) => {
         id = nodeId;
@@ -381,7 +380,7 @@ describe('VGraph - undo', () => {
       })
       .then(ignored => node.setProperties({
         foo: 'bar',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => vGraph.undo(commitId))
@@ -405,12 +404,12 @@ describe('VGraph - undo', () => {
       .then(newNode => {
         node = newNode;
         return Promise.all([
-            node.getId(),
-            node.setProperties({
-              foo: 'bar',
-              props: false
-            })
-          ]);
+          node.getId(),
+          node.setProperties({
+            foo: 'bar',
+            props: false,
+          }),
+        ]);
       })
       .then(([nodeId, ignored]) => {
         id = nodeId;
@@ -420,7 +419,7 @@ describe('VGraph - undo', () => {
         commitId = commit.id;
         return node.setProperties({
           foo: 'bar',
-          hmm: [1,2,3]
+          hmm: [1, 2, 3],
         });
       })
       .then(ignored => vGraph.commit('author', 'email', 'message'))

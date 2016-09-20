@@ -31,7 +31,7 @@ let Constant = {
   ROOT_REPO: '__repo',
   SPEC_VERSION: '0.7.0',
   STATUS: '__status',
-  UPDATE: 'update'
+  UPDATE: 'update',
 };
 
 export default Constant;

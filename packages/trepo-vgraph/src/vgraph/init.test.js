@@ -23,7 +23,6 @@ beforeEach(() => {
 });
 
 describe('VGraph - init', () => {
-
   it('init should create root on empty graph', done => {
     vGraph.init()
       .then(ignored => {
@@ -41,7 +40,7 @@ describe('VGraph - init', () => {
         expect(properties).to.deep.equal({
           __meta: Constant.ROOT_META,
           __version: Constant.DATA_VERSION,
-          __repo: 'repo'
+          __repo: 'repo',
         });
         done();
       })
@@ -61,13 +60,13 @@ describe('VGraph - init', () => {
 
   it('init should set dirty from uncommitted edges', done => {
     Promise.all([
-        vGraph._vagabond.addNode(uuid1, 'label'),
-        vGraph._vagabond.addNode(uuid2, 'label')
-      ])
+      vGraph._vagabond.addNode(uuid1, 'label'),
+      vGraph._vagabond.addNode(uuid2, 'label'),
+    ])
       .then(values => Promise.all([
         vGraph._vagabond.addEdge(uuid3, 'label', values[0], values[1]),
         values[0].setProperty(Constant.STATUS, 0),
-        values[1].setProperty(Constant.STATUS, 0)
+        values[1].setProperty(Constant.STATUS, 0),
       ]))
       .then(values => values[0].setProperty(Constant.STATUS, 1))
       .then(ignored => vGraph.init())
@@ -88,5 +87,4 @@ describe('VGraph - init', () => {
       })
       .catch(error => done(error));
   });
-
 });

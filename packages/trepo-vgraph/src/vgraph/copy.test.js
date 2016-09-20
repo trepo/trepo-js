@@ -19,43 +19,43 @@ let uuid8 = '86919ef3-bcea-4d11-b154-3495b9167628';
 let uuid9 = '93ae3afe-48ef-4d51-9f31-4e254ad86148';
 
 let commitJSON = {
-    'version': Constant.COMMIT_VERSION,
-    'id': 'e793dac9-0365-4ae2-98b3-f9acd19b0358',
-    'prev': null,
-    'repo': 'repo',
-    'timestamp': 1441294877135,
-    'author': 'author',
-    'email': 'email',
-    'message': 'message',
-    'nodes': [
-      {
-        'id': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
-        'label': 'label',
-        'action': 'create',
-        'boundary': true,
-        'repo': 'externalRepo'
-      },
-      {
-        'id': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
-        'label': 'label',
-        'action': 'create',
-        'boundary': false,
-        'hash': 'a5e744d0164540d33b1d7ea616c28f2fa97e754a',
-        'props': {'foo': 'bar'}
-      }
-    ],
-    'edges': [
-      {
-        'id': '523f993f-f271-493e-a860-84e93af3dae7',
-        'label': 'label',
-        'from': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
-        'to': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
-        'action': 'create',
-        'hash': 'a5e744d0164540d33b1d7ea616c28f2fa97e754a',
-        'props': {'foo': 'bar'}
-      }
-    ]
-  };
+  'version': Constant.COMMIT_VERSION,
+  'id': 'e793dac9-0365-4ae2-98b3-f9acd19b0358',
+  'prev': null,
+  'repo': 'repo',
+  'timestamp': 1441294877135,
+  'author': 'author',
+  'email': 'email',
+  'message': 'message',
+  'nodes': [
+    {
+      'id': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
+      'label': 'label',
+      'action': 'create',
+      'boundary': true,
+      'repo': 'externalRepo',
+    },
+    {
+      'id': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
+      'label': 'label',
+      'action': 'create',
+      'boundary': false,
+      'hash': 'a5e744d0164540d33b1d7ea616c28f2fa97e754a',
+      'props': {'foo': 'bar'},
+    },
+  ],
+  'edges': [
+    {
+      'id': '523f993f-f271-493e-a860-84e93af3dae7',
+      'label': 'label',
+      'from': 'cab8b6ef-0244-4a33-a1fe-2c9b98f5d925',
+      'to': 'c5b011d2-d2aa-457b-88a5-dcfbdf2a7534',
+      'action': 'create',
+      'hash': 'a5e744d0164540d33b1d7ea616c28f2fa97e754a',
+      'props': {'foo': 'bar'},
+    },
+  ],
+};
 
 beforeEach(() => {
   vGraph = new VGraph('repo');

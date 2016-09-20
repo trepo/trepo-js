@@ -284,7 +284,7 @@ class CommitNode {
       repo: this._repo,
       origRepo: this._origRepo,
       props: this._props,
-      origProps: this._origProps
+      origProps: this._origProps,
     };
   }
 

@@ -9,7 +9,7 @@ let fakeVGraph;
 
 beforeEach(done => {
   fakeVGraph = {
-    _dirty: false
+    _dirty: false,
   };
   vagabond = new Vagabond();
   vagabond.init()
@@ -20,7 +20,6 @@ beforeEach(done => {
 });
 
 describe('Element', () => {
-
   it('getId should work', done => {
     vagabond.addNode('1234', 'label')
       .then(node => {
@@ -94,9 +93,9 @@ describe('Element', () => {
       .then(keys => {
         expect(keys).to.deep.equal(['key']);
         return Promise.all([
-            element.setProperty('key2', 'value2'),
-            node.setProperty(Constant.STATUS, 0) // mimic commit
-          ]);
+          element.setProperty('key2', 'value2'),
+          node.setProperty(Constant.STATUS, 0), // mimic commit
+        ]);
       })
       .then(ignored => element.getPropertyKeys())
       .then(keys => {
@@ -205,7 +204,7 @@ describe('Element', () => {
         expect(fakeVGraph._dirty).to.equal(false);
         return Promise.all([
           node.setProperty('foo', 'bar'),
-          node.setProperty(Constant.STATUS, 0)
+          node.setProperty(Constant.STATUS, 0),
         ]);
       })
       .then(ignored => element.setProperty('foo', 'bar2'))
@@ -232,7 +231,7 @@ describe('Element', () => {
         expect(fakeVGraph._dirty).to.equal(false);
         return Promise.all([
           node.setProperty('foo', 'bar'),
-          node.setProperty(Constant.STATUS, 0)
+          node.setProperty(Constant.STATUS, 0),
         ]);
       })
       .then(ignored => element.setProperty('foo', 'bar'))
@@ -300,12 +299,11 @@ describe('Element', () => {
           shouldError({}),
           shouldError({foo: 'bar'}),
           shouldError([true, 1, 'string']),
-          shouldError([{foo: 'bar'}, {foo: 'bear'}])
+          shouldError([{foo: 'bar'}, {foo: 'bear'}]),
         ]);
       })
       .then(ignored => done())
       .catch(error => done(error));
-
   });
 
   it('setProperty should fail on deleted', done => {
@@ -359,7 +357,7 @@ describe('Element', () => {
         expect(fakeVGraph._dirty).to.equal(false);
         return Promise.all([
           node.setProperty('foo', 'bar'),
-          node.setProperty(Constant.STATUS, 0)
+          node.setProperty(Constant.STATUS, 0),
         ]);
       })
       .then(ignored => element.removeProperty('foo'))
@@ -386,7 +384,7 @@ describe('Element', () => {
         expect(fakeVGraph._dirty).to.equal(false);
         return Promise.all([
           node.setProperty('foo', 'bar'),
-          node.setProperty(Constant.STATUS, 0)
+          node.setProperty(Constant.STATUS, 0),
         ]);
       })
       .then(ignored => element.removeProperty('foo2'))
@@ -441,14 +439,14 @@ describe('Element', () => {
         expect(properties).to.deep.equal({});
         return element.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => element.getProperties())
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -482,7 +480,7 @@ describe('Element', () => {
         expect(properties).to.deep.equal({});
         return element.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => element.getProperties())
@@ -490,18 +488,18 @@ describe('Element', () => {
         expect(fakeVGraph._dirty).to.equal(true);
         expect(properties).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         return element.setProperties({
           foo: 'bar2',
-          props: false
+          props: false,
         });
       })
       .then(ignored => element.getProperties('foo'))
       .then(properties => {
         expect(properties).to.deep.equal({
           foo: 'bar2',
-          props: false
+          props: false,
         });
         done();
       })
@@ -518,7 +516,7 @@ describe('Element', () => {
         expect(fakeVGraph._dirty).to.equal(false);
         return Promise.all([
           node.setProperty('foo', 'bar'),
-          node.setProperty(Constant.STATUS, 0)
+          node.setProperty(Constant.STATUS, 0),
         ]);
       })
       .then(ignored => {
@@ -551,7 +549,7 @@ describe('Element', () => {
         return Promise.all([
           node.setProperty('foo', 'bar'),
           node.setProperty('props', true),
-          node.setProperty(Constant.STATUS, 0)
+          node.setProperty(Constant.STATUS, 0),
         ]);
       })
       .then(ignored => {
@@ -624,12 +622,11 @@ describe('Element', () => {
           shouldError({}),
           shouldError({foo: 'bar'}),
           shouldError([true, 1, 'string']),
-          shouldError([{foo: 'bar'}, {foo: 'bear'}])
+          shouldError([{foo: 'bar'}, {foo: 'bear'}]),
         ]);
       })
       .then(ignored => done())
       .catch(error => done(error));
-
   });
 
   it('setProperties should fail on deleted', done => {
@@ -646,5 +643,4 @@ describe('Element', () => {
       })
       .catch(error => done(error));
   });
-
 });

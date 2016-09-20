@@ -23,11 +23,10 @@ beforeEach(() => {
 });
 
 describe('VGraph - status', () => {
-
   it('status should create a valid commit', done => {
     let prev;
     vGraph.init()
-      .then(ignored  => vGraph.commit('author', 'email', 'message'))
+      .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(commit => {
         prev = commit.id;
         return vGraph.status('author', 'email', 'message');
@@ -56,7 +55,7 @@ describe('VGraph - status', () => {
         node = n;
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => node.getId())
@@ -66,7 +65,7 @@ describe('VGraph - status', () => {
       })
       .then(ignored => node.convertToBoundary('external'))
       .then(ignored => vGraph.removeNode(id))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -77,7 +76,7 @@ describe('VGraph - status', () => {
         expect(commitNode.boundary).to.equal(false);
         expect(commitNode.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -94,7 +93,7 @@ describe('VGraph - status', () => {
       })
       .then(ignored => node.setRepo('external2'))
       .then(ignored => vGraph.removeNode(uuid1))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -118,7 +117,7 @@ describe('VGraph - status', () => {
         return vGraph.commit('author', 'email', 'message');
       })
       .then(ignored => vGraph.removeNode(uuid1))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -137,7 +136,7 @@ describe('VGraph - status', () => {
     vGraph.init()
       .then(ignored => vGraph.addBoundary(uuid1, 'label', 'external'))
       .then(ignored => vGraph.removeNode(uuid1))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(0);
@@ -162,10 +161,10 @@ describe('VGraph - status', () => {
       .then(ignored => node.convertToNode())
       .then(ignored => node.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
       .then(ignored => vGraph.removeNode(uuid1))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -189,7 +188,7 @@ describe('VGraph - status', () => {
         node = n;
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => node.getId())
@@ -199,10 +198,10 @@ describe('VGraph - status', () => {
       })
       .then(ignored => node.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.removeNode(id))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -213,7 +212,7 @@ describe('VGraph - status', () => {
         expect(commitNode.boundary).to.equal(false);
         expect(commitNode.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -229,7 +228,7 @@ describe('VGraph - status', () => {
         node = n;
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => node.getId())
@@ -238,7 +237,7 @@ describe('VGraph - status', () => {
         return vGraph.commit('author', 'email', 'message');
       })
       .then(ignored => vGraph.removeNode(id))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -249,7 +248,7 @@ describe('VGraph - status', () => {
         expect(commitNode.boundary).to.equal(false);
         expect(commitNode.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -265,7 +264,7 @@ describe('VGraph - status', () => {
         node = n;
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => node.getId())
@@ -273,7 +272,7 @@ describe('VGraph - status', () => {
         id = nodeId;
         return vGraph.removeNode(id);
       })
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(0);
@@ -297,12 +296,12 @@ describe('VGraph - status', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => Promise.all([
         values[0].getId(),
         values[1].getId(),
-        vGraph.addEdge('label', values[0], values[1])
+        vGraph.addEdge('label', values[0], values[1]),
       ]))
       .then(values => {
         fromNodeId = values[0];
@@ -312,8 +311,8 @@ describe('VGraph - status', () => {
           edge.getId(),
           edge.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
@@ -322,10 +321,10 @@ describe('VGraph - status', () => {
       })
       .then(ignored => edge.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.removeEdge(id))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(2);
@@ -348,7 +347,7 @@ describe('VGraph - status', () => {
         expect(commitEdge.action).to.equal(Constant.DELETE);
         expect(commitEdge.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -363,12 +362,12 @@ describe('VGraph - status', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => Promise.all([
         values[0].getId(),
         values[1].getId(),
-        vGraph.addEdge('label', values[0], values[1])
+        vGraph.addEdge('label', values[0], values[1]),
       ]))
       .then(values => {
         fromNodeId = values[0];
@@ -378,8 +377,8 @@ describe('VGraph - status', () => {
           edge.getId(),
           edge.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
@@ -387,7 +386,7 @@ describe('VGraph - status', () => {
         return vGraph.commit('author', 'email', 'message');
       })
       .then(ignored => vGraph.removeEdge(id))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(2);
@@ -410,7 +409,7 @@ describe('VGraph - status', () => {
         expect(commitEdge.action).to.equal(Constant.DELETE);
         expect(commitEdge.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -423,7 +422,7 @@ describe('VGraph - status', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => vGraph.addEdge('label', values[0], values[1]))
       .then(e => {
@@ -432,15 +431,15 @@ describe('VGraph - status', () => {
           edge.getId(),
           edge.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
         id = values[0];
         return vGraph.removeEdge(id);
       })
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.edges).to.have.length(0);
@@ -463,7 +462,7 @@ describe('VGraph - status', () => {
         node = n;
         return node.setProperties({
           foo: 'bar',
-          props: true
+          props: true,
         });
       })
       .then(ignored => node.getId())
@@ -472,7 +471,7 @@ describe('VGraph - status', () => {
         return vGraph.commit('author', 'email', 'message');
       })
       .then(ignored => node.convertToBoundary('external'))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -484,7 +483,7 @@ describe('VGraph - status', () => {
         expect(commitNode.repo).to.equal('external');
         expect(commitNode.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -500,7 +499,7 @@ describe('VGraph - status', () => {
         return vGraph.commit('author', 'email', 'message');
       })
       .then(ignored => node.setRepo('external2'))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -549,9 +548,9 @@ describe('VGraph - status', () => {
       .then(ignored => node.convertToNode())
       .then(ignored => node.setProperties({
         foo: 'bar',
-        props: true
+        props: true,
       }))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -562,7 +561,7 @@ describe('VGraph - status', () => {
         expect(commitNode.boundary).to.equal(false);
         expect(commitNode.props).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         expect(commitNode.origRepo).to.equal('external');
         done();
@@ -581,8 +580,8 @@ describe('VGraph - status', () => {
           node.getId(),
           node.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
@@ -591,9 +590,9 @@ describe('VGraph - status', () => {
       })
       .then(ignored => node.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
-      .then(ignored  => vGraph.status('author', 'email', 'message'))
+      .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
         commit.validate();
         expect(commit.nodes).to.have.length(1);
@@ -604,11 +603,11 @@ describe('VGraph - status', () => {
         expect(commitNode.boundary).to.equal(false);
         expect(commitNode.props).to.deep.equal({
           foo: 'bar2',
-          props: false
+          props: false,
         });
         expect(commitNode.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -626,8 +625,8 @@ describe('VGraph - status', () => {
           node.getId(),
           node.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
@@ -644,7 +643,7 @@ describe('VGraph - status', () => {
         expect(commitNode.boundary).to.equal(false);
         expect(commitNode.props).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -661,14 +660,14 @@ describe('VGraph - status', () => {
     vGraph.init()
       .then(ignored => Promise.all([
         vGraph.addNode('label'),
-        vGraph.addNode('label')
+        vGraph.addNode('label'),
       ]))
       .then(values => {
         fromNode = values[0];
         toNode = values[1];
         return Promise.all([
           values[0].getId(),
-          values[1].getId()
+          values[1].getId(),
         ]);
       })
       .then(values => {
@@ -683,8 +682,8 @@ describe('VGraph - status', () => {
           edge.getId(),
           edge.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
@@ -714,7 +713,7 @@ describe('VGraph - status', () => {
         expect(commitEdge.action).to.equal(Constant.CREATE);
         expect(commitEdge.props).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
@@ -742,8 +741,8 @@ describe('VGraph - status', () => {
           edge.getId(),
           edge.setProperties({
             foo: 'bar',
-            props: true
-          })
+            props: true,
+          }),
         ]);
       })
       .then(values => {
@@ -752,7 +751,7 @@ describe('VGraph - status', () => {
       })
       .then(ignored => edge.setProperties({
         foo: 'bar2',
-        props: false
+        props: false,
       }))
       .then(ignored => vGraph.status('author', 'email', 'message'))
       .then(commit => {
@@ -778,15 +777,14 @@ describe('VGraph - status', () => {
         expect(commitEdge.action).to.equal(Constant.UPDATE);
         expect(commitEdge.props).to.deep.equal({
           foo: 'bar2',
-          props: false
+          props: false,
         });
         expect(commitEdge.origProps).to.deep.equal({
           foo: 'bar',
-          props: true
+          props: true,
         });
         done();
       })
       .catch(error => done(error));
   });
-
 });

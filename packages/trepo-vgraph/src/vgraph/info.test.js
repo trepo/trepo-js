@@ -32,7 +32,7 @@ describe('VGraph - info', () => {
           'version': Constant.SPEC_VERSION,
           'repo': 'repo',
           'commit': null,
-          'clean': true
+          'clean': true,
         });
         return vGraph.addNode('label');
       })
@@ -43,7 +43,7 @@ describe('VGraph - info', () => {
           'version': Constant.SPEC_VERSION,
           'repo': 'repo',
           'commit': null,
-          'clean': false
+          'clean': false,
         });
         return vGraph.commit('author', 'email', 'message');
       })
@@ -56,11 +56,10 @@ describe('VGraph - info', () => {
           'version': Constant.SPEC_VERSION,
           'repo': 'repo',
           'commit': commitId,
-          'clean': true
+          'clean': true,
         });
         done();
       })
       .catch(error => done(error));
-
   });
 });

@@ -14,7 +14,6 @@ beforeEach(() => {
 });
 
 describe('CommitEdge', () => {
-
   it('constructor should work', () => {
     commitEdge = new CommitEdge(uuidv4, 'label', uuid1, uuid2);
     expect(commitEdge.id).to.equal(uuidv4);
@@ -258,7 +257,7 @@ describe('CommitEdge', () => {
       from: uuid1,
       to: uuid2,
       action: 'create',
-      props: {}
+      props: {},
     };
 
     commitEdge.fromJSON(json);
@@ -272,7 +271,6 @@ describe('CommitEdge', () => {
     expect(commitEdge.props).to.deep.equal({});
 
     commitEdge.validate();
-
   });
 
   it('fromJSON should import update correctly', () => {
@@ -283,7 +281,7 @@ describe('CommitEdge', () => {
       to: uuid2,
       action: 'update',
       origProps: {foo: 'bar'},
-      props: {}
+      props: {},
     };
 
     commitEdge.fromJSON(json);
@@ -297,7 +295,6 @@ describe('CommitEdge', () => {
     expect(commitEdge.props).to.deep.equal({});
 
     commitEdge.validate();
-
   });
 
   it('fromJSON should import delete correctly', () => {
@@ -307,7 +304,7 @@ describe('CommitEdge', () => {
       from: uuid1,
       to: uuid2,
       action: 'delete',
-      origProps: {foo: 'bar'}
+      origProps: {foo: 'bar'},
     };
 
     commitEdge.fromJSON(json);
@@ -321,7 +318,6 @@ describe('CommitEdge', () => {
     expect(commitEdge.props).to.equal(undefined);
 
     commitEdge.validate();
-
   });
 
   it('fromJSON should error when invalid', () => {
@@ -331,7 +327,7 @@ describe('CommitEdge', () => {
       to: uuid2,
       action: 'update',
       origProps: {foo: 'bar'},
-      props: {}
+      props: {},
     };
 
     expect(() => commitEdge.fromJSON(json)).to.throw('Invalid id');
@@ -356,8 +352,7 @@ describe('CommitEdge', () => {
       to: uuid2,
       action: 'create',
       origProps: undefined,
-      props: {}
+      props: {},
     });
   });
-
 });
