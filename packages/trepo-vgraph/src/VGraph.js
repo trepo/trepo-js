@@ -77,7 +77,8 @@ class VGraph {
           return new Promise((resolve, reject) => {
             node.getProperties()
               .then(properties => {
-                if (properties[Constant.ROOT_VERION] !== Constant.DATA_VERSION) {
+                if (properties[Constant.ROOT_VERION] !==
+                    Constant.DATA_VERSION) {
                   throw new Error('Version Mismatch');
                 }
                 if (properties[Constant.ROOT_REPO] !== this._repo) {
@@ -166,7 +167,7 @@ class VGraph {
 
     let node = await this._vagabond.getNode(id);
 
-    if (node.label == Constant.COMMIT_NODE_LABEL) {
+    if (node.label === Constant.COMMIT_NODE_LABEL) {
       throw new Error('Node Not Found');
     }
 
@@ -203,7 +204,7 @@ class VGraph {
 
     let node = await this._vagabond.getNode(id);
 
-    if (node.label == Constant.COMMIT_NODE_LABEL) {
+    if (node.label === Constant.COMMIT_NODE_LABEL) {
       throw new Error('Node Not Found');
     }
 
@@ -249,7 +250,7 @@ class VGraph {
     if (!(toNode instanceof Node)) {
       throw new Error('Invalid To Node');
     }
-    if (fromNode._element.id == toNode._element.id) {
+    if (fromNode._element.id === toNode._element.id) {
       throw new Error('Self Referencing Nodes Not Allowed');
     }
     if (!Util.isValidLabel(label)) {
@@ -277,7 +278,7 @@ class VGraph {
 
     let edge = await this._vagabond.getEdge(id);
 
-    if (edge.label == Constant.COMMIT_EDGE_LABEL) {
+    if (edge.label === Constant.COMMIT_EDGE_LABEL) {
       throw new Error('Edge Not Found');
     }
 
@@ -302,7 +303,7 @@ class VGraph {
     }
 
     let edge = await this._vagabond.getEdge(id);
-    if (edge.label == Constant.COMMIT_EDGE_LABEL) {
+    if (edge.label === Constant.COMMIT_EDGE_LABEL) {
       throw new Error('Edge Not Found');
     }
 
@@ -348,7 +349,7 @@ class VGraph {
     if (!Util.isValidLabel(label)) {
       throw new Error('Invalid Label');
     }
-    if (!Util.isValidRepo(repo) || repo == this._repo) {
+    if (!Util.isValidRepo(repo) || repo === this._repo) {
       throw new Error('Invalid Repo');
     }
 
@@ -357,7 +358,7 @@ class VGraph {
     try {
       node = await this._vagabond.addNode(id, label);
     } catch (error) {
-      if (error.message == 'Duplicate Key') {
+      if (error.message === 'Duplicate Key') {
         throw new Error('Node Exists');
       } else {
         throw error;
@@ -403,14 +404,14 @@ class VGraph {
       this._vagabond.getNode(id)
         .then(n => {
           node = n;
-          if (node.label != Constant.COMMIT_NODE_LABEL) {
+          if (node.label !== Constant.COMMIT_NODE_LABEL) {
             throw new Error('Node Not Found');
           }
 
           // Get Prev
           let prev = null;
           for (let prevNode of node.getNodes(Direction.IN)) {
-            if (prevNode.id != Constant.ROOT_ID) {
+            if (prevNode.id !== Constant.ROOT_ID) {
               prev = prevNode.id;
             }
             break;
@@ -451,16 +452,16 @@ class VGraph {
   }
 
   _getLogNodes(currentNode, commitNodes, number, offset) {
-    if (number == 0) {
+    if (number === 0) {
       return Promise.resolve(commitNodes);
     }
     for (let nextNode of currentNode.getNodes(Direction.IN,
       Constant.COMMIT_EDGE_LABEL)) {
       // If we wrap around, return
-      if (nextNode.id == Constant.ROOT_ID) {
+      if (nextNode.id === Constant.ROOT_ID) {
         return Promise.resolve(commitNodes);
       }
-      if (offset == 0) {
+      if (offset === 0) {
         commitNodes.push(nextNode);
         return this._getLogNodes(nextNode, commitNodes, number - 1, offset);
       } else {
@@ -517,7 +518,7 @@ class VGraph {
       // Deleted Nodes
       if (properties[Constant.STATUS] >= 4) {
         // Clean Delete
-        if (properties[Constant.STATUS] == 4) {
+        if (properties[Constant.STATUS] === 4) {
           if (properties.hasOwnProperty(Constant.REPO)) {
             let commitNode = new CommitNode(node.id, node.label);
             commitNode.action = Constant.DELETE;
@@ -533,7 +534,7 @@ class VGraph {
           }
         }
         // Update Delete
-        else if (properties[Constant.STATUS] == 6) {
+        else if (properties[Constant.STATUS] === 6) {
           if (properties.hasOwnProperty(Constant.ORIG_PROPS)) {
             let commitNode = new CommitNode(node.id, node.label);
             commitNode.action = Constant.DELETE;
@@ -554,7 +555,7 @@ class VGraph {
         }
       }
       // Updated Nodes
-      else if (properties[Constant.STATUS] == 2) {
+      else if (properties[Constant.STATUS] === 2) {
         if (properties.hasOwnProperty(Constant.REPO)) {
           if (properties.hasOwnProperty(Constant.ORIG_PROPS)) {
             let commitNode = new CommitNode(node.id, node.label);
@@ -619,8 +620,8 @@ class VGraph {
     for (let edge of query.edges()) {
       let properties = await edge.getProperties();
       // Add reference nodes if this edge is not Created then Deleted
-      if (properties[Constant.STATUS] != 5 ||
-          properties[Constant.STATUS] != 7) {
+      if (properties[Constant.STATUS] !== 5 ||
+          properties[Constant.STATUS] !== 7) {
         if (!commit.hasNode(edge.from)) {
           let node = await this._vagabond.getNode(edge.from);
           let nodeProperties = await node.getProperties();
@@ -651,7 +652,7 @@ class VGraph {
       // Deleted Edges
       if (properties[Constant.STATUS] >= 4) {
         // Clean Delete
-        if (properties[Constant.STATUS] == 4) {
+        if (properties[Constant.STATUS] === 4) {
           let commitEdge =
             new CommitEdge(edge.id, edge.label, edge.from, edge.to);
           commitEdge.action = Constant.DELETE;
@@ -659,7 +660,7 @@ class VGraph {
           commit.addEdge(commitEdge);
         }
         // Update Delete
-        else if (properties[Constant.STATUS] == 6) {
+        else if (properties[Constant.STATUS] === 6) {
           let commitEdge =
             new CommitEdge(edge.id, edge.label, edge.from, edge.to);
           commitEdge.action = Constant.DELETE;
@@ -672,7 +673,7 @@ class VGraph {
         }
       }
       // Updated Edges
-      else if (properties[Constant.STATUS] == 2) {
+      else if (properties[Constant.STATUS] === 2) {
         let commitEdge =
           new CommitEdge(edge.id, edge.label, edge.from, edge.to);
         commitEdge.action = Constant.UPDATE;
@@ -783,7 +784,7 @@ class VGraph {
 
     // Get a reference to the last commit node.
     let latestCommitNode;
-    if (this._lastCommitNode != null) {
+    if (this._lastCommitNode !== null) {
       latestCommitNode = this._lastCommitNode;
     } else {
       latestCommitNode = this._rootNode;
@@ -856,7 +857,7 @@ class VGraph {
     await Promise.all(promises);
 
     // Remove old commit edge.
-    if (oldCommitEdge != null) {
+    if (oldCommitEdge !== null) {
       await this._vagabond.removeEdge(oldCommitEdge.id);
     }
 
@@ -885,7 +886,7 @@ class VGraph {
 
     // Ensure Commit Node Exists
     let targetCommitNode = await this._vagabond.getNode(id);
-    if (targetCommitNode.label != Constant.COMMIT_NODE_LABEL) {
+    if (targetCommitNode.label !== Constant.COMMIT_NODE_LABEL) {
       throw new Error('Commit Not Found');
     }
 
@@ -1037,7 +1038,7 @@ class VGraph {
 
     // Get a reference to the last commit node.
     let latestCommitNode;
-    if (this._lastCommitNode != null) {
+    if (this._lastCommitNode !== null) {
       latestCommitNode = this._lastCommitNode;
     } else {
       latestCommitNode = this._rootNode;
@@ -1077,7 +1078,7 @@ class VGraph {
           node = await this._vagabond.getNode(commitNode.id);
           throw new Error('Node Exists');
         } catch (error) {
-          if (error.message != 'Node Not Found') {
+          if (error.message !== 'Node Not Found') {
             throw error;
           }
           node = await this._vagabond.addNode(commitNode.id,
@@ -1116,7 +1117,7 @@ class VGraph {
           edge = await this._vagabond.getEdge(commitEdge.id);
           throw new Error('Edge Exists');
         } catch (error) {
-          if (error.message != 'Edge Not Found') {
+          if (error.message !== 'Edge Not Found') {
             throw error;
           }
           let fromNode = await this._vagabond.getNode(commitEdge.from);
@@ -1182,7 +1183,7 @@ class VGraph {
     }
 
     // Remove old commit edge.
-    if (oldCommitEdge != null) {
+    if (oldCommitEdge !== null) {
       await this._vagabond.removeEdge(oldCommitEdge.id);
     }
 
@@ -1233,7 +1234,7 @@ class VGraph {
     commit.email = email;
     commit.message = message;
 
-    if (nodes.length == 0) {
+    if (nodes.length === 0) {
       let query = this._vagabond.query().hasNot(Constant.META);
       for (let node of query.nodes()) {
         let properties = await node.getProperties();
@@ -1261,7 +1262,7 @@ class VGraph {
       let query = this._vagabond.query().hasNot(Constant.META);
 
       for (let node of query.nodes()) {
-        if (nodes.indexOf(node.id) == -1) {
+        if (nodes.indexOf(node.id) === -1) {
           continue;
         }
         let properties = await node.getProperties();
@@ -1485,7 +1486,7 @@ class VGraph {
 
     let commit = new Commit();
     commit.id = node.id;
-    if (prev != null) {
+    if (prev !== null) {
       commit.prev = prev;
     }
     commit.repo = properties[Constant.COMMIT_NODE_REPO];
@@ -1514,7 +1515,7 @@ class VGraph {
   * _commitNodes(direction) {
     if (this._lastCommitNode !== null) {
       let currentNode = this._nextCommitNode(this._rootNode, direction);
-      while (currentNode != null && currentNode.id != Constant.ROOT_ID) {
+      while (currentNode !== null && currentNode.id !== Constant.ROOT_ID) {
         yield currentNode;
         currentNode = this._nextCommitNode(currentNode, direction);
       }
