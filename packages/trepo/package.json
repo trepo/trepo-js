@@ -5,7 +5,8 @@
   "main": "dist/Trepo.js",
   "scripts": {
     "build": "babel src --out-dir dist --ignore *.test.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "babel src --out-dir dist --ignore *.test.js -w"
   },
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
   "license": "MIT",
