@@ -1,5 +1,3 @@
 module.exports = (root, {input}) => {
-  return {
-    id: 'commit id',
-  };
+  return root.vGraph.commit(input.author, input.email, input.message);
 };

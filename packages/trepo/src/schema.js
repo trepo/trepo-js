@@ -19,12 +19,15 @@ module.exports = [
     dirty: Boolean
   }`,
   `type Commit {
-    id: String!
+    id: String
+    json: JSON
   }`,
   // Inputs
   `input CommitInput {
-    author: String
-    email: String
-    message: String
+    author: String!
+    email: String!
+    message: String!
   }`,
+  // Scalars
+  `scalar JSON`,
 ];

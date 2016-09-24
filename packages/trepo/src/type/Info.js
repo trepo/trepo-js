@@ -1,11 +1,5 @@
 module.exports = {
-  repo(info) {
-    return info.repo;
-  },
-  lastCommit(info) {
-    return info.lastCommit;
-  },
-  dirty(info) {
-    return info.dirty;
-  },
+  repo: info => info.repo,
+  lastCommit: info => info.commit,
+  dirty: info => !info.clean,
 };

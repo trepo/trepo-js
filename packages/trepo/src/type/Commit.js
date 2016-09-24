@@ -1,5 +1,4 @@
 module.exports = {
-  id(commit) {
-    return commit.id;
-  },
+  id: commit => commit.id,
+  json: commit => commit,
 };

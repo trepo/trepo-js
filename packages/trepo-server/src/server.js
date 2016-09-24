@@ -8,7 +8,7 @@ const app = new Koa();
 const router = new Router();
 const port = process.env.PORT || 8080;
 
-const trepo = new Trepo();
+const trepo = new Trepo('_temp');
 
 router.get('/', async ctx => {
   ctx.body = {
@@ -19,8 +19,8 @@ router.get('/', async ctx => {
 router.post('/graphql', async ctx => {
   const response = await trepo.request(
     ctx.request.body.query,
-    ctx.request.body.variables,
-    ctx.request.body.requestName,
+    JSON.parse(ctx.request.body.variables || '{}'),
+    ctx.request.body.operationName,
   );
   ctx.body = response;
 });
@@ -33,4 +33,10 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(port);
+trepo.start()
+  .then(() => {
+    app.listen(port);
+  })
+  .catch(error => {
+    console.error(error);
+  });
