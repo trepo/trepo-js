@@ -4,16 +4,12 @@
   "description": "",
   "main": "dist/Trepo.js",
   "scripts": {
-    "build": "babel src --out-dir dist --ignore *.test.js",
+    "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "babel src --out-dir dist --ignore *.test.js -w"
+    "watch": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js -w"
   },
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
   "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-plugin-transform-async-to-generator": "^6.8.0"
-  },
   "dependencies": {
     "apollo-server": "^0.2.8",
     "graphql": "^0.7.0",
