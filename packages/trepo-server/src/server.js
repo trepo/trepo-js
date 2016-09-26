@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const Trepo = require('trepo');
+const Trepo = require('trepo-core');
 const bodyParser = require('koa-bodyparser');
 const {version} = require('../package.json');
 
