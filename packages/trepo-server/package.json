@@ -4,8 +4,8 @@
   "description": "Trepo Server",
   "main": "dist/server.js",
   "scripts": {
-    "build": "babel src --out-dir dist --ignore *.test.js",
-    "nodemon": "nodemon --require babel-register --watch . --watch ../trepo src/server.js",
+    "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
+    "nodemon": "../../node_modules/.bin/nodemon --require babel-register --watch . --watch ../trepo src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
@@ -15,11 +15,5 @@
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.1",
     "trepo-core": "0.0.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-register": "^6.14.0",
-    "nodemon": "^1.10.2"
   }
 }
