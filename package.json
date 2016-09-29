@@ -2,6 +2,7 @@
   "name": "trepo-monorepo",
   "private": true,
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "lint": "eslint packages/*/src",
     "test": "lerna run test",
     "precommit": "npm run lint"
