@@ -7,20 +7,25 @@ module.exports = [
   // Root Queries
   `type Query {
     info: Info
+    person(id: String): Person
   }`,
   // Mutations
   `type Mutation {
     commit(input: CommitInput): Commit
+    createPerson: Person
   }`,
   // Types
+  `type Commit {
+    id: String
+    json: JSON
+  }`,
   `type Info {
     repo: String
     lastCommit: String
     dirty: Boolean
   }`,
-  `type Commit {
+  `type Person {
     id: String
-    json: JSON
   }`,
   // Inputs
   `input CommitInput {

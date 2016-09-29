@@ -1,6 +1,7 @@
 const {makeExecutableSchema} = require('graphql-tools');
 const {graphql} = require('graphql');
 const apolloServer = require('apollo-server');
+const pTree = require('trepo-ptree');
 const {VGraph} = require('trepo-vgraph');
 
 const schema = makeExecutableSchema({
@@ -22,7 +23,10 @@ class Trepo {
     return graphql(
       schema,
       query,
-      {vGraph: this.vGraph}, // root
+      { // root
+        pTree,
+        vGraph: this.vGraph,
+      },
       {context: true}, // ctx, TODO pass through commitOnly flag to mutations
       variables,
       operationName
