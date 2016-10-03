@@ -10,6 +10,6 @@
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
   "license": "MIT",
   "dependencies": {
-    "vagabond-db": "^0.8.1"
+    "vagabond-db": "0.8.1"
   }
 }

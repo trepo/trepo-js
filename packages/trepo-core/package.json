@@ -5,16 +5,16 @@
   "main": "dist/Trepo.js",
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"TODO\"",
     "watch": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js -w"
   },
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^0.2.8",
-    "graphql": "^0.7.0",
-    "graphql-tools": "^0.7.2",
-    "trepo-ptree": "^0.0.0",
-    "trepo-vgraph": "^0.0.0"
+    "apollo-server": "0.3.2",
+    "graphql": "0.7.0",
+    "graphql-tools": "0.7.2",
+    "trepo-ptree": "0.0.0",
+    "trepo-vgraph": "0.0.0"
   }
 }

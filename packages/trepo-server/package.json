@@ -6,14 +6,14 @@
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
     "nodemon": "../../node_modules/.bin/nodemon --require babel-register --watch ../ src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"TODO\""
   },
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
   "license": "MIT",
   "dependencies": {
     "koa": "^2.0.0",
-    "koa-bodyparser": "^3.2.0",
-    "koa-router": "^7.0.1",
+    "koa-bodyparser": "3.2.0",
+    "koa-router": "7.0.1",
     "trepo-core": "0.0.0"
   }
 }
