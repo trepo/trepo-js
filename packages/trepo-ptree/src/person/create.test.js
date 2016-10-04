@@ -1,6 +1,6 @@
 const {expect} = require('chai');
 const func = require('./create.js');
-const {VGraph} = require('trepo-vgraph');
+const {VGraph, Node} = require('trepo-vgraph');
 
 let vGraph;
 
@@ -11,8 +11,9 @@ describe('person - create', () => {
   });
 
   it('should create a person', async () => {
-    const node = await func({vGraph});
-    const label = await node.getLabel();
-    expect(label).to.equal('Person');
+    const person = await func({vGraph});
+    expect(person).to.have.all.keys('_node', 'label');
+    expect(person._node).to.be.instanceOf(Node);
+    expect(person.label).to.equal('Person');
   });
 });

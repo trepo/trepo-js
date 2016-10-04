@@ -1,7 +1,7 @@
 const {expect} = require('chai');
 const Label = require('../label.js');
 const func = require('./get.js');
-const {VGraph, Util} = require('trepo-vgraph');
+const {VGraph, Util, Node} = require('trepo-vgraph');
 const uuidv4 = Util.generateUUIDv4();
 
 let vGraph;
@@ -13,12 +13,14 @@ describe('person - get', () => {
   });
 
   it('should get a person', async () => {
-    const n = await vGraph.addNode(Label.PERSON);
-    const id = await n.getId();
+    const node = await vGraph.addNode(Label.PERSON);
+    const id = await node.getId();
 
-    const node = await func({vGraph, input: {id}});
-    const label = await node.getLabel();
-    expect(label).to.equal('Person');
+    const person = await func({vGraph, input: {id}});
+    expect(person).to.have.all.keys('_node', 'id', 'label');
+    expect(person._node).to.be.instanceOf(Node);
+    expect(person.id).to.equal(id);
+    expect(person.label).to.equal('Person');
   });
 
   it('getNode should throw error when node not found', async () => {

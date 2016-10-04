@@ -1,5 +1,5 @@
 const {expect} = require('chai');
-const {VGraph, Util} = require('trepo-vgraph');
+const {VGraph, Util, Node} = require('trepo-vgraph');
 const util = require('./util.js');
 const uuidv4 = Util.generateUUIDv4();
 let vGraph;
@@ -11,9 +11,13 @@ describe('util', () => {
   });
 
   it('getNode should return the node', async () => {
-    const node = await vGraph.addNode('label');
-    const id = await node.getId();
-    await util.getNode({vGraph, id, label: 'label'});
+    const n = await vGraph.addNode('label');
+    const id = await n.getId();
+    const node = await util.getNode({vGraph, id, label: 'label'});
+    expect(node).to.have.all.keys('_node', 'id', 'label');
+    expect(node._node).to.be.instanceOf(Node);
+    expect(node.id).to.equal(id);
+    expect(node.label).to.equal('label');
   });
 
   it('getNode should throw error when node not found', async () => {
