@@ -17,10 +17,10 @@ describe('person - get', () => {
     const id = await node.getId();
 
     const person = await func({vGraph, input: {id}});
-    expect(person).to.have.all.keys('_node', 'id', 'label');
+    expect(person).to.have.all.keys('_node', '_id', '_label');
     expect(person._node).to.be.instanceOf(Node);
-    expect(person.id).to.equal(id);
-    expect(person.label).to.equal('Person');
+    expect(person._id).to.equal(id);
+    expect(person._label).to.equal('Person');
   });
 
   it('getNode should throw error when node not found', async () => {

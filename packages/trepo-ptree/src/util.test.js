@@ -14,10 +14,10 @@ describe('util', () => {
     const n = await vGraph.addNode('label');
     const id = await n.getId();
     const node = await util.getNode({vGraph, id, label: 'label'});
-    expect(node).to.have.all.keys('_node', 'id', 'label');
+    expect(node).to.have.all.keys('_node', '_id', '_label');
     expect(node._node).to.be.instanceOf(Node);
-    expect(node.id).to.equal(id);
-    expect(node.label).to.equal('label');
+    expect(node._id).to.equal(id);
+    expect(node._label).to.equal('label');
   });
 
   it('getNode should throw error when node not found', async () => {
