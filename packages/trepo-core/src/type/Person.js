@@ -1,3 +1,3 @@
 module.exports = {
-  id: person => person.getId(),
+  id: person => person.id || person._node.getId(),
 };
