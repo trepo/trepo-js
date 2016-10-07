@@ -1,9 +1,9 @@
 const {expect} = require('chai');
-const Label = require('./label.js');
+const Prop = require('./prop.js');
 
 describe('label', () => {
   it('should have properly formatted keys', () => {
-    for (let key of Object.keys(Label)) {
+    for (let key of Object.keys(Prop)) {
       expect(/^[A-Z_]+$/.test(key)).to.equal(true);
     }
   });
