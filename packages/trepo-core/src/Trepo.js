@@ -19,7 +19,7 @@ class Trepo {
     return this.vGraph.init();
   }
 
-  request(query, variables, operationName) {
+  request({query, variables, operationName}) {
     return graphql(
       schema,
       query,

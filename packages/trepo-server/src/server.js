@@ -17,11 +17,11 @@ router.get('/', async ctx => {
 });
 
 router.post('/graphql', async ctx => {
-  const response = await trepo.request(
-    ctx.request.body.query,
-    JSON.parse(ctx.request.body.variables || '{}'),
-    ctx.request.body.operationName,
-  );
+  const response = await trepo.request({
+    query: ctx.request.body.query,
+    variables: JSON.parse(ctx.request.body.variables || '{}'),
+    operationName: ctx.request.body.operationName,
+  });
   ctx.body = response;
 });
 
