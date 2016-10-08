@@ -5,7 +5,7 @@
   "main": "dist/Trepo.js",
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
-    "test": "echo \"TODO\"",
+    "test": "../../node_modules/.bin/mocha --compilers js:babel-register --register babel-register 'src/**/*.test.js'",
     "watch": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js -w"
   },
   "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
