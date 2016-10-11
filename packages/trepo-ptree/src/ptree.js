@@ -1,4 +1,6 @@
 module.exports = {
+  prop: require('./prop.js'),
+
   createName: require('./name/create.js'),
   getName: require('./name/get.js'),
   getNamePerson: require('./name/getPerson.js'),
@@ -7,4 +9,5 @@ module.exports = {
 
   createPerson: require('./person/create.js'),
   getPerson: require('./person/get.js'),
+  getPersonName: require('./person/getName.js'),
 };

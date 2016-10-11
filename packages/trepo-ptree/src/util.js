@@ -83,7 +83,9 @@ module.exports = {
 
   async getAdjacentNode({node, label, direction}) {
     for (const adjNode of node.getNodes(direction, label)) {
-      return adjNode;
+      return {
+        _node: adjNode,
+      };
     }
     return null;
   },
@@ -96,8 +98,7 @@ module.exports = {
     }
     return {
       _node: node,
-      _id: id,
-      _label: label,
+      id: id,
     };
   },
 };

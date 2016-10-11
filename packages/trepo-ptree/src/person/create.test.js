@@ -12,8 +12,7 @@ describe('person - create', () => {
 
   it('should create a person', async () => {
     const person = await func({vGraph});
-    expect(person).to.have.all.keys('_node', '_label');
+    expect(person).to.have.all.keys('_node');
     expect(person._node).to.be.instanceOf(Node);
-    expect(person._label).to.equal('Person');
   });
 });

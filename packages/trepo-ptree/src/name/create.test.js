@@ -25,7 +25,8 @@ describe('name - create', () => {
 
   it('should create name', async () => {
     const obj = await func({vGraph, input: {name: 'name'}});
-    expect(obj).to.have.all.keys('_node', 'person');
+    expect(obj).to.have.all.keys('_node', 'name', 'person');
+    expect(obj.name).to.equal('name');
     expect(obj.person).to.equal(null);
     const label = await obj._node.getLabel();
     const properties = await obj._node.getProperties();
@@ -39,14 +40,15 @@ describe('name - create', () => {
     const node = await vGraph.addNode(Label.PERSON);
     const id = await node.getId();
     const obj = await func({vGraph, input: {name: 'name', person: id}});
-    const personId = await obj.person.getId();
+    expect(obj.person).to.have.all.keys('_node');
+    const personId = await obj.person._node.getId();
     expect(personId).to.equal(id);
     const adjacentNode = await util.getAdjacentNode({
       node: obj._node,
       label: Label.NAME_PERSON,
       direction: Direction.IN,
     });
-    const adjacentNodeId = await adjacentNode.getId();
+    const adjacentNodeId = await adjacentNode._node.getId();
     expect(adjacentNodeId).to.equal(id);
   });
 });

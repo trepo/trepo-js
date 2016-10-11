@@ -120,7 +120,7 @@ describe('util', () => {
       label: 'edge',
       direction: Direction.OUT,
     });
-    const adjacentNodeId = await adjacentNode.getId();
+    const adjacentNodeId = await adjacentNode._node.getId();
     expect(adjacentNodeId).to.equal(id);
   });
 
@@ -145,7 +145,7 @@ describe('util', () => {
       label: 'edge',
       direction: Direction.IN,
     });
-    const adjacentNodeId = await adjacentNode.getId();
+    const adjacentNodeId = await adjacentNode._node.getId();
     expect(adjacentNodeId).to.equal(id);
   });
 
@@ -172,7 +172,7 @@ describe('util', () => {
       label: 'edge',
       direction: Direction.OUT,
     });
-    const adjacentNodeId = await adjacentNode.getId();
+    const adjacentNodeId = await adjacentNode._node.getId();
     expect(adjacentNodeId).to.equal(id);
   });
 
@@ -303,7 +303,8 @@ describe('util', () => {
     });
 
     expect(node).to.not.equal(null);
-    const nodeId = await node.getId();
+    expect(node).to.have.all.keys('_node');
+    const nodeId = await node._node.getId();
     expect(nodeId).to.equal(n2Id);
   });
 
@@ -337,10 +338,9 @@ describe('util', () => {
     const n = await vGraph.addNode('label');
     const id = await n.getId();
     const node = await util.getNode({vGraph, id, label: 'label'});
-    expect(node).to.have.all.keys('_node', '_id', '_label');
+    expect(node).to.have.all.keys('_node', 'id');
     expect(node._node).to.be.instanceOf(Node);
-    expect(node._id).to.equal(id);
-    expect(node._label).to.equal('label');
+    expect(node.id).to.equal(id);
   });
 
   it('getNode should throw error when node not found', async () => {

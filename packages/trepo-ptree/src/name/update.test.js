@@ -37,14 +37,14 @@ describe('name - update', () => {
       vGraph,
       input: {id, name: 'name', person: personId},
     });
-    const retId = await obj.person.getId();
+    const retId = await obj.person._node.getId();
     expect(retId).to.equal(personId);
     const adjacentNode = await util.getAdjacentNode({
       node: obj._node,
       label: Label.NAME_PERSON,
       direction: Direction.IN,
     });
-    const adjacentNodeId = await adjacentNode.getId();
+    const adjacentNodeId = await adjacentNode._node.getId();
     expect(adjacentNodeId).to.equal(personId);
   });
 });

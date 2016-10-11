@@ -15,7 +15,7 @@ describe('name - get', () => {
     const id = await node.getId();
 
     const ret = await func({vGraph, input: {id}});
-    expect(ret).to.have.all.keys('_node', '_id', '_label');
-    expect(ret._id).to.equal(id);
+    expect(ret).to.have.all.keys('_node', 'id');
+    expect(ret.id).to.equal(id);
   });
 });

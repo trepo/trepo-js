@@ -24,6 +24,6 @@ module.exports = async ({vGraph, input}) => {
 
   return {
     _node,
-    person,
+    person: person ? {_node: person} : null,
   };
 };
