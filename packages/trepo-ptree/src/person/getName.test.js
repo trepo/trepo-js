@@ -1,5 +1,5 @@
 const {expect} = require('chai');
-const func = require('./getPerson.js');
+const func = require('./getName.js');
 const {VGraph} = require('trepo-vgraph');
 const Label = require('../label.js');
 let vGraph;
@@ -11,13 +11,13 @@ describe('name - getPerson', () => {
   });
 
   it('should get adjacent person', async () => {
-    const node = await vGraph.addNode(Label.NAME);
+    const name = await vGraph.addNode(Label.NAME);
+    const nameId = await name.getId();
     const person = await vGraph.addNode(Label.PERSON);
-    const personId = await person.getId();
-    await vGraph.addEdge(Label.NAME_PERSON, person, node);
+    await vGraph.addEdge(Label.NAME_PERSON, person, name);
 
-    const ret = await func({vGraph, input: {node}});
+    const ret = await func({vGraph, input: {node: person}});
     const retId = await ret._node.getId();
-    expect(retId).to.equal(personId);
+    expect(retId).to.equal(nameId);
   });
 });

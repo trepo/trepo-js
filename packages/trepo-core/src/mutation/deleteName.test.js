@@ -4,29 +4,28 @@ const Label = require('trepo-ptree/dist/label.js');
 
 let trepo;
 
-describe('person', () => {
+describe('deleteName', () => {
   beforeEach(async () => {
     trepo = new Trepo('repo');
     await trepo.start();
   });
 
   it('should work', async () => {
-    const node = await trepo.vGraph.addNode(Label.PERSON);
-    const id = await node.getId();
+    const name = await trepo.vGraph.addNode(Label.NAME);
+    const nameId = await name.getId();
     const response = await trepo.request({
-      query: `query ($id: String) {
-        person(id: $id) {
-          id
-        }
+      query: `mutation ($input: DeleteInput){
+        name: deleteName(input: $input)
       }`,
       variables: {
-        id,
+        input: {
+          id: nameId,
+        },
       },
     });
     expect(response).to.have.all.keys('data');
-    expect(response.data).to.have.all.keys('person');
-    const data = response.data.person;
-    expect(data).to.have.all.keys('id');
-    expect(data.id).to.equal(id);
+    expect(response.data).to.have.all.keys('name');
+    const data = response.data.name;
+    expect(data).to.equal(null);
   });
 });
