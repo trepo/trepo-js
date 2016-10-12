@@ -4,6 +4,8 @@ const Prop = require('../prop.js');
 const util = require('../util.js');
 
 module.exports = async ({vGraph, input}) => {
+  // TODO checkNode
+
   const _node = await util.ensureNode({
     vGraph,
     id: input.id,

@@ -62,6 +62,14 @@ describe('util', () => {
     expect(properties).to.deep.equal({foo: 'bar'});
   });
 
+  it('ensureAdjacentNode should delete existing node');
+
+  it('ensureAdjacentNode should create new node');
+
+  it('ensureAdjacentNode should update node');
+
+  it('ensureAdjacentNode should skip null/undefined data');
+
   it('ensureEdge should throw if id does not exist', async () => {
     try {
       await util.ensureEdge({
