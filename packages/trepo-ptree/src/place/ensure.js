@@ -12,5 +12,5 @@ module.exports = async ({vGraph, node, label, place}) => {
     data: place,
   });
 
-  return {_node};
+  return _node === null ? null : {_node};
 };

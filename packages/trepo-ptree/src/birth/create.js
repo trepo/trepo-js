@@ -31,19 +31,19 @@ module.exports = async ({vGraph, input}) => {
       vGraph,
       node,
       label: Label.BIRTH_FATHER,
-      id: input.person,
+      id: input.father,
     }),
     ensurePerson({
       vGraph,
       node,
       label: Label.BIRTH_MOTHER,
-      id: input.person,
+      id: input.mother,
     }),
     ensurePerson({
       vGraph,
       node,
       label: Label.BIRTH_CHILD,
-      id: input.person,
+      id: input.child,
     }),
     ensureDate({
       vGraph,

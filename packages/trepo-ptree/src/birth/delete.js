@@ -1,22 +1,22 @@
 const Label = require('../label.js');
 const util = require('../util.js');
-const removeDate = require('../date/remove.js');
-const removePlace = require('../place/remove.js');
+const deleteDate = require('../date/delete.js');
+const deletePlace = require('../place/delete.js');
 
 module.exports = async ({vGraph, input}) => {
-  const node = await util.getNode({
+  const {_node: node} = await util.getNode({
     vGraph,
     id: input.id,
     label: Label.BIRTH,
   });
 
   await Promise.all([
-    removeDate({
+    deleteDate({
       vGraph,
       node,
       label: Label.BIRTH_DATE,
     }),
-    removePlace({
+    deletePlace({
       vGraph,
       node,
       label: Label.BIRTH_PLACE,

@@ -99,7 +99,7 @@ module.exports = {
     return destNode;
   },
 
-  async ensureNode({vGraph, id, label, properties}) {
+  async ensureNode({vGraph, id, label, properties = {}}) {
     const node = await vGraph.getNode(id);
     const nodeLabel = await node.getLabel();
     if (label !== nodeLabel) {

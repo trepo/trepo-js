@@ -10,7 +10,7 @@ describe('name - get', () => {
     await vGraph.init();
   });
 
-  it('should get name', async () => {
+  it('should get node', async () => {
     const node = await vGraph.addNode(Label.NAME);
     const id = await node.getId();
 

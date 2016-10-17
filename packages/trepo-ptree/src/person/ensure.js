@@ -12,5 +12,5 @@ module.exports = async ({vGraph, node, label, id}) => {
     nodeLabel: Label.PERSON,
   });
 
-  return {_node};
+  return _node === null ? null : {_node};
 };
