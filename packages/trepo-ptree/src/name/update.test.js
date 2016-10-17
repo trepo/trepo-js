@@ -12,6 +12,23 @@ describe('name - update', () => {
     await vGraph.init();
   });
 
+  it('should error on person not found', async () => {
+    const node = await vGraph.addNode(Label.NAME);
+    const id = await node.getId();
+    const person = await vGraph.addNode('bogus');
+    const personId = await person.getId();
+    try {
+      await await func({
+        vGraph,
+        input: {id, name: 'name', person: personId},
+      });
+    } catch (error) {
+      expect(error.message).to.equal('Node Not Found');
+      return;
+    }
+    throw new Error('Should have errored');
+  });
+
   it('should update name', async () => {
     const node = await vGraph.addNode(Label.NAME);
     const id = await node.getId();
