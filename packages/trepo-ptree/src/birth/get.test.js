@@ -4,14 +4,14 @@ const {VGraph} = require('trepo-vgraph');
 const Label = require('../label.js');
 let vGraph;
 
-describe('name - get', () => {
+describe('birth - get', () => {
   beforeEach(async () => {
     vGraph = new VGraph('repo');
     await vGraph.init();
   });
 
   it('should get node', async () => {
-    const node = await vGraph.addNode(Label.NAME);
+    const node = await vGraph.addNode(Label.BIRTH);
     const id = await node.getId();
 
     const ret = await func({vGraph, input: {id}});

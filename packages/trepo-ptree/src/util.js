@@ -25,6 +25,40 @@ module.exports = {
     return node;
   },
 
+  async ensureAdjacentNode({vGraph, node, edgeLabel, direction,
+    nodeLabel, data}) {
+    let adjacentNode = null;
+    for (const adjNode of node.getNodes(direction, edgeLabel)) {
+      adjacentNode = adjNode;
+    }
+
+    if (data !== null) {
+      for (const key of Object.keys(data)) {
+        if (data[key] === null || data[key] === undefined) {
+          delete data[key];
+        }
+      }
+    }
+
+    if (data === null) {
+      if (adjacentNode !== null) {
+        const id = await adjacentNode.getId();
+        await vGraph.removeNode(id);
+      }
+    } else if (adjacentNode === null) {
+      adjacentNode = await vGraph.addNode(nodeLabel);
+      if (direction === Direction.OUT) {
+        await vGraph.addEdge(edgeLabel, node, adjacentNode);
+      } else {
+        await vGraph.addEdge(edgeLabel, adjacentNode, node);
+      }
+      await adjacentNode.setProperties(data);
+    } else {
+      await adjacentNode.setProperties(data);
+    }
+    return adjacentNode;
+  },
+
   async ensureEdge({vGraph, node, edgeLabel, direction, id, nodeLabel}) {
     // If id is set but node does not exist, we need to error early
     let destNode = null;
@@ -65,7 +99,7 @@ module.exports = {
     return destNode;
   },
 
-  async ensureNode({vGraph, id, label, properties}) {
+  async ensureNode({vGraph, id, label, properties = {}}) {
     const node = await vGraph.getNode(id);
     const nodeLabel = await node.getLabel();
     if (label !== nodeLabel) {
