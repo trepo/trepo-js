@@ -62,13 +62,98 @@ describe('util', () => {
     expect(properties).to.deep.equal({foo: 'bar'});
   });
 
-  it('ensureAdjacentNode should delete existing node');
+  it('ensureAdjacentNode should delete existing node', async () => {
+    const node = await vGraph.addNode('label');
+    const adjacent = await vGraph.addNode('adjacent');
+    const id = await adjacent.getId();
+    await vGraph.addEdge('edge', node, adjacent);
 
-  it('ensureAdjacentNode should create new node');
+    await util.ensureAdjacentNode({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.OUT,
+      nodeLabel: 'adjacent',
+      data: null,
+    });
+    try {
+      await vGraph.getNode(id);
+      throw new Error('should have errored');
+    } catch (error) {
+      expect(error.message).to.equal('Deleted');
+    }
+  });
 
-  it('ensureAdjacentNode should update node');
+  it('ensureAdjacentNode should create new node', async () => {
+    const node = await vGraph.addNode('label');
 
-  it('ensureAdjacentNode should skip null/undefined data');
+    const adjacent = await util.ensureAdjacentNode({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.OUT,
+      nodeLabel: 'adjacent',
+      data: {foo: 'bar'},
+    });
+    expect(adjacent).to.not.equal(null);
+    const label = await adjacent.getLabel();
+    expect(label).to.equal('adjacent');
+    const props = await adjacent.getProperties();
+    expect(props).to.deep.equal({foo: 'bar'});
+
+    const adjacentNode = await util.getAdjacentNode({
+      node,
+      label: 'edge',
+      direction: Direction.OUT,
+    });
+    expect(adjacentNode._node).to.not.equal(null);
+  });
+
+  it('ensureAdjacentNode should update node', async () => {
+    const node = await vGraph.addNode('label');
+    const adjacent = await vGraph.addNode('adjacent');
+    await adjacent.setProperties({foo: 'not-bar'});
+    await vGraph.addEdge('edge', node, adjacent);
+
+    await util.ensureAdjacentNode({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.OUT,
+      nodeLabel: 'adjacent',
+      data: {foo: 'bar'},
+    });
+    expect(adjacent).to.not.equal(null);
+    const label = await adjacent.getLabel();
+    expect(label).to.equal('adjacent');
+    const props = await adjacent.getProperties();
+    expect(props).to.deep.equal({foo: 'bar'});
+  });
+
+  it('ensureAdjacentNode should skip null/undefined data', async () => {
+    const node = await vGraph.addNode('label');
+
+    const adjacent = await util.ensureAdjacentNode({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.IN,
+      nodeLabel: 'adjacent',
+      data: {foo: 'bar', a: null, b: undefined},
+    });
+    expect(adjacent).to.not.equal(null);
+    const label = await adjacent.getLabel();
+    expect(label).to.equal('adjacent');
+    const props = await adjacent.getProperties();
+    expect(props).to.deep.equal({foo: 'bar'});
+
+    const adjacentNode = await util.getAdjacentNode({
+      node,
+      label: 'edge',
+      direction: Direction.IN,
+    });
+    expect(adjacentNode._node).to.not.equal(null);
+  });
 
   it('ensureEdge should throw if id does not exist', async () => {
     try {

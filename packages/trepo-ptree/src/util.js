@@ -43,10 +43,15 @@ module.exports = {
     if (data === null) {
       if (adjacentNode !== null) {
         const id = await adjacentNode.getId();
-        vGraph.removeNode(id);
+        await vGraph.removeNode(id);
       }
     } else if (adjacentNode === null) {
       adjacentNode = await vGraph.addNode(nodeLabel);
+      if (direction === Direction.OUT) {
+        await vGraph.addEdge(edgeLabel, node, adjacentNode);
+      } else {
+        await vGraph.addEdge(edgeLabel, adjacentNode, node);
+      }
       await adjacentNode.setProperties(data);
     } else {
       await adjacentNode.setProperties(data);
