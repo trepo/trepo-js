@@ -124,6 +124,16 @@ module.exports = {
     return null;
   },
 
+  async getAdjacentNodes({node, label, direction}) {
+    const nodes = [];
+    for (const adjNode of node.getNodes(direction, label)) {
+      nodes.push({
+        _node: adjNode,
+      });
+    }
+    return nodes;
+  },
+
   async getNode({vGraph, id, label}) {
     const node = await vGraph.getNode(id);
     const nodeLabel = await node.getLabel();
