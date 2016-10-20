@@ -5,7 +5,7 @@ const Label = require('../label.js');
 const util = require('../util.js');
 let vGraph;
 
-describe('birth - update', () => {
+describe('birth - delete', () => {
   beforeEach(async () => {
     vGraph = new VGraph('repo');
     await vGraph.init();
