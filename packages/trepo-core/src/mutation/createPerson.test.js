@@ -11,15 +11,19 @@ describe('commit', () => {
 
   it('should work', async () => {
     const response = await trepo.request({
-      query: `mutation {
-        person: createPerson {
+      query: `mutation ($input: PersonCreateInput){
+        node: createPerson(input: $input) {
           id
         }
       }`,
+      variables: {
+        input: {
+        },
+      },
     });
     expect(response).to.have.all.keys('data');
-    expect(response.data).to.have.all.keys('person');
-    const data = response.data.person;
+    expect(response.data).to.have.all.keys('node');
+    const data = response.data.node;
     expect(data).to.have.all.keys('id');
     expect(data.id).to.not.equal(null);
   });
