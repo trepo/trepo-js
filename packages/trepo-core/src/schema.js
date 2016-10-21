@@ -8,6 +8,7 @@ module.exports = [
   `type Query {
     birth(id: String): Birth
     info: Info
+    marriage(id: String): Marriage
     name(id: String): Name
     person(id: String): Person
   }`,
@@ -15,11 +16,14 @@ module.exports = [
   `type Mutation {
     commit(input: CommitInput): Commit
     createBirth(input: BirthCreateInput): Birth
+    createMarriage(input: MarriageCreateInput): Marriage
     createName(input: NameCreateInput): Name
     createPerson: Person
     deleteBirth(input: DeleteInput): String
+    deleteMarriage(input: DeleteInput): String
     deleteName(input: DeleteInput): String
     updateBirth(input: BirthUpdateInput): Birth
+    updateMarriage(input: MarriageUpdateInput): Marriage
     updateName(input: NameUpdateInput): Name
   }`,
   // Types
@@ -43,6 +47,12 @@ module.exports = [
     repo: String
     lastCommit: String
     dirty: Boolean
+  }`,
+  `type Marriage {
+    id: String
+    spouses: [Person!]
+    date: Date
+    place: Place
   }`,
   `type Name {
     id: String
@@ -83,6 +93,17 @@ module.exports = [
   }`,
   `input DeleteInput {
     id: String!
+  }`,
+  `input MarriageCreateInput {
+    spouses: [String!]
+    date: DateInput
+    place: PlaceInput
+  }`,
+  `input MarriageUpdateInput {
+    id: String!
+    spouses: [String!]
+    date: DateInput
+    place: PlaceInput
   }`,
   `input NameCreateInput {
     name: String!
