@@ -28,6 +28,11 @@ describe('CommitNode', () => {
     expect(Util.isValidLabel('_label')).to.equal(false);
     expect(Util.isValidLabel('@bad')).to.equal(false);
     expect(Util.isValidLabel('')).to.equal(false);
+    expect(Util.isValidLabel(undefined)).to.equal(false);
+    expect(Util.isValidLabel(null)).to.equal(false);
+    expect(Util.isValidLabel({})).to.equal(false);
+    expect(Util.isValidLabel([])).to.equal(false);
+    expect(Util.isValidLabel(1234)).to.equal(false);
 
     // Get a 255 character string
     let str = '';
