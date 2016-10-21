@@ -72,6 +72,9 @@ module.exports = [
   }`,
   `type Person {
     id: String
+    birth: Birth
+    death: Death
+    marriages: [Marriage!]
     name: Name
   }`,
   `type Place {
