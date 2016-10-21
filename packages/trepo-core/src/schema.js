@@ -25,6 +25,7 @@ module.exports = [
     deleteDeath(input: DeleteInput): String
     deleteMarriage(input: DeleteInput): String
     deleteName(input: DeleteInput): String
+    deletePerson(input: DeleteInput): String
     updateBirth(input: BirthUpdateInput): Birth
     updateDeath(input: DeathUpdateInput): Death
     updateMarriage(input: MarriageUpdateInput): Marriage
