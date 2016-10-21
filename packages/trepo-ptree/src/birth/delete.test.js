@@ -63,5 +63,12 @@ describe('birth - delete', () => {
     } catch (error) {
       expect(error.message).to.equal('Deleted');
     }
+
+    try {
+      await vGraph.getNode(id);
+      throw new Error('should have errored');
+    } catch (error) {
+      expect(error.message).to.equal('Deleted');
+    }
   });
 });

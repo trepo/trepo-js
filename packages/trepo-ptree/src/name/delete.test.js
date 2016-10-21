@@ -29,10 +29,9 @@ describe('name - delete', () => {
 
     try {
       await vGraph.getNode(id);
+      throw new Error('should have errored');
     } catch (error) {
       expect(error.message).to.equal('Deleted');
-      return;
     }
-    throw new Error('Should have errored');
   });
 });
