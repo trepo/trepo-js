@@ -4,6 +4,6 @@ const util = require('../util.js');
 
 module.exports = async ({input}) => util.getAdjacentNode({
   node: input.node,
-  label: Label.BIRTH_DATE,
+  label: Label.DEATH_DATE,
   direction: Direction.OUT,
 });

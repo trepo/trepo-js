@@ -11,6 +11,14 @@ module.exports = {
   updateBirth: require('./birth/update.js'),
   deleteBirth: require('./birth/delete.js'),
 
+  createDeath: require('./death/create.js'),
+  getDeath: require('./death/get.js'),
+  getDeathDate: require('./death/getDate.js'),
+  getDeathPerson: require('./death/getPerson.js'),
+  getDeathPlace: require('./death/getPlace.js'),
+  updateDeath: require('./death/update.js'),
+  deleteDeath: require('./death/delete.js'),
+
   createMarriage: require('./marriage/create.js'),
   getMarriage: require('./marriage/get.js'),
   getMarriageDate: require('./marriage/getDate.js'),
