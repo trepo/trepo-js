@@ -20,7 +20,7 @@ module.exports = [
     createDeath(input: DeathCreateInput): Death
     createMarriage(input: MarriageCreateInput): Marriage
     createName(input: NameCreateInput): Name
-    createPerson: Person
+    createPerson(input: PersonCreateInput): Person
     deleteBirth(input: DeleteInput): String
     deleteDeath(input: DeleteInput): String
     deleteMarriage(input: DeleteInput): String
@@ -135,6 +135,9 @@ module.exports = [
     id: String!
     name: String!
     person: String
+  }`,
+  `input PersonCreateInput {
+    name: String
   }`,
   `input PlaceInput {
     name: String!
