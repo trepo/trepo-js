@@ -1,6 +1,7 @@
 module.exports = {
   Query: {
     birth: require('./query/birth.js'),
+    death: require('./query/death.js'),
     info: require('./query/info.js'),
     marriage: require('./query/marriage.js'),
     name: require('./query/name.js'),
@@ -9,13 +10,16 @@ module.exports = {
   Mutation: {
     commit: require('./mutation/commit.js'),
     createBirth: require('./mutation/createBirth.js'),
+    createDeath: require('./mutation/createDeath.js'),
     createMarriage: require('./mutation/createMarriage.js'),
     createName: require('./mutation/createName.js'),
     createPerson: require('./mutation/createPerson.js'),
     deleteBirth: require('./mutation/deleteBirth.js'),
+    deleteDeath: require('./mutation/deleteDeath.js'),
     deleteMarriage: require('./mutation/deleteMarriage.js'),
     deleteName: require('./mutation/deleteName.js'),
     updateBirth: require('./mutation/updateBirth.js'),
+    updateDeath: require('./mutation/updateDeath.js'),
     updateMarriage: require('./mutation/updateMarriage.js'),
     updateName: require('./mutation/updateName.js'),
   },
@@ -23,6 +27,7 @@ module.exports = {
   Birth: require('./type/Birth.js'),
   Commit: require('./type/Commit.js'),
   Date: require('./type/Date.js'),
+  Death: require('./type/Death.js'),
   Info: require('./type/Info.js'),
   Marriage: require('./type/Marriage.js'),
   Name: require('./type/Name.js'),
