@@ -1,7 +1,7 @@
-const {Direction} = require('trepo-vgraph');
 const Label = require('../label.js');
 const Prop = require('../prop.js');
 const util = require('../util.js');
+const ensurePerson = require('../person/ensure.js');
 
 module.exports = async ({vGraph, input}) => {
   await util.checkNode({
@@ -10,7 +10,7 @@ module.exports = async ({vGraph, input}) => {
     label: Label.PERSON,
   });
 
-  const _node = await util.createNode({
+  const node = await util.createNode({
     vGraph,
     label: Label.NAME,
     properties: {
@@ -18,18 +18,16 @@ module.exports = async ({vGraph, input}) => {
     },
   });
 
-  const person = await util.ensureEdge({
+  const person = await ensurePerson({
     vGraph,
-    node: _node,
-    edgeLabel: Label.NAME_PERSON,
-    direction: Direction.IN,
+    node,
+    label: Label.NAME_PERSON,
     id: input.person,
-    nodeLabel: Label.PERSON,
   });
 
   return {
-    _node,
+    _node: node,
     name: input.name,
-    person: person ? {_node: person} : null,
+    person,
   };
 };
