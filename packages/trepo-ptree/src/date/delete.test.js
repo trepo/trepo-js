@@ -14,8 +14,9 @@ describe('date - delete', () => {
 
   it('should delete a date', async () => {
     const node = await vGraph.addNode('label');
-    const place = await vGraph.addNode(Label.DATE);
-    await vGraph.addEdge('edge', node, place);
+    const date = await vGraph.addNode(Label.DATE);
+    const id = await date.getId();
+    await vGraph.addEdge('edge', node, date);
     await func({
       vGraph,
       node,
@@ -27,5 +28,12 @@ describe('date - delete', () => {
       direction: Direction.OUT,
     });
     expect(dateNode).to.equal(null);
+
+    try {
+      await vGraph.getNode(id);
+      throw new Error('should have errored');
+    } catch (error) {
+      expect(error.message).to.equal('Deleted');
+    }
   });
 });

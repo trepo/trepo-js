@@ -15,6 +15,7 @@ describe('place - delete', () => {
   it('should delete a place', async () => {
     const node = await vGraph.addNode('label');
     const place = await vGraph.addNode(Label.PLACE);
+    const id = await place.getId();
     await vGraph.addEdge('edge', node, place);
     await func({
       vGraph,
@@ -27,5 +28,12 @@ describe('place - delete', () => {
       direction: Direction.OUT,
     });
     expect(placeNode).to.equal(null);
+
+    try {
+      await vGraph.getNode(id);
+      throw new Error('should have errored');
+    } catch (error) {
+      expect(error.message).to.equal('Deleted');
+    }
   });
 });
