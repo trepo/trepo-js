@@ -11,7 +11,8 @@ let Util = {
   },
 
   isValidLabel: label => {
-    return /^[A-Za-z][A-Za-z_]{0,254}$/.test(label);
+    return (typeof label === 'string') &&
+      /^[A-Za-z][A-Za-z_]{0,254}$/.test(label);
   },
 
   isValidPropertyKey: key => {
