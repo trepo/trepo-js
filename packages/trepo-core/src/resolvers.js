@@ -18,6 +18,7 @@ module.exports = {
     deleteDeath: require('./mutation/deleteDeath.js'),
     deleteMarriage: require('./mutation/deleteMarriage.js'),
     deleteName: require('./mutation/deleteName.js'),
+    deletePerson: require('./mutation/deletePerson.js'),
     updateBirth: require('./mutation/updateBirth.js'),
     updateDeath: require('./mutation/updateDeath.js'),
     updateMarriage: require('./mutation/updateMarriage.js'),
