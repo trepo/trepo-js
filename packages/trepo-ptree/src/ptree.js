@@ -11,6 +11,14 @@ module.exports = {
   updateBirth: require('./birth/update.js'),
   deleteBirth: require('./birth/delete.js'),
 
+  createMarriage: require('./marriage/create.js'),
+  getMarriage: require('./marriage/get.js'),
+  getMarriageDate: require('./marriage/getDate.js'),
+  getMarriagePlace: require('./marriage/getPlace.js'),
+  getMarriageSpouses: require('./marriage/getSpouses.js'),
+  updateMarriage: require('./marriage/update.js'),
+  deleteMarriage: require('./marriage/delete.js'),
+
   createName: require('./name/create.js'),
   getName: require('./name/get.js'),
   getNamePerson: require('./name/getPerson.js'),
