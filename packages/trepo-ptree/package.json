@@ -1,17 +1,31 @@
 {
   "name": "trepo-ptree",
   "version": "0.0.0",
-  "description": "",
+  "description": "Trepo pTree library functions",
+  "keywords": [
+    "Trepo",
+    "pTree",
+    "genealogy"
+  ],
   "main": "dist/ptree.js",
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
     "test": "../../node_modules/.bin/mocha --compilers js:babel-register --register babel-register 'src/**/*.test.js' -R min",
     "watch": "npm run build -- -w"
   },
-  "keywords": [],
-  "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
+  "author": "John Clark <socrates37@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trepo/trepo-js"
+  },
+  "bugs": {
+    "url": "https://github.com/trepo/trepo-js/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "trepo-vgraph": "0.0.0"
+  },
+  "engines": {
+    "node" : ">= 6"
   }
 }
