@@ -2,18 +2,36 @@
   "name": "trepo-server",
   "version": "0.0.0",
   "description": "Trepo Server",
+  "keywords": [
+    "Trepo",
+    "graphql",
+    "server",
+    "genealogy",
+    "graph",
+    "database"
+  ],
   "main": "dist/server.js",
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
     "nodemon": "../../node_modules/.bin/nodemon --require babel-register --watch ../ src/server.js",
     "test": "echo \"TODO\""
   },
-  "author": "John Clark <socrates37@gmail.com> (jonnymbgood)",
+  "author": "John Clark <socrates37@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trepo/trepo-js"
+  },
+  "bugs": {
+    "url": "https://github.com/trepo/trepo-js/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "koa": "^2.0.0",
     "koa-bodyparser": "3.2.0",
     "koa-router": "7.0.1",
     "trepo-core": "0.0.0"
+  },
+  "engines": {
+    "node" : ">= 6"
   }
 }
