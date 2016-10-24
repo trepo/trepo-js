@@ -10,7 +10,9 @@
     "graph",
     "database"
   ],
-  "main": "dist/server.js",
+  "bin": {
+    "trepo-server": "./dist/server.js"
+  },
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
     "nodemon": "../../node_modules/.bin/nodemon --require babel-register --watch ../ src/server.js",
