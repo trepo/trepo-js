@@ -15,7 +15,7 @@ This repo contains the following packages:
 
 ````bash
 npm install # Installs lerna and dev dependencies
-npm bootstrap # Links packages and installs regular dependencies
+npm run bootstrap # Links packages and installs regular dependencies
 ````
 
 Development is tracked via Github [projects](https://github.com/trepo/trepo-js/projects) and [issues](https://github.com/trepo/trepo-js/issues).
