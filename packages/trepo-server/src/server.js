@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
+const cors = require('kcors');
 const Trepo = require('trepo-core');
 const bodyParser = require('koa-bodyparser');
 const {version} = require('../package.json');
@@ -29,6 +30,7 @@ router.get('/graphiql',
   trepo.apolloServer.graphiqlKoa({endpointURL: '/graphql'}));
 
 app
+  .use(cors())
   .use(bodyParser())
   .use(router.routes())
   .use(router.allowedMethods());
