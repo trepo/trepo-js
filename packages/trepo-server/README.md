@@ -7,4 +7,4 @@
 
 # Usage
 
-`trepo-server` will start trepo running on port 8080. To use an alternative port set `PORT` before running.
+`trepo-server` will start a Trepo server running on port 8985. To use an alternative port set the env variable `PORT` before running.

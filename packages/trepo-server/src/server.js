@@ -7,7 +7,7 @@ const {version} = require('../package.json');
 
 const app = new Koa();
 const router = new Router();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8985;
 
 const trepo = new Trepo('_temp');
 
