@@ -14,7 +14,7 @@
   "main": "dist/VGraph.js",
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
-    "test": "../../node_modules/.bin/mocha --require babel-register 'src/**/*.test.js' -R min"
+    "test": "../../node_modules/.bin/mocha --require babel-register 'src/**/*.test.js' -R list"
   },
   "author": "John Clark <socrates37@gmail.com>",
   "repository": {

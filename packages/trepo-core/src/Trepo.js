@@ -1,6 +1,5 @@
 const {makeExecutableSchema} = require('graphql-tools');
 const {graphql} = require('graphql');
-const apolloServer = require('apollo-server');
 const {VGraph} = require('trepo-vgraph');
 
 const schema = makeExecutableSchema({
@@ -10,7 +9,6 @@ const schema = makeExecutableSchema({
 
 class Trepo {
   constructor(repo) {
-    this.apolloServer = apolloServer;
     this.vGraph = new VGraph(repo);
   }
 
