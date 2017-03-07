@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const apolloServer = require('apollo-server');
 const Koa = require('koa');
 const Router = require('koa-router');
 const cors = require('kcors');
@@ -29,7 +30,7 @@ router.post('/graphql', async ctx => {
 });
 
 router.get('/graphiql',
-  trepo.apolloServer.graphiqlKoa({endpointURL: '/graphql'}));
+  apolloServer.graphiqlKoa({endpointURL: '/graphql'}));
 
 app
   .use(cors())

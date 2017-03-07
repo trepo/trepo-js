@@ -10,7 +10,7 @@
   "main": "dist/ptree.js",
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
-    "test": "../../node_modules/.bin/mocha --compilers js:babel-register --register babel-register 'src/**/*.test.js' -R min",
+    "test": "../../node_modules/.bin/mocha --compilers js:babel-register --register babel-register 'src/**/*.test.js' -R list",
     "watch": "npm run build -- -w"
   },
   "author": "John Clark <socrates37@gmail.com>",

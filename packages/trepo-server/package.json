@@ -28,6 +28,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "apollo-server": "0.3.2",
+    "graphql": "0.7.0",
     "kcors": "2.2.0",
     "koa": "2.0.0",
     "koa-bodyparser": "3.2.0",
