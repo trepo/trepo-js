@@ -8,8 +8,8 @@ const schema = makeExecutableSchema({
 });
 
 class Trepo {
-  constructor(repo) {
-    this.vGraph = new VGraph(repo);
+  constructor(repo, options = {}) {
+    this.vGraph = new VGraph(repo, options);
   }
 
   start() {
