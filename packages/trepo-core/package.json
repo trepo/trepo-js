@@ -1,6 +1,6 @@
 {
   "name": "trepo-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Core graphql implementation of Trepo",
   "keywords": [
     "Trepo",
@@ -27,7 +27,7 @@
   "dependencies": {
     "graphql": "0.9.1",
     "graphql-tools": "0.10.1",
-    "trepo-ptree": "^0.2.0",
+    "trepo-ptree": "^0.2.1",
     "trepo-vgraph": "^0.2.0"
   },
   "engines": {
