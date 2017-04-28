@@ -73,6 +73,7 @@ module.exports = [
   `type Person {
     id: String
     birth: Birth
+    births: [Birth!]
     death: Death
     marriages: [Marriage!]
     name: Name

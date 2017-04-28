@@ -169,9 +169,12 @@ module.exports = {
     return null;
   },
 
-  async getAdjacentNodes({node, label, direction}) {
+  async getAdjacentNodes({node, label, direction, labels = []}) {
+    if (label) {
+      labels = [label];
+    }
     const nodes = [];
-    for (const adjNode of node.getNodes(direction, label)) {
+    for (const adjNode of node.getNodes(direction, ...labels)) {
       nodes.push({
         _node: adjNode,
       });

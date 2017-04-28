@@ -32,6 +32,9 @@ describe('person', () => {
           birth {
             id
           }
+          births {
+            id
+          }
           death {
             id
           }
@@ -50,9 +53,12 @@ describe('person', () => {
     expect(response).to.have.all.keys('data');
     expect(response.data).to.have.all.keys('node');
     const data = response.data.node;
-    expect(data).to.have.all.keys('id', 'birth', 'death', 'marriages', 'name');
+    expect(data).to.have.all
+      .keys('id', 'birth', 'births', 'death', 'marriages', 'name');
     expect(data.id).to.equal(id);
     expect(data.birth.id).to.equal(birth);
+    expect(data.births.length).to.equal(1);
+    expect(data.births[0].id).to.equal(birth);
     expect(data.death.id).to.equal(death);
     expect(data.marriages.length).to.equal(1);
     expect(data.marriages[0].id).to.equal(spouse);
