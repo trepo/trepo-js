@@ -13,6 +13,12 @@ module.exports = {
     }
     return person.birth;
   },
+  births: person => {
+    if (person.births === undefined) {
+      return pTree.getPersonBirths({input: {node: person._node}});
+    }
+    return person.births;
+  },
   death: person => {
     if (person.death === undefined) {
       return pTree.getPersonDeath({input: {node: person._node}});

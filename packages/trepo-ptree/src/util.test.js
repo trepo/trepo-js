@@ -614,6 +614,29 @@ describe('util', () => {
     expect([id1, id2].sort()).to.deep.equal([n1Id, n2Id].sort());
   });
 
+  it('getAdjacentNodes should return adjacent nodes with labels', async () => {
+    const node = await vGraph.addNode('label');
+    const n1 = await vGraph.addNode('label');
+    const n1Id = await n1.getId();
+    await node.addEdge('edge', n1);
+    const n2 = await vGraph.addNode('label');
+    const n2Id = await n2.getId();
+    await node.addEdge('anotherEdge', n2);
+
+    const nodes = await util.getAdjacentNodes({
+      node,
+      labels: ['edge', 'anotherEdge'],
+      direction: Direction.OUT,
+    });
+
+    expect(nodes).to.not.equal(null);
+    expect(Array.isArray(nodes)).to.equal(true);
+    expect(nodes.length).to.equal(2);
+    const id1 = await nodes[0]._node.getId();
+    const id2 = await nodes[1]._node.getId();
+    expect([id1, id2].sort()).to.deep.equal([n1Id, n2Id].sort());
+  });
+
   it('getAdjacentNodes should empty array', async () => {
     const node = await vGraph.addNode('label');
 

@@ -36,6 +36,7 @@ module.exports = {
   createPerson: require('./person/create.js'),
   getPerson: require('./person/get.js'),
   getPersonBirth: require('./person/getBirth.js'),
+  getPersonBirths: require('./person/getBirths.js'),
   getPersonDeath: require('./person/getDeath.js'),
   getPersonMarriages: require('./person/getMarriages.js'),
   getPersonName: require('./person/getName.js'),
