@@ -99,6 +99,51 @@ module.exports = {
     return destNode;
   },
 
+  // Ensures that the passed in ids are connected to node.
+  // Returns a map of nodes
+  async ensureEdges({vGraph, node, edgeLabel, direction, ids, nodeLabel}) {
+    // If id is set but node does not exist, we need to error early
+    let destNodes = {};
+    for (let id of ids) {
+      destNodes[id] = await vGraph.getNode(id);
+      const actualLabel = await destNodes[id].getLabel();
+      if (actualLabel !== nodeLabel) {
+        throw new Error('Node Not Found');
+      }
+    }
+
+    let hasEdge = {};
+    for (const edge of node.getEdges(direction, edgeLabel)) {
+      if (ids.length > 0) {
+        const adjacentNode = await edge.getNode(
+          (direction === Direction.IN ? Direction.OUT : Direction.IN));
+        const adjacentNodeId = await adjacentNode.getId();
+        if (ids.includes(adjacentNodeId)) {
+          hasEdge[adjacentNodeId] = true;
+        } else {
+          const edgeId = await edge.getId();
+          await vGraph.removeEdge(edgeId);
+        }
+      } else {
+        // Remove Edge
+        const edgeId = await edge.getId();
+        await vGraph.removeEdge(edgeId);
+      }
+    }
+
+    for (let id of ids) {
+      if (id && hasEdge[id] === undefined) {
+        if (direction === Direction.IN) {
+          await vGraph.addEdge(edgeLabel, destNodes[id], node);
+        } else {
+          await vGraph.addEdge(edgeLabel, node, destNodes[id]);
+        }
+      }
+    }
+
+    return Object.values(destNodes);
+  },
+
   async ensureNode({vGraph, id, label, properties = {}}) {
     const node = await vGraph.getNode(id);
     const nodeLabel = await node.getLabel();

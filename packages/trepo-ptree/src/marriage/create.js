@@ -2,7 +2,7 @@ const Label = require('../label.js');
 const util = require('../util.js');
 const checkPerson = require('../person/check.js');
 const ensureDate = require('../date/ensure.js');
-const ensurePerson = require('../person/ensure.js');
+const ensurePersons = require('../person/ensureMultiple.js');
 const ensurePlace = require('../place/ensure.js');
 
 module.exports = async ({vGraph, input}) => {
@@ -24,7 +24,7 @@ module.exports = async ({vGraph, input}) => {
     label: Label.MARRIAGE,
   });
 
-  const [date, place, ...spouses] = await Promise.all([
+  const [date, place, spouses] = await Promise.all([
     ensureDate({
       vGraph,
       node,
@@ -37,23 +37,17 @@ module.exports = async ({vGraph, input}) => {
       label: Label.MARRIAGE_PLACE,
       place: input.place,
     }),
-    ensurePerson({
+    ensurePersons({
       vGraph,
       node,
       label: Label.MARRIAGE_SPOUSE,
-      id: spouse1,
-    }),
-    ensurePerson({
-      vGraph,
-      node,
-      label: Label.MARRIAGE_SPOUSE,
-      id: spouse2,
+      ids: [spouse1, spouse2],
     }),
   ]);
 
   return {
     _node: node,
-    spouses: spouses.filter(n => n !== null),
+    spouses,
     date,
     place,
   };

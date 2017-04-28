@@ -319,6 +319,170 @@ describe('util', () => {
     expect(adjacentNode).to.equal(null);
   });
 
+  it('ensureEdges should throw if id does not exist', async () => {
+    try {
+      await util.ensureEdges({
+        vGraph,
+        node: null,
+        edgeLabel: 'edge',
+        direction: Direction.OUT,
+        ids: [uuidv4],
+        nodeLabel: 'node',
+      });
+    } catch (error) {
+      expect(error.message).to.equal('Node Not Found');
+      return;
+    }
+    throw new Error('Should have errored');
+  });
+
+  it('ensureEdges should throw on label mismatch', async () => {
+    const node = await vGraph.addNode('label');
+    const id = await node.getId();
+    try {
+      await util.ensureEdges({
+        vGraph,
+        node: null,
+        edgeLabel: 'edge',
+        direction: Direction.OUT,
+        ids: [id],
+        nodeLabel: 'node',
+      });
+    } catch (error) {
+      expect(error.message).to.equal('Node Not Found');
+      return;
+    }
+    throw new Error('Should have errored');
+  });
+
+  it('ensureEdges should add outgoing edge when none exists', async () => {
+    const node = await vGraph.addNode('source');
+    const dest = await vGraph.addNode('dest');
+    const id = await dest.getId();
+
+    const ret = await util.ensureEdges({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.OUT,
+      ids: [id],
+      nodeLabel: 'dest',
+    });
+
+    const retId = await ret[0].getId();
+    expect(retId).to.equal(id);
+
+    const adjacentNode = await util.getAdjacentNode({
+      node,
+      label: 'edge',
+      direction: Direction.OUT,
+    });
+    const adjacentNodeId = await adjacentNode._node.getId();
+    expect(adjacentNodeId).to.equal(id);
+  });
+
+  it('ensureEdges should add incoming edge when none exists', async () => {
+    const node = await vGraph.addNode('source');
+    const dest = await vGraph.addNode('dest');
+    const id = await dest.getId();
+
+    const ret = await util.ensureEdges({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.IN,
+      ids: [id],
+      nodeLabel: 'dest',
+    });
+    const retId = await ret[0].getId();
+    expect(retId).to.equal(id);
+
+    const adjacentNode = await util.getAdjacentNode({
+      node,
+      label: 'edge',
+      direction: Direction.IN,
+    });
+    const adjacentNodeId = await adjacentNode._node.getId();
+    expect(adjacentNodeId).to.equal(id);
+  });
+
+  it('ensureEdge should replace existing edge', async () => {
+    const node = await vGraph.addNode('source');
+    const dest = await vGraph.addNode('dest');
+    const id = await dest.getId();
+    const other = await vGraph.addNode('dest');
+    await vGraph.addEdge('edge', node, other);
+
+    const ret = await util.ensureEdges({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.OUT,
+      ids: [id],
+      nodeLabel: 'dest',
+    });
+    const retId = await ret[0].getId();
+    expect(retId).to.equal(id);
+
+    const adjacentNode = await util.getAdjacentNode({
+      node,
+      label: 'edge',
+      direction: Direction.OUT,
+    });
+    const adjacentNodeId = await adjacentNode._node.getId();
+    expect(adjacentNodeId).to.equal(id);
+  });
+
+  it('ensureEdges should leave existing edge', async () => {
+    const node = await vGraph.addNode('source');
+    const dest = await vGraph.addNode('dest');
+    const id = await dest.getId();
+    const edge = await vGraph.addEdge('edge', dest, node);
+    const edgeId = await edge.getId();
+
+    const ret = await util.ensureEdges({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.IN,
+      ids: [id],
+      nodeLabel: 'dest',
+    });
+    const retId = await ret[0].getId();
+    expect(retId).to.equal(id);
+
+    let count = 0;
+    for (const e of node.getEdges(Direction.IN, 'edge')) {
+      count++;
+      const eId = await e.getId();
+      expect(eId).to.equal(edgeId);
+    }
+    expect(count).to.equal(1);
+  });
+
+  it('ensureEdges should remove edge', async () => {
+    const node = await vGraph.addNode('source');
+    const dest = await vGraph.addNode('dest');
+    await vGraph.addEdge('edge', node, dest);
+
+    const ret = await util.ensureEdges({
+      vGraph,
+      node,
+      edgeLabel: 'edge',
+      direction: Direction.OUT,
+      ids: [],
+      nodeLabel: 'dest',
+    });
+    expect(ret).to.deep.equal([]);
+
+    const adjacentNode = await util.getAdjacentNode({
+      node,
+      label: 'edge',
+      direction: Direction.OUT,
+    });
+    expect(adjacentNode).to.equal(null);
+  });
+
   it('ensureNode should throw on missing node', async () => {
     try {
       await util.ensureNode({
