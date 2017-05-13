@@ -1,6 +1,6 @@
 {
   "name": "trepo-server",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Trepo Server",
   "keywords": [
     "Trepo",
@@ -34,7 +34,7 @@
     "koa": "2.0.0",
     "koa-bodyparser": "3.2.0",
     "koa-router": "7.0.1",
-    "trepo-core": "^0.2.1"
+    "trepo-core": "^0.3.0"
   },
   "engines": {
     "node": ">= 6"

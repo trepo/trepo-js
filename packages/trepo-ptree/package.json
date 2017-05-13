@@ -1,6 +1,6 @@
 {
   "name": "trepo-ptree",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Trepo pTree library functions",
   "keywords": [
     "Trepo",
@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "trepo-vgraph": "^0.2.0"
+    "trepo-vgraph": "^0.3.0"
   },
   "engines": {
     "node": ">= 6"
