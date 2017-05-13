@@ -3,11 +3,12 @@ const func = require('./delete.js');
 const {VGraph, Direction} = require('trepo-vgraph');
 const Label = require('../label.js');
 const util = require('../util.js');
+const db = require('memdown');
 let vGraph;
 
 describe('birth - delete', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

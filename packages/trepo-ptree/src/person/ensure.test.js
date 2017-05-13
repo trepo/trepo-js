@@ -3,12 +3,13 @@ const func = require('./ensure.js');
 const util = require('../util.js');
 const Label = require('../label.js');
 const {VGraph, Direction} = require('trepo-vgraph');
+const db = require('memdown');
 
 let vGraph;
 
 describe('date - ensure', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

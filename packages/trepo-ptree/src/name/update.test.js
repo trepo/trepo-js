@@ -4,11 +4,12 @@ const {VGraph, Direction} = require('trepo-vgraph');
 const Label = require('../label.js');
 const Prop = require('../prop.js');
 const util = require('../util.js');
+const db = require('memdown');
 let vGraph;
 
 describe('name - update', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

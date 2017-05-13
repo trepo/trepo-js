@@ -1,12 +1,13 @@
 import VGraph from '../VGraph.js';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vGraph;
 
 let uuid1 = '111defc1-7c54-4189-8ae9-166d24edd68e';
 
 beforeEach(() => {
-  vGraph = new VGraph('repo');
+  vGraph = new VGraph('repo', {db});
 });
 
 describe('VGraph - getCommit', () => {

@@ -2,11 +2,12 @@ const {expect} = require('chai');
 const func = require('./getSpouses.js');
 const {VGraph} = require('trepo-vgraph');
 const Label = require('../label.js');
+const db = require('memdown');
 let vGraph;
 
 describe('marriage - getPlace', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

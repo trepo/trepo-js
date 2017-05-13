@@ -2,13 +2,14 @@ const {expect} = require('chai');
 const Label = require('../label.js');
 const func = require('./get.js');
 const {VGraph, Util, Node} = require('trepo-vgraph');
+const db = require('memdown');
 const uuidv4 = Util.generateUUIDv4();
 
 let vGraph;
 
 describe('person - get', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

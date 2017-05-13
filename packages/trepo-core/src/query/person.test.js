@@ -1,12 +1,13 @@
 const {expect} = require('chai');
 const Trepo = require('../Trepo.js');
 const Label = require('trepo-ptree/dist/label.js');
+const db = require('memdown');
 
 let trepo;
 
 describe('person', () => {
   beforeEach(async () => {
-    trepo = new Trepo('repo');
+    trepo = new Trepo('repo', {db});
     await trepo.start();
   });
 

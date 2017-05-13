@@ -2,6 +2,7 @@ import Constant from '../Constant.js';
 import Commit from '../Commit.js';
 import VGraph from '../VGraph.js';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vGraph;
 let commitJSON = {
@@ -44,7 +45,7 @@ let commitJSON = {
 };
 
 beforeEach(() => {
-  vGraph = new VGraph('repo');
+  vGraph = new VGraph('repo', {db});
 });
 
 describe('VGraph - copy', () => {

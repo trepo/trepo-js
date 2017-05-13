@@ -2,12 +2,13 @@ const {expect} = require('chai');
 const func = require('./delete.js');
 const {VGraph, Util} = require('trepo-vgraph');
 const Label = require('../label.js');
+const db = require('memdown');
 const uuidv4 = Util.generateUUIDv4();
 let vGraph;
 
 describe('name - delete', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

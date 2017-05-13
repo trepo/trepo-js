@@ -1,6 +1,7 @@
 import Constant from '../Constant.js';
 import VGraph from '../VGraph.js';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vGraph;
 
@@ -15,7 +16,7 @@ let uuid8 = '86919ef3-bcea-4d11-b154-3495b9167628';
 let uuid9 = '93ae3afe-48ef-4d51-9f31-4e254ad86148';
 
 beforeEach(() => {
-  vGraph = new VGraph('repo');
+  vGraph = new VGraph('repo', {db});
 });
 
 describe('VGraph - log', () => {

@@ -1,11 +1,12 @@
 import Constant from '../Constant.js';
 import VGraph from '../VGraph.js';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vGraph;
 
 beforeEach(() => {
-  vGraph = new VGraph('repo');
+  vGraph = new VGraph('repo', {db});
 });
 
 describe('VGraph - info', () => {

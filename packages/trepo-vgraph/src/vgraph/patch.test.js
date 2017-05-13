@@ -3,6 +3,7 @@ import Direction from '../Direction.js';
 import Commit from '../Commit.js';
 import VGraph from '../VGraph.js';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vGraph;
 
@@ -59,7 +60,7 @@ let emptyCommitJSON = {
 };
 
 beforeEach(() => {
-  vGraph = new VGraph('repo');
+  vGraph = new VGraph('repo', {db});
 });
 
 describe('VGraph - patch', () => {
@@ -265,7 +266,7 @@ describe('VGraph - patch', () => {
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(newCommit => {
         commit = newCommit;
-        vGraph = new VGraph('repo');
+        vGraph = new VGraph('repo', {db});
         return vGraph.init();
       })
       .then(ignored => vGraph.patch(commit))
@@ -305,7 +306,7 @@ describe('VGraph - patch', () => {
       })
       .then(newCommit => {
         commit = newCommit;
-        vGraph = new VGraph('repo');
+        vGraph = new VGraph('repo', {db});
         return vGraph.init();
       })
       .then(ignored => vGraph.patch(commit))

@@ -3,12 +3,13 @@ const func = require('./update.js');
 const {VGraph, Direction, Util} = require('trepo-vgraph');
 const Label = require('../label.js');
 const util = require('../util.js');
+const db = require('memdown');
 const uuidv4 = Util.generateUUIDv4();
 let vGraph;
 
 describe('marriage - update', () => {
   beforeEach(async () => {
-    vGraph = new VGraph('repo');
+    vGraph = new VGraph('repo', {db});
     await vGraph.init();
   });
 

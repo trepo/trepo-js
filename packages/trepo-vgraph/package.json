@@ -26,9 +26,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "vagabond-db": "0.8.1"
+    "vagabond-db": "0.9.0"
   },
   "engines": {
     "node": ">= 6"
+  },
+  "devDependencies": {
+    "memdown": "1.2.4"
   }
 }

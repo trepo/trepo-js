@@ -3,12 +3,13 @@ import Edge from './Edge.js';
 import Direction from './Direction.js';
 import VGraph from './VGraph.js';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vagabond;
 let vGraph;
 
 beforeEach(done => {
-  vGraph = new VGraph('http://localhost:8080/');
+  vGraph = new VGraph('http://localhost:8080/', {db});
   vGraph.init()
     .then(ignored => {
       vagabond = vGraph._vagabond;

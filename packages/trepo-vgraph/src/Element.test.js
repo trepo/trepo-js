@@ -2,6 +2,7 @@ import Constant from './Constant.js';
 import Element from './Element.js';
 import Vagabond from 'vagabond-db';
 
+let db = require('memdown');
 let expect = require('chai').expect;
 let vagabond;
 let fakeVGraph;
@@ -10,7 +11,7 @@ beforeEach(done => {
   fakeVGraph = {
     _dirty: false,
   };
-  vagabond = new Vagabond();
+  vagabond = new Vagabond({db});
   vagabond.init()
     .then(() => {
       done();
