@@ -24,7 +24,6 @@
   "license": "MIT",
   "dependencies": {
     "graphql": "0.9.6",
-    "graphql-tools": "0.11.0",
     "trepo-ptree": "^0.4.0",
     "trepo-vgraph": "^0.4.0"
   },

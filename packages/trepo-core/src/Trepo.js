@@ -1,11 +1,6 @@
-const {makeExecutableSchema} = require('graphql-tools');
 const {graphql} = require('graphql');
 const {VGraph} = require('trepo-vgraph');
-
-const schema = makeExecutableSchema({
-  typeDefs: require('./schema.js'),
-  resolvers: require('./resolvers.js'),
-});
+const schema = require('./schema.js');
 
 class Trepo {
   constructor(repo, options = {}) {
