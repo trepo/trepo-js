@@ -1,6 +1,6 @@
 {
   "name": "trepo-vgraph",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Distributable, versioned graph database",
   "keywords": [
     "Trepo",
