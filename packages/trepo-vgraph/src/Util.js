@@ -1,5 +1,5 @@
-import Sha1 from './vendor/Sha1.js';
-import Constant from './Constant.js';
+const Sha1 = require('./vendor/Sha1.js');
+const Constant = require('./Constant.js');
 
 let Util = {
   isValidUUIDv4: id => {
@@ -119,4 +119,4 @@ let Util = {
   },
 };
 
-export default Util;
+module.exports = Util;

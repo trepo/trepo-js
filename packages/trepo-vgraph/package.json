@@ -11,10 +11,9 @@
     "graph",
     "database"
   ],
-  "main": "dist/VGraph.js",
+  "main": "src/VGraph.js",
   "scripts": {
-    "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
-    "test": "../../node_modules/.bin/mocha --require babel-register 'src/**/*.test.js' -R list"
+    "test": "mocha 'src/**/*.test.js' -R list"
   },
   "author": "John Clark <socrates37@gmail.com>",
   "repository": {
@@ -29,9 +28,11 @@
     "vagabond-db": "0.9.0"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7.6"
   },
   "devDependencies": {
-    "memdown": "1.2.4"
+    "chai": "3.5.0",
+    "memdown": "1.2.4",
+    "mocha": "3.1.0"
   }
 }

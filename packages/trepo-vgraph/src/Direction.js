@@ -16,4 +16,4 @@ let Direction = {
   BOTH: 'BOTH',
 };
 
-export default Direction;
+module.exports = Direction;

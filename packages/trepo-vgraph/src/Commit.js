@@ -1,7 +1,7 @@
-import CommitNode from './CommitNode.js';
-import CommitEdge from './CommitEdge.js';
-import Constant from './Constant.js';
-import Util from './Util.js';
+const CommitNode = require('./CommitNode.js');
+const CommitEdge = require('./CommitEdge.js');
+const Constant = require('./Constant.js');
+const Util = require('./Util.js');
 
 /**
  * A Universally Unique Identifier (UUIDv4) assigned to an Commit.
@@ -372,4 +372,4 @@ class Commit {
 
 }
 
-export default Commit;
+module.exports = Commit;

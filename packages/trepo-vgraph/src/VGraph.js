@@ -1,12 +1,11 @@
-import Constant from './Constant.js';
-import Node from './Node.js';
-import Edge from './Edge.js';
-import Direction from './Direction.js';
-import Commit from './Commit.js';
-import CommitNode from './CommitNode.js';
-import CommitEdge from './CommitEdge.js';
-import Util from './Util.js';
-import Vagabond from 'vagabond-db';
+const Constant = require('./Constant.js');
+const {Edge, Node} = require('./Element.js');
+const Direction = require('./Direction.js');
+const Commit = require('./Commit.js');
+const CommitNode = require('./CommitNode.js');
+const CommitEdge = require('./CommitEdge.js');
+const Util = require('./Util.js');
+const Vagabond = require('vagabond-db');
 
 /**
  * A Repository Identifier.
@@ -1529,13 +1528,12 @@ class VGraph {
 
 }
 
-export {
-  VGraph as default,
-  VGraph as VGraph,
-  Edge as Edge,
-  Node as Node,
-  Commit as Commit,
-  Constant as Constant,
-  Direction as Direction,
-  Util as Util,
+module.exports = {
+  VGraph,
+  Edge,
+  Node,
+  Commit,
+  Constant,
+  Direction,
+  Util,
 };

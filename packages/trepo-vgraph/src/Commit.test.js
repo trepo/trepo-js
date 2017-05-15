@@ -1,7 +1,7 @@
-import Constant from './Constant.js';
-import Commit from './Commit.js';
-import CommitNode from './CommitNode.js';
-import CommitEdge from './CommitEdge.js';
+const Constant = require('./Constant.js');
+const Commit = require('./Commit.js');
+const CommitNode = require('./CommitNode.js');
+const CommitEdge = require('./CommitEdge.js');
 
 let expect = require('chai').expect;
 let uuidv4 = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';

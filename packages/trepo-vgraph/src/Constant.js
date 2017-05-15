@@ -34,4 +34,4 @@ let Constant = {
   UPDATE: 'update',
 };
 
-export default Constant;
+module.exports = Constant;

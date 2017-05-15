@@ -1,7 +1,7 @@
-import Constant from './Constant.js';
-import Edge from './Edge.js';
-import Direction from './Direction.js';
-import VGraph from './VGraph.js';
+const Constant = require('./Constant.js');
+const {Edge} = require('./Element.js');
+const Direction = require('./Direction.js');
+const {VGraph} = require('./VGraph.js');
 
 let db = require('memdown');
 let expect = require('chai').expect;

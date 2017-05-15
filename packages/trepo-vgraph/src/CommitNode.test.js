@@ -1,4 +1,4 @@
-import CommitNode from './CommitNode.js';
+const CommitNode = require('./CommitNode.js');
 
 let expect = require('chai').expect;
 let uuidv4 = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';

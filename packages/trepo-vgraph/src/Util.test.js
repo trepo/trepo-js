@@ -1,4 +1,4 @@
-import Util from './Util.js';
+const Util = require('./Util.js');
 
 let expect = require('chai').expect;
 

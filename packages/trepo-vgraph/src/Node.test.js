@@ -1,8 +1,8 @@
-import Constant from './Constant.js';
-import Util from './Util.js';
-import Node from './Node.js';
-import Direction from './Direction.js';
-import VGraph from './VGraph.js';
+const Constant = require('./Constant.js');
+const Util = require('./Util.js');
+const {Node} = require('./Element.js');
+const Direction = require('./Direction.js');
+const {VGraph} = require('./VGraph.js');
 
 let db = require('memdown');
 let expect = require('chai').expect;

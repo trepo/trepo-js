@@ -1,6 +1,6 @@
-import Constant from './Constant.js';
-import Element from './Element.js';
-import Vagabond from 'vagabond-db';
+const Constant = require('./Constant.js');
+const {Element} = require('./Element.js');
+const Vagabond = require('vagabond-db');
 
 let db = require('memdown');
 let expect = require('chai').expect;
