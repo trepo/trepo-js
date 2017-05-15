@@ -1,5 +1,5 @@
-import Constant from '../Constant.js';
-import VGraph from '../VGraph.js';
+const Constant = require('../Constant.js');
+const {VGraph} = require('../VGraph.js');
 
 let db = require('memdown');
 let expect = require('chai').expect;

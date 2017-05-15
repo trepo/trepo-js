@@ -127,4 +127,4 @@ Sha1.toHexStr = function(n) {
   return s;
 };
 
-export default Sha1;
+module.exports = Sha1;

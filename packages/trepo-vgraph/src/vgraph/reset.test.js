@@ -1,4 +1,4 @@
-import VGraph from '../VGraph.js';
+const {VGraph} = require('../VGraph.js');
 
 let db = require('memdown');
 let expect = require('chai').expect;

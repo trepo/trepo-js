@@ -1,5 +1,5 @@
-import Constant from './Constant.js';
-import Util from './Util.js';
+const Constant = require('./Constant.js');
+const Util = require('./Util.js');
 
 /**
  * A Commit Edge.
@@ -246,4 +246,4 @@ class CommitEdge {
   }
 }
 
-export default CommitEdge;
+module.exports = CommitEdge;

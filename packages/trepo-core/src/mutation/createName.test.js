@@ -1,6 +1,6 @@
 const {expect} = require('chai');
 const Trepo = require('../Trepo.js');
-const Label = require('trepo-ptree/dist/label.js');
+const Label = require('trepo-ptree/src/label.js');
 const db = require('memdown');
 
 let trepo;

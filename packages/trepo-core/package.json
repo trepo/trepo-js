@@ -9,11 +9,9 @@
     "graph",
     "database"
   ],
-  "main": "dist/Trepo.js",
+  "main": "src/Trepo.js",
   "scripts": {
-    "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
-    "test": "../../node_modules/.bin/mocha --compilers js:babel-register --register babel-register 'src/**/*.test.js' -R list",
-    "watch": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js -w"
+    "test": "mocha 'src/**/*.test.js' -R list"
   },
   "author": "John Clark <socrates37@gmail.com>",
   "repository": {
@@ -31,9 +29,11 @@
     "trepo-vgraph": "^0.3.0"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7.6"
   },
   "devDependencies": {
-    "memdown": "1.2.4"
+    "chai": "3.5.0",
+    "memdown": "1.2.4",
+    "mocha": "3.1.0"
   }
 }

@@ -1,4 +1,4 @@
-import Util from './Util.js';
+const Util = require('./Util.js');
 
 /**
  * A Commit Node.
@@ -295,4 +295,4 @@ class CommitNode {
 
 }
 
-export default CommitNode;
+module.exports = CommitNode;
