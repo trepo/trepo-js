@@ -11,7 +11,7 @@
     "database"
   ],
   "bin": {
-    "trepo-server": "./dist/server.js"
+    "trepo-server": "./src/server.js"
   },
   "scripts": {
     "build": "../../node_modules/.bin/babel src --out-dir dist --ignore *.test.js",
