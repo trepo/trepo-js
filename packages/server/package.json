@@ -1,0 +1,43 @@
+{
+  "name": "@trepo/server",
+  "version": "0.4.1",
+  "description": "Trepo Server",
+  "keywords": [
+    "Trepo",
+    "graphql",
+    "server",
+    "genealogy",
+    "graph",
+    "database"
+  ],
+  "bin": {
+    "trepo-server": "./src/server.js"
+  },
+  "scripts": {
+    "test": "echo \"TODO\""
+  },
+  "author": "John Clark <socrates37@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trepo/trepo-js"
+  },
+  "bugs": {
+    "url": "https://github.com/trepo/trepo-js/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "0.9.6",
+    "graphql-server-koa": "0.7.2",
+    "kcors": "2.2.0",
+    "koa": "2.0.0",
+    "koa-bodyparser": "3.2.0",
+    "koa-router": "7.0.1",
+    "@trepo/core": "^0.4.1"
+  },
+  "engines": {
+    "node": ">= 7.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

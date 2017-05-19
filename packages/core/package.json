@@ -1,0 +1,41 @@
+{
+  "name": "@trepo/core",
+  "version": "0.4.1",
+  "description": "Core graphql implementation of Trepo",
+  "keywords": [
+    "Trepo",
+    "graphql",
+    "genealogy",
+    "graph",
+    "database"
+  ],
+  "main": "src/Trepo.js",
+  "scripts": {
+    "test": "mocha 'src/**/*.test.js' -R list"
+  },
+  "author": "John Clark <socrates37@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trepo/trepo-js"
+  },
+  "bugs": {
+    "url": "https://github.com/trepo/trepo-js/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "0.9.6",
+    "@trepo/ptree": "^0.4.0",
+    "@trepo/vgraph": "^0.4.0"
+  },
+  "engines": {
+    "node": ">= 7.6"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "memdown": "1.2.4",
+    "mocha": "3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
