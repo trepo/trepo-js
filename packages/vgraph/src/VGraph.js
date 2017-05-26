@@ -424,6 +424,46 @@ class VGraph {
   }
 
   /**
+   * Get one or more commits, starting after the specified Commit.
+   *
+   * @param  {String} id The commit to start after, or null to start at the root
+   * @param  {Number} [limit=10] The limit
+   * @return {Promise<Array>} The array of commits
+   */
+  async getCommits(id, limit = 10) {
+    let node;
+    let prev = null;
+    if (id === null) {
+      node = this._rootNode;
+    } else {
+      if (!Util.isValidUUIDv4(id)) {
+        throw new Error('Invalid Id');
+      }
+      node = await this._vagabond.getNode(id);
+      if (node.label !== Constant.COMMIT_NODE_LABEL) {
+        throw new Error('Node Not Found');
+      }
+      prev = node.id;
+    }
+    const commits = [];
+    let done = false;
+    while (commits.length < limit && !done) {
+      for (const nextNode of node.getNodes(Direction.OUT)) {
+        if (nextNode.id === Constant.ROOT_ID) {
+          done = true;
+        } else {
+          const commit = await this._inflateCommit(nextNode, prev);
+          commits.push(commit);
+          node = nextNode;
+          prev = node.id;
+        }
+        break;
+      }
+    }
+    return commits;
+  }
+
+  /**
    * Gets the metadata about the last `number` of Commits.
    *
    * @param  {Integer} number The number of entries to return.

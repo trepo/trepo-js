@@ -4,7 +4,7 @@ const db = require('memdown');
 
 let trepo;
 
-describe('commit', () => {
+describe('info', () => {
   beforeEach(async () => {
     trepo = new Trepo('repo', {db});
     await trepo.start();
