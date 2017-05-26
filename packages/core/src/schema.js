@@ -9,6 +9,7 @@ const definitions = [
   // Root Queries
   `type Query {
     birth(id: String): Birth
+    commits(after: String limit: Int): JSON
     death(id: String): Death
     info: Info
     marriage(id: String): Marriage
@@ -155,6 +156,7 @@ const definitions = [
 const resolvers = {
   Query: {
     birth: require('./query/birth.js'),
+    commits: require('./query/commits.js'),
     death: require('./query/death.js'),
     info: require('./query/info.js'),
     marriage: require('./query/marriage.js'),
