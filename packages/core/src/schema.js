@@ -73,7 +73,7 @@ const definitions = [
     deleteName(input: DeleteInput): String
     deletePerson(input: DeleteInput): String
     patch(input: PatchInput): JSON
-    undo(input: UndoInput): [String!]
+    undo(input: UndoInput): [JSON]
     updateBirth(input: BirthUpdateInput): Birth
     updateDeath(input: DeathUpdateInput): Death
     updateMarriage(input: MarriageUpdateInput): Marriage
