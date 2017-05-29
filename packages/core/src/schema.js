@@ -1,5 +1,48 @@
 const {parse, buildASTSchema} = require('graphql');
 
+const resolvers = {
+  Query: {
+    birth: require('./query/birth.js'),
+    commits: require('./query/commits.js'),
+    death: require('./query/death.js'),
+    info: require('./query/info.js'),
+    marriage: require('./query/marriage.js'),
+    name: require('./query/name.js'),
+    person: require('./query/person.js'),
+  },
+  Mutation: {
+    commit: require('./mutation/commit.js'),
+    createBirth: require('./mutation/createBirth.js'),
+    createDeath: require('./mutation/createDeath.js'),
+    createMarriage: require('./mutation/createMarriage.js'),
+    createName: require('./mutation/createName.js'),
+    createPerson: require('./mutation/createPerson.js'),
+    deleteBirth: require('./mutation/deleteBirth.js'),
+    deleteDeath: require('./mutation/deleteDeath.js'),
+    deleteMarriage: require('./mutation/deleteMarriage.js'),
+    deleteName: require('./mutation/deleteName.js'),
+    deletePerson: require('./mutation/deletePerson.js'),
+    patch: require('./mutation/patch.js'),
+    undo: require('./mutation/undo.js'),
+    updateBirth: require('./mutation/updateBirth.js'),
+    updateDeath: require('./mutation/updateDeath.js'),
+    updateMarriage: require('./mutation/updateMarriage.js'),
+    updateName: require('./mutation/updateName.js'),
+  },
+  // Types
+  Birth: require('./type/Birth.js'),
+  Commit: require('./type/Commit.js'),
+  Date: require('./type/Date.js'),
+  Death: require('./type/Death.js'),
+  Info: require('./type/Info.js'),
+  Marriage: require('./type/Marriage.js'),
+  Name: require('./type/Name.js'),
+  Person: require('./type/Person.js'),
+  Place: require('./type/Place.js'),
+  // Scalars
+  JSON: require('./scalar/JSON.js'),
+};
+
 const definitions = [
   // Root
   `schema {
@@ -29,6 +72,8 @@ const definitions = [
     deleteMarriage(input: DeleteInput): String
     deleteName(input: DeleteInput): String
     deletePerson(input: DeleteInput): String
+    patch(input: PatchInput): JSON
+    undo(input: UndoInput): [JSON]
     updateBirth(input: BirthUpdateInput): Birth
     updateDeath(input: DeathUpdateInput): Death
     updateMarriage(input: MarriageUpdateInput): Marriage
@@ -143,56 +188,21 @@ const definitions = [
     name: String!
     person: String
   }`,
+  `input PatchInput {
+    commit: JSON!
+  }`,
   `input PersonCreateInput {
     name: String
   }`,
   `input PlaceInput {
     name: String!
   }`,
+  `input UndoInput {
+    id: String!
+  }`,
   // Scalars
   `scalar JSON`,
 ].join('\n');
-
-const resolvers = {
-  Query: {
-    birth: require('./query/birth.js'),
-    commits: require('./query/commits.js'),
-    death: require('./query/death.js'),
-    info: require('./query/info.js'),
-    marriage: require('./query/marriage.js'),
-    name: require('./query/name.js'),
-    person: require('./query/person.js'),
-  },
-  Mutation: {
-    commit: require('./mutation/commit.js'),
-    createBirth: require('./mutation/createBirth.js'),
-    createDeath: require('./mutation/createDeath.js'),
-    createMarriage: require('./mutation/createMarriage.js'),
-    createName: require('./mutation/createName.js'),
-    createPerson: require('./mutation/createPerson.js'),
-    deleteBirth: require('./mutation/deleteBirth.js'),
-    deleteDeath: require('./mutation/deleteDeath.js'),
-    deleteMarriage: require('./mutation/deleteMarriage.js'),
-    deleteName: require('./mutation/deleteName.js'),
-    deletePerson: require('./mutation/deletePerson.js'),
-    updateBirth: require('./mutation/updateBirth.js'),
-    updateDeath: require('./mutation/updateDeath.js'),
-    updateMarriage: require('./mutation/updateMarriage.js'),
-    updateName: require('./mutation/updateName.js'),
-  },
-  // Types
-  Birth: require('./type/Birth.js'),
-  Commit: require('./type/Commit.js'),
-  Date: require('./type/Date.js'),
-  Death: require('./type/Death.js'),
-  Info: require('./type/Info.js'),
-  Marriage: require('./type/Marriage.js'),
-  Name: require('./type/Name.js'),
-  Person: require('./type/Person.js'),
-  Place: require('./type/Place.js'),
-  // Scalars
-  JSON: require('./scalar/JSON.js'),
-};
 
 const schema = buildASTSchema(parse(definitions));
 
