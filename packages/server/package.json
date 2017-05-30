@@ -1,6 +1,6 @@
 {
   "name": "@trepo/server",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Trepo Server",
   "keywords": [
     "Trepo",
@@ -26,7 +26,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@trepo/core": "^0.6.1",
+    "@trepo/core": "^0.6.2",
     "graphql": "0.9.6",
     "graphql-server-koa": "0.7.2",
     "kcors": "2.2.0",

@@ -1,6 +1,6 @@
 {
   "name": "@trepo/core",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Core graphql implementation of Trepo",
   "keywords": [
     "Trepo",
@@ -23,8 +23,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@trepo/ptree": "^0.6.1",
-    "@trepo/vgraph": "^0.6.1",
+    "@trepo/ptree": "^0.6.2",
+    "@trepo/vgraph": "^0.6.2",
     "graphql": "0.9.6"
   },
   "engines": {
