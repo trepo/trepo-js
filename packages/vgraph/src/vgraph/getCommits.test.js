@@ -99,10 +99,10 @@ describe('VGraph - getCommits', () => {
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(ignored => vGraph.commit('author', 'email', 'message'))
       .then(newCommit => {
-        return vGraph.getCommits(null, 1);
+        return vGraph.getCommits(null, 3);
       })
       .then(commits => {
-        expect(commits.length).to.equal(1);
+        expect(commits.length).to.equal(3);
         done();
       })
       .catch(error => done(error));

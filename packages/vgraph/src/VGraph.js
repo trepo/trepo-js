@@ -432,9 +432,10 @@ class VGraph {
    */
   async getCommits(id, limit = 10) {
     let node;
-    let prev = null;
+    let prev;
     if (id === null) {
       node = this._rootNode;
+      prev = null;
     } else {
       if (!Util.isValidUUIDv4(id)) {
         throw new Error('Invalid Id');
@@ -448,7 +449,8 @@ class VGraph {
     const commits = [];
     let done = false;
     while (commits.length < limit && !done) {
-      for (const nextNode of node.getNodes(Direction.OUT)) {
+      let nextNode = null;
+      for (nextNode of node.getNodes(Direction.OUT)) {
         if (nextNode.id === Constant.ROOT_ID) {
           done = true;
         } else {
@@ -460,7 +462,9 @@ class VGraph {
         break;
       }
       // If there are no edges we are done
-      done = true;
+      if (nextNode === null) {
+        done = true;
+      }
     }
     return commits;
   }
