@@ -107,4 +107,14 @@ describe('VGraph - getCommits', () => {
       })
       .catch(error => done(error));
   });
+
+  it('should return empty array when no commits', done => {
+    vGraph.init()
+      .then(ignored => vGraph.getCommits(null))
+      .then(commits => {
+        expect(commits.length).to.equal(0);
+        done();
+      })
+      .catch(error => done(error));
+  });
 });
