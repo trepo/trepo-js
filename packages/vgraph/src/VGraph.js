@@ -459,6 +459,8 @@ class VGraph {
         }
         break;
       }
+      // If there are no edges we are done
+      done = true;
     }
     return commits;
   }
